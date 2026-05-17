@@ -17,10 +17,10 @@ const Contact = () => {
     <Section id="contact" variant="muted">
       <PageContainer>
         <SectionHeader
-          badge="Start your project"
+          badge="Get started"
           title="Let's build"
           highlight="something great"
-          description="Book a free call or send your project details—we respond within 2 hours on business days."
+          description="Book a call or send details—we reply within 2 hours."
         />
 
         {/* Trust strip */}

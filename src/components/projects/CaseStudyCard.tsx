@@ -1,4 +1,5 @@
 import { ArrowUpRight, Target, Lightbulb, TrendingUp } from 'lucide-react';
+import LazyImage from '@/components/ui/lazy-image';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { scrollToSection } from '@/lib/scroll';
@@ -30,7 +31,7 @@ const CaseStudyCard = ({ study, className }: CaseStudyCardProps) => {
     >
       {/* Image + overlay */}
       <div className="relative aspect-[16/10] overflow-hidden">
-        <img
+        <LazyImage
           src={study.image}
           alt=""
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"

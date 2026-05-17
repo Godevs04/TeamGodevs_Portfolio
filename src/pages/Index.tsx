@@ -1,18 +1,22 @@
+import { lazy, Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
-import Services from '@/components/Services';
-import Process from '@/components/Process';
-import Projects from '@/components/Projects';
-import Results from '@/components/Results';
-import Testimonials from '@/components/Testimonials';
-import FinalCTA from '@/components/FinalCTA';
-import Contact from '@/components/Contact';
+import MobileCTABar from '@/components/MobileCTABar';
 import Footer from '@/components/Footer';
+import SectionFallback from '@/components/layout/SectionFallback';
+
+const Services = lazy(() => import('@/components/Services'));
+const Process = lazy(() => import('@/components/Process'));
+const Projects = lazy(() => import('@/components/Projects'));
+const Results = lazy(() => import('@/components/Results'));
+const Testimonials = lazy(() => import('@/components/Testimonials'));
+const FinalCTA = lazy(() => import('@/components/FinalCTA'));
+const Contact = lazy(() => import('@/components/Contact'));
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-24 md:pb-0">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -23,15 +27,30 @@ const Index = () => {
       <main id="main-content">
         <Hero />
         <SocialProof />
-        <Services />
-        <Process />
-        <Projects />
-        <Results />
-        <Testimonials />
-        <FinalCTA />
-        <Contact />
+        <Suspense fallback={<SectionFallback />}>
+          <Services />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Process />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Results />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Testimonials />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <FinalCTA />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
+      <MobileCTABar />
     </div>
   );
 };

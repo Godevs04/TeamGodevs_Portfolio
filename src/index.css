@@ -102,6 +102,25 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
     @apply bg-background font-sans text-body text-foreground antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1;
@@ -290,6 +309,27 @@
 
   .case-study-card:hover {
     box-shadow: var(--shadow-large);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tap-scale {
+    transition: transform var(--transition-fast);
+  }
+
+  .tap-scale:active {
+    transform: scale(0.98);
   }
 
   .stagger-1 { animation-delay: 0.05s; }

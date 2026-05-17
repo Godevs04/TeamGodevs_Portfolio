@@ -67,8 +67,8 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
         )}
 
         <Button
-          variant="outline"
-          className="mt-auto w-full rounded-xl border-border/80 transition-smooth group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary"
+          variant="ctaOutline"
+          className="mt-auto w-full transition-smooth group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary"
           onClick={() => scrollToSection('contact')}
         >
           Learn more

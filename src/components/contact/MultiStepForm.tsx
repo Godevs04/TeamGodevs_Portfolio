@@ -4,14 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
+import OptionPicker from '@/components/contact/OptionPicker';
 import { BUDGET_RANGES, PROJECT_TYPES } from './constants';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
@@ -119,13 +113,7 @@ const MultiStepForm = () => {
         </div>
 
         <form onSubmit={step === 3 ? handleSubmit : (e) => e.preventDefault()}>
-          <div
-            className={cn(
-              'min-h-[220px] transition-opacity duration-300',
-              'animate-testimonial-fade'
-            )}
-            key={step}
-          >
+          <div key={step} className={cn(step === 2 && 'space-y-8')}>
             {step === 1 && (
               <div className="space-y-5">
                 <div>
@@ -159,45 +147,23 @@ const MultiStepForm = () => {
             )}
 
             {step === 2 && (
-              <div className="space-y-5">
-                <div>
-                  <label className="mb-2 block text-sm font-medium">
-                    Project type <span className="text-destructive">*</span>
-                  </label>
-                  <Select
-                    value={formData.projectType}
-                    onValueChange={(v) => updateField('projectType', v)}
-                  >
-                    <SelectTrigger className="h-12 rounded-xl">
-                      <SelectValue placeholder="Select project type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {PROJECT_TYPES.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <label className="mb-2 block text-sm font-medium">
-                    Budget range <span className="text-destructive">*</span>
-                  </label>
-                  <Select value={formData.budget} onValueChange={(v) => updateField('budget', v)}>
-                    <SelectTrigger className="h-12 rounded-xl">
-                      <SelectValue placeholder="Select budget" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {BUDGET_RANGES.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+              <>
+                <OptionPicker
+                  label="Project type"
+                  required
+                  value={formData.projectType}
+                  options={PROJECT_TYPES}
+                  onChange={(v) => updateField('projectType', v)}
+                  columns={2}
+                />
+                <OptionPicker
+                  label="Budget range"
+                  required
+                  value={formData.budget}
+                  options={BUDGET_RANGES}
+                  onChange={(v) => updateField('budget', v)}
+                />
+              </>
             )}
 
             {step === 3 && (
@@ -209,19 +175,19 @@ const MultiStepForm = () => {
                   id="lead-message"
                   value={formData.message}
                   onChange={(e) => updateField('message', e.target.value)}
-                  placeholder="Goals, timeline, links to references, or anything else we should know..."
+                  placeholder="Goals, timeline, links to references..."
                   rows={6}
                   className="resize-none rounded-xl"
                 />
                 <p className="text-caption mt-3 flex items-center gap-1.5 text-muted-foreground">
                   <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden />
-                  Free consultation included — no obligation
+                  Free consultation included
                 </p>
               </div>
             )}
           </div>
 
-          <div className="mt-8 flex gap-3">
+          <div className="mt-8 flex gap-3 border-t border-border pt-6">
             {step > 1 && (
               <Button
                 type="button"

@@ -19,7 +19,7 @@ const SectionHeader = ({
 }: SectionHeaderProps) => (
   <div
     className={cn(
-      'mb-16 max-w-3xl animate-fade-in',
+      'mb-12 max-w-3xl md:mb-16',
       align === 'center' ? 'mx-auto text-center' : 'text-left',
       className
     )}

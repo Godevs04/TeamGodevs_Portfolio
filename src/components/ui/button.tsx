@@ -5,13 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground shadow-soft hover:bg-primary/90 hover:shadow-medium",
         gradient:
           "bg-gradient-primary text-primary-foreground shadow-medium hover:opacity-95 hover:shadow-glow",
+        cta: "rounded-full bg-gradient-primary text-primary-foreground shadow-medium hover:opacity-95 hover:shadow-glow",
+        ctaOutline:
+          "rounded-full border border-border bg-background hover:border-primary/40 hover:bg-primary/5 hover:text-primary",
+        ctaWhite:
+          "rounded-full bg-white text-[#16a34a] shadow-large hover:bg-white/95 hover:shadow-glow",
+        ctaGhost:
+          "rounded-full border border-white/25 bg-white/5 text-white hover:border-white/40 hover:bg-white/10",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-border bg-background hover:border-primary/30 hover:bg-muted/50",

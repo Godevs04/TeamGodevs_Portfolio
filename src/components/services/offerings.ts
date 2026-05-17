@@ -104,29 +104,25 @@ export const offerings: ProductOffering[] = [
 export const differentiators = [
   {
     title: 'Speed without shortcuts',
-    description:
-      '2-week sprint cycles with weekly demos. You see progress constantly—not a big reveal at month three.',
+    description: '2-week sprints with weekly demos—no month-three surprises.',
     stat: '6–8 wk',
     statLabel: 'avg. MVP launch',
   },
   {
     title: 'Production-grade quality',
-    description:
-      'TypeScript, tests, and code review on every project. No throwaway prototypes that become your permanent stack.',
+    description: 'Typed, tested code—not throwaway prototypes.',
     stat: '100%',
     statLabel: 'typed codebase',
   },
   {
     title: 'Dedicated support',
-    description:
-      'Slack channel, 2-hour response SLA, and 30-day hypercare after launch. We don’t ghost after go-live.',
+    description: 'Slack + 2hr response. We stay after launch.',
     stat: '24/7',
     statLabel: 'urgent coverage',
   },
   {
     title: 'Transparent pricing',
-    description:
-      'Fixed quotes before we write code. No surprise change orders—scope changes are documented and agreed.',
+    description: 'Fixed quotes upfront. No surprise change orders.',
     stat: '0',
     statLabel: 'hidden fees',
   },

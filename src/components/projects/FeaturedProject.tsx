@@ -1,4 +1,5 @@
 import { ArrowUpRight, Target, Lightbulb, TrendingUp } from 'lucide-react';
+import LazyImage from '@/components/ui/lazy-image';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { scrollToSection } from '@/lib/scroll';
@@ -24,7 +25,7 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
     >
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative min-h-[280px] overflow-hidden lg:min-h-[420px]">
-          <img
+          <LazyImage
             src={study.image}
             alt=""
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -93,7 +94,7 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
             ))}
           </div>
 
-          <Button variant="gradient" size="lg" className="w-fit rounded-full" onClick={openCaseStudy}>
+          <Button variant="cta" size="lg" className="w-fit" onClick={openCaseStudy}>
             View case study
             <ArrowUpRight className="h-5 w-5" />
           </Button>

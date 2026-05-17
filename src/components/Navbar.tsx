@@ -67,9 +67,9 @@ const Navbar = () => {
             <div className="mx-2 h-6 w-px bg-border/80" aria-hidden />
             <ThemeToggle />
             <Button
-              variant="gradient"
+              variant="cta"
               size="sm"
-              className="ml-2 rounded-full"
+              className="ml-2"
               onClick={() => handleNav('contact')}
             >
               Get started
@@ -110,8 +110,8 @@ const Navbar = () => {
                 </button>
               ))}
               <Button
-                variant="gradient"
-                className="mt-4 w-full rounded-xl"
+                variant="cta"
+                className="mt-4 w-full"
                 onClick={() => handleNav('contact')}
               >
                 Get started
