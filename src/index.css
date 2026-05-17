@@ -247,6 +247,15 @@
     transform: translateY(-6px);
   }
 
+  .case-study-card {
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth),
+      border-color var(--transition-smooth);
+  }
+
+  .case-study-card:hover {
+    box-shadow: var(--shadow-large);
+  }
+
   .stagger-1 { animation-delay: 0.05s; }
   .stagger-2 { animation-delay: 0.1s; }
   .stagger-3 { animation-delay: 0.15s; }
