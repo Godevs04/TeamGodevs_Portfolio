@@ -215,27 +215,63 @@
     background-color: hsl(var(--primary) / 0.1);
   }
 
-  .footer-elegant {
-    @apply relative overflow-hidden border-t border-white/5 text-background;
-    background: linear-gradient(180deg, hsl(222 47% 7%) 0%, hsl(222 47% 4%) 100%);
+  .footer-premium {
+    @apply relative overflow-hidden text-white;
+    background: linear-gradient(
+      165deg,
+      hsl(222 47% 8%) 0%,
+      hsl(222 47% 5%) 45%,
+      hsl(222 47% 3%) 100%
+    );
   }
 
-  .footer-elegant::before {
+  .footer-premium::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #10b981, transparent);
+    background: linear-gradient(90deg, transparent, #16a34a, #10b981, transparent);
+  }
+
+  .footer-premium::after {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    width: 60%;
+    height: 240px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, hsl(142 70% 48% / 0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .footer-divider {
+    @apply border-t border-white/[0.08];
   }
 
   .footer-heading {
-    @apply mb-6 text-caption font-semibold uppercase tracking-[0.2em] text-primary;
+    @apply mb-5 text-caption font-semibold uppercase tracking-[0.18em] text-[#10b981];
   }
 
   .footer-link {
-    @apply min-h-[44px] text-sm text-white/65 transition-smooth hover:text-primary focus-visible:text-primary;
+    @apply block rounded-lg px-2 py-2.5 text-left text-sm text-white/60 transition-smooth hover:bg-white/5 hover:text-white focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50;
+  }
+
+  .footer-social {
+    @apply flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-all duration-300;
+  }
+
+  .footer-social:hover {
+    @apply border-primary/40 bg-primary/15 text-[#10b981];
+    box-shadow: 0 0 24px hsl(142 70% 48% / 0.35);
+    transform: translateY(-2px);
+  }
+
+  .footer-newsletter {
+    @apply rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
   }
 
   .product-card {
