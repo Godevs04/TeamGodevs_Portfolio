@@ -24,7 +24,7 @@ const SectionCTA = ({
 }: SectionCTAProps) => (
   <div
     className={cn(
-      'mt-16 flex flex-col items-center gap-6 rounded-2xl border border-border/60 bg-muted/30 px-6 py-10 text-center md:mt-20 md:px-10',
+      'mt-12 flex flex-col items-center gap-5 rounded-2xl border border-border/60 bg-muted/30 px-4 py-8 text-center sm:mt-16 sm:gap-6 sm:px-6 sm:py-10 md:mt-20 md:px-10',
       className
     )}
   >

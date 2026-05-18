@@ -53,7 +53,7 @@ const CaseStudyCard = ({ study, className }: CaseStudyCardProps) => {
           ))}
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+        <div className="absolute inset-0 hidden items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100 md:flex">
           <Button
             size="lg"
             onClick={handleViewCaseStudy}
@@ -99,7 +99,7 @@ const CaseStudyCard = ({ study, className }: CaseStudyCardProps) => {
           </div>
         </div>
 
-        <div className="mb-5 grid grid-cols-3 gap-3 rounded-xl border border-border/60 bg-muted/30 p-4">
+        <div className="mb-5 grid grid-cols-1 gap-3 rounded-xl border border-border/60 bg-muted/30 p-4 min-[420px]:grid-cols-3">
           {study.results.map((metric) => (
             <div key={metric.label} className="text-center">
               <div className="flex items-center justify-center gap-1">
@@ -110,6 +110,15 @@ const CaseStudyCard = ({ study, className }: CaseStudyCardProps) => {
             </div>
           ))}
         </div>
+
+        <Button
+          variant="ctaOutline"
+          className="mb-4 w-full md:hidden"
+          onClick={handleViewCaseStudy}
+        >
+          View case study
+          <ArrowUpRight className="h-4 w-4" />
+        </Button>
 
         <div className="mt-auto flex flex-wrap gap-2">
           {study.tags.map((tag) => (

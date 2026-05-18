@@ -7,7 +7,7 @@ const FinalCTA = () => {
   return (
     <section
       id="cta"
-      className="relative overflow-hidden py-20 md:py-24"
+      className="relative overflow-hidden py-14 sm:py-20 md:py-24"
       aria-labelledby="final-cta-heading"
     >
       <div

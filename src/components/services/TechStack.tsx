@@ -3,7 +3,7 @@ import { techStack } from './offerings';
 
 const TechStack = ({ className }: { className?: string }) => {
   return (
-    <div className={cn('marquee-mask overflow-hidden', className)}>
+    <div className={cn('marquee-mask w-full overflow-hidden', className)}>
       <div className="marquee-track gap-4 px-2">
         {[...techStack, ...techStack].map((tech, i) => (
           <div

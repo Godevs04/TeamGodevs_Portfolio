@@ -25,27 +25,33 @@ const Testimonials = () => {
           description="Short quotes. Real before/after numbers."
         />
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-10">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
+          {/* Main quote + metrics */}
+          <div className="flex flex-col gap-6 lg:col-span-7 xl:col-span-8">
             <TestimonialCarousel
               items={testimonials}
               activeIndex={activeIndex}
               onIndexChange={setActiveIndex}
             />
 
-            <div key={current.id} className="mt-6 grid grid-cols-3 gap-3 animate-testimonial-fade">
+            <div
+              key={current.id}
+              className="grid grid-cols-1 gap-3 sm:grid-cols-3"
+              aria-label="Client impact metrics"
+            >
               {current.impact.map((metric) => (
                 <Card key={metric.label} variant="glass" className="border-primary/10 hover-lift">
-                  <CardContent className="p-4 text-center">
+                  <CardContent className="flex flex-col items-center justify-center p-4 text-center sm:p-5">
                     <p className="text-lg font-bold text-gradient md:text-xl">{metric.value}</p>
-                    <p className="text-caption text-muted-foreground">{metric.label}</p>
+                    <p className="text-caption mt-1 text-muted-foreground">{metric.label}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
 
-          <Reveal className="flex flex-col gap-6">
+          {/* Video + before/after */}
+          <Reveal className="flex flex-col gap-6 lg:col-span-5 xl:col-span-4">
             <VideoPlaceholder />
             <BeforeAfterPanel key={current.id} data={current.beforeAfter} />
           </Reveal>

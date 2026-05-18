@@ -5,9 +5,9 @@ const VideoPlaceholder = () => {
   return (
     <Card
       variant="elevated"
-      className="group relative h-full min-h-[240px] overflow-hidden border-border/60 p-0"
+      className="group relative min-h-[200px] overflow-hidden border-border/60 p-0 sm:min-h-[220px] lg:min-h-[240px]"
     >
-      <CardContent className="relative flex h-full min-h-[240px] flex-col items-center justify-center p-0">
+      <CardContent className="relative flex min-h-[200px] flex-col items-center justify-center p-0 sm:min-h-[220px] lg:min-h-[240px]">
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#052e16]/80 to-[#0f172a]"
           aria-hidden

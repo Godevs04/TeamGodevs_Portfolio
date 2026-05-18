@@ -35,11 +35,11 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
         aria-hidden
       />
       <CardContent className="relative flex flex-1 flex-col p-6 md:p-8">
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary shadow-glow transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
-            <Icon className="h-7 w-7 text-white" aria-hidden />
+        <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+          <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-primary shadow-glow transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 sm:h-14 sm:w-14">
+            <Icon className="h-6 w-6 text-white sm:h-7 sm:w-7" aria-hidden />
           </div>
-          <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-caption font-semibold text-primary">
+          <span className="max-w-full rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary sm:text-caption">
             {product.priceFrom}
           </span>
         </div>

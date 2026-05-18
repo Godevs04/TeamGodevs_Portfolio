@@ -78,16 +78,16 @@ const Footer = () => {
     <footer className="footer-premium">
       <PageContainer className="relative z-10">
         {/* Main grid */}
-        <div className="grid grid-cols-1 gap-12 py-20 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-16">
+        <div className="grid grid-cols-1 items-start gap-10 py-14 sm:gap-12 sm:py-20 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-12">
           {/* About */}
           <div className="lg:col-span-4">
             <BrandMark variant="footer" onClick={() => scrollToSection('home')} />
-            <p className="mt-6 max-w-sm text-body leading-relaxed text-white/55">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
               TeamGoDevs is a product studio helping startups and SMBs ship web apps, mobile
               experiences, and growth systems that drive real revenue—not just pretty pixels.
             </p>
-            <div className="footer-divider my-8" />
-            <ul className="space-y-3">
+            <div className="footer-divider my-6" />
+            <ul className="space-y-2.5">
               {[
                 { icon: Mail, text: 'hello@teamgodevs.com', href: 'mailto:hello@teamgodevs.com' },
                 { icon: Phone, text: '+91 96777 23429', href: 'tel:+919677723429' },
@@ -97,14 +97,18 @@ const Footer = () => {
                   {href ? (
                     <a
                       href={href}
-                      className="flex items-center gap-3 text-sm text-white/60 transition-smooth hover:text-[#10b981]"
+                      className="group/contact flex items-center gap-3 text-sm text-white/55 transition-smooth hover:text-white/90"
                     >
-                      <Icon className="h-4 w-4 shrink-0 text-[#10b981]" aria-hidden />
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/50 transition-smooth group-hover/contact:border-white/20 group-hover/contact:bg-white/10 group-hover/contact:text-white/80">
+                        <Icon className="h-3.5 w-3.5" aria-hidden />
+                      </span>
                       {text}
                     </a>
                   ) : (
-                    <span className="flex items-center gap-3 text-sm text-white/60">
-                      <Icon className="h-4 w-4 shrink-0 text-[#10b981]" aria-hidden />
+                    <span className="flex items-center gap-3 text-sm text-white/55">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/50">
+                        <Icon className="h-3.5 w-3.5" aria-hidden />
+                      </span>
                       {text}
                     </span>
                   )}
@@ -114,7 +118,7 @@ const Footer = () => {
           </div>
 
           {/* Explore */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 lg:pt-0.5">
             <h3 className="footer-heading">Explore</h3>
             <ul className="space-y-0.5">
               {exploreLinks.map((link) => (
@@ -122,7 +126,7 @@ const Footer = () => {
                   <button
                     type="button"
                     onClick={() => scrollToSection(link.href)}
-                    className="footer-link w-full"
+                    className="footer-link-nav w-full"
                   >
                     {link.name}
                   </button>
@@ -132,7 +136,7 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 lg:pt-0.5">
             <h3 className="footer-heading">Services</h3>
             <ul className="space-y-0.5">
               {serviceLinks.map((name) => (
@@ -140,7 +144,7 @@ const Footer = () => {
                   <button
                     type="button"
                     onClick={() => scrollToSection('services')}
-                    className="footer-link w-full"
+                    className="footer-link-nav w-full"
                   >
                     {name}
                   </button>
@@ -161,14 +165,14 @@ const Footer = () => {
                 <label htmlFor="footer-email" className="sr-only">
                   Email for newsletter
                 </label>
-                <div className="flex flex-col gap-2 sm:flex-row">
+                <div className="flex flex-col gap-2 md:flex-row">
                   <input
                     id="footer-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@company.com"
-                    className="min-h-[48px] flex-1 rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white placeholder:text-white/35 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    className="min-h-[48px] flex-1 rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white placeholder:text-white/35 focus:border-white/25 focus:outline-none focus:ring-2 focus:ring-white/15"
                   />
                   <Button
                     type="submit"
@@ -219,7 +223,7 @@ const Footer = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-1 md:gap-2">
               {legalLinks.map((label) => (
-                <button key={label} type="button" className="footer-link !min-h-0 py-2 text-caption">
+                <button key={label} type="button" className="footer-link text-caption">
                   {label}
                 </button>
               ))}
@@ -230,12 +234,12 @@ const Footer = () => {
         <div className="footer-divider pb-10 pt-8 text-center">
           <p className="inline-flex flex-wrap items-center justify-center gap-1.5 text-caption text-white/35">
             Built with
-            <Heart className="h-3.5 w-3.5 fill-[#10b981] text-[#10b981]" aria-hidden />
+            <Heart className="h-3.5 w-3.5 fill-white/40 text-white/40" aria-hidden />
             by
             <button
               type="button"
               onClick={() => scrollToSection('home')}
-              className="font-medium text-white/55 transition-smooth hover:text-[#10b981]"
+              className="font-medium text-white/55 transition-smooth hover:text-white/85"
             >
               TeamGoDevs
             </button>

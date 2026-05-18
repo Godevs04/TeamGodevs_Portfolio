@@ -29,7 +29,7 @@ const OptionPicker = ({
       <div
         role="radiogroup"
         aria-label={label}
-        className={cn('grid gap-2', columns === 2 && 'sm:grid-cols-2')}
+        className={cn('grid grid-cols-1 gap-2', columns === 2 && 'min-[480px]:grid-cols-2')}
       >
         {options.map((opt) => {
           const selected = value === opt.value;

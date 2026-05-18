@@ -27,24 +27,24 @@ const Hero = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#052e16]/90 via-[#0f172a]/85 to-[#0f172a]/95" />
         <div
-          className="hero-glow absolute -left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-[#16a34a]/30 blur-[120px]"
+          className="hero-glow absolute -left-1/4 top-1/4 h-[280px] w-[280px] rounded-full bg-[#16a34a]/30 blur-[80px] sm:h-[400px] sm:w-[400px] sm:blur-[100px] md:h-[500px] md:w-[500px] md:blur-[120px]"
           aria-hidden
         />
         <div
-          className="hero-glow absolute -right-1/4 bottom-0 h-[400px] w-[400px] rounded-full bg-[#10b981]/25 blur-[100px]"
+          className="hero-glow absolute -right-1/4 bottom-0 h-[220px] w-[220px] rounded-full bg-[#10b981]/25 blur-[70px] sm:h-[320px] sm:w-[320px] sm:blur-[90px] md:h-[400px] md:w-[400px] md:blur-[100px]"
           style={{ animationDelay: '2s' }}
           aria-hidden
         />
       </div>
 
-      <PageContainer className="relative z-10 py-16 md:py-24">
+      <PageContainer className="relative z-10 py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-4xl text-center">
           <span className="glass mb-6 inline-flex animate-fade-in items-center gap-2 rounded-full px-4 py-2 text-caption font-medium text-white">
             <span className="h-2 w-2 animate-pulse-glow rounded-full bg-[#10b981]" aria-hidden />
             Now booking Q2 2026
           </span>
 
-          <h1 className="animate-fade-in text-display mb-6 text-white">
+          <h1 className="animate-fade-in text-display mb-6 text-balance text-white">
             Ship products that
             <span className="mt-2 block bg-gradient-to-r from-[#4ade80] via-[#10b981] to-[#34d399] bg-clip-text text-transparent">
               convert visitors into revenue
@@ -95,7 +95,7 @@ const Hero = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="mt-10 hidden text-white/60 hover:bg-white/10 hover:text-white sm:inline-flex"
+            className="mt-8 text-white/60 hover:bg-white/10 hover:text-white sm:mt-10"
             onClick={() => scrollToSection('projects')}
           >
             <Play className="mr-2 h-4 w-4" />

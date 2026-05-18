@@ -100,7 +100,7 @@ const MultiStepForm = () => {
 
   return (
     <Card variant="elevated" className="shadow-large">
-      <CardContent className="p-6 md:p-10">
+      <CardContent className="p-4 sm:p-6 md:p-10">
         <div className="mb-8">
           <div className="mb-3 flex items-center justify-between text-sm">
             <span className="font-medium text-foreground">

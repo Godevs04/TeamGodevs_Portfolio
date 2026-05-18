@@ -21,7 +21,7 @@ export const offerings: ProductOffering[] = [
       'Content strategy + on-page optimization',
       'Monthly performance reporting',
     ],
-    priceFrom: 'From ₹25,000/mo',
+    priceFrom: 'From ₹5,000/mo',
     priceNote: 'Scoped to your market & competition',
   },
   {
@@ -36,7 +36,7 @@ export const offerings: ProductOffering[] = [
       'API design & Node.js backends',
       'Auth, payments & admin dashboards',
     ],
-    priceFrom: 'From ₹1,50,000',
+    priceFrom: 'From ₹20,000',
     priceNote: 'Fixed-scope MVP packages available',
   },
   {
@@ -51,7 +51,7 @@ export const offerings: ProductOffering[] = [
       'Push notifications & offline support',
       'Store submission & release management',
     ],
-    priceFrom: 'From ₹2,00,000',
+    priceFrom: 'From ₹40,000',
     priceNote: 'Includes 30-day post-launch support',
   },
   {
@@ -66,7 +66,7 @@ export const offerings: ProductOffering[] = [
       'High-fidelity Figma design system',
       'Prototype for stakeholder sign-off',
     ],
-    priceFrom: 'From ₹40,000',
+    priceFrom: 'From ₹10,000',
     priceNote: 'Design-only or dev handoff included',
   },
   {
@@ -81,7 +81,7 @@ export const offerings: ProductOffering[] = [
       'Brand guidelines & asset kit',
       'Social & marketing templates',
     ],
-    priceFrom: 'From ₹30,000',
+    priceFrom: 'From ₹5,000',
     priceNote: 'Full rebrand packages on request',
   },
   {
@@ -96,7 +96,7 @@ export const offerings: ProductOffering[] = [
       'AWS / Firebase / Vercel setup',
       'Monitoring, alerts & 99.9% uptime targets',
     ],
-    priceFrom: 'From ₹20,000/mo',
+    priceFrom: 'From ₹5,000/mo',
     priceNote: 'Retainer or per-project setup',
   },
 ];

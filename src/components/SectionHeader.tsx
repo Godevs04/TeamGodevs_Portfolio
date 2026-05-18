@@ -19,7 +19,7 @@ const SectionHeader = ({
 }: SectionHeaderProps) => (
   <div
     className={cn(
-      'mb-12 max-w-3xl md:mb-16',
+      'mb-10 max-w-3xl px-1 sm:px-0 md:mb-16',
       align === 'center' ? 'mx-auto text-center' : 'text-left',
       className
     )}

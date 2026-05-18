@@ -24,7 +24,7 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
       className="case-study-card group mb-16 overflow-hidden border-primary/20 p-0 shadow-large lg:mb-20"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative min-h-[280px] overflow-hidden lg:min-h-[420px]">
+        <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] lg:min-h-[420px]">
           <LazyImage
             src={study.image}
             alt=""
@@ -40,7 +40,7 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+        <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
           <p className="text-caption mb-2 hidden font-semibold uppercase tracking-widest text-primary lg:block">
             {study.client}
           </p>
@@ -71,12 +71,12 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
             </div>
           </div>
 
-          <div className="mb-8 grid grid-cols-3 gap-4 rounded-2xl border border-border bg-muted/40 p-5">
+          <div className="mb-8 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-muted/40 p-5 min-[420px]:grid-cols-3">
             {study.results.map((metric) => (
-              <div key={metric.label}>
-                <div className="flex items-center gap-1">
+              <div key={metric.label} className="text-center min-[420px]:text-left">
+                <div className="flex items-center justify-center gap-1 min-[420px]:justify-start">
                   <TrendingUp className="h-4 w-4 text-primary" aria-hidden />
-                  <span className="text-h3 text-gradient">{metric.value}</span>
+                  <span className="text-lg font-bold text-gradient sm:text-h3">{metric.value}</span>
                 </div>
                 <p className="text-caption text-muted-foreground">{metric.label}</p>
               </div>
@@ -94,7 +94,7 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
             ))}
           </div>
 
-          <Button variant="cta" size="lg" className="w-fit" onClick={openCaseStudy}>
+          <Button variant="cta" size="lg" className="w-full sm:w-fit" onClick={openCaseStudy}>
             View case study
             <ArrowUpRight className="h-5 w-5" />
           </Button>

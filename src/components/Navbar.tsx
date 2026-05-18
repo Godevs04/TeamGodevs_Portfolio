@@ -20,6 +20,13 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map((item) => item.id);
       const scrollPosition = window.scrollY + 120;
@@ -46,10 +53,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="nav-elegant fixed inset-x-0 top-0 z-50" aria-label="Main navigation">
+    <nav className="nav-elegant fixed inset-x-0 top-0 z-50 overflow-x-hidden" aria-label="Main navigation">
       <PageContainer>
-        <div className="flex items-center justify-between py-4">
-          <BrandMark variant="header" onClick={() => handleNav('home')} />
+        <div className="flex items-center justify-between py-3.5 sm:py-4">
+          <BrandMark variant="header" onClick={() => handleNav('home')} className="-ml-0.5" />
 
           <div className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
@@ -77,10 +84,11 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle size="sm" />
+            <ThemeToggle className="min-h-11 min-w-11" />
             <Button
               variant="ghost"
               size="icon"
+              className="min-h-11 min-w-11"
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-nav"
@@ -94,7 +102,7 @@ const Navbar = () => {
         {isOpen && (
           <div
             id="mobile-nav"
-            className="animate-slide-in-right border-t border-border/50 py-4 md:hidden"
+            className="animate-fade-in border-t border-border/50 py-4 md:hidden"
           >
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (

@@ -23,7 +23,7 @@ const ProjectFilters = ({ active, onChange, counts }: ProjectFiltersProps) => {
           aria-selected={active === id}
           onClick={() => onChange(id)}
           className={cn(
-            'min-h-[44px] rounded-full border px-5 py-2 text-sm font-medium transition-smooth focus-visible:ring-2 focus-visible:ring-ring',
+            'min-h-[44px] rounded-full border px-3 py-2 text-xs font-medium transition-smooth focus-visible:ring-2 focus-visible:ring-ring sm:px-5 sm:text-sm',
             active === id
               ? 'border-primary bg-gradient-primary text-white shadow-glow'
               : 'border-border bg-card text-muted-foreground hover:border-primary/30 hover:bg-muted/50 hover:text-foreground'

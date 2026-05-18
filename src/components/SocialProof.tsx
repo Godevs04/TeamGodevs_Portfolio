@@ -10,6 +10,9 @@ const clients = [
   'HealthFirst',
   'EcoCommerce',
   'TechStart',
+  'Fiverr',
+  'Upwork',
+  'BudgetBoy',
 ];
 
 const LogoStrip = () => (

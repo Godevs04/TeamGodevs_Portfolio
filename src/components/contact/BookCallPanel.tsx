@@ -13,7 +13,7 @@ const BookCallPanel = () => {
           <iframe
             src={CALENDLY_EMBED_URL}
             title="Book a call with TeamGoDevs"
-            className="min-h-[620px] w-full border-0"
+            className="min-h-[70vh] w-full border-0 sm:min-h-[620px]"
           />
         </CardContent>
       </Card>
@@ -55,7 +55,7 @@ const BookCallPanel = () => {
                 key={i}
                 type="button"
                 disabled={i < 5 || i > 28}
-                className={`rounded-lg py-2 text-xs transition-smooth ${
+                className={`min-h-11 rounded-lg py-2 text-xs transition-smooth ${
                   i === 18
                     ? 'bg-gradient-primary font-semibold text-white shadow-glow'
                     : i < 5 || i > 28
@@ -75,7 +75,7 @@ const BookCallPanel = () => {
               <button
                 key={slot}
                 type="button"
-                className={`rounded-xl border px-3 py-2.5 text-sm font-medium transition-smooth ${
+                className={`min-h-11 rounded-xl border px-3 py-2.5 text-sm font-medium transition-smooth ${
                   i === 1
                     ? 'border-primary bg-primary/10 text-primary'
                     : 'border-border bg-card hover:border-primary/30'

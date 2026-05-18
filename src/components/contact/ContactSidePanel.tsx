@@ -9,7 +9,7 @@ const ContactSidePanel = () => {
     <div className="space-y-6 lg:sticky lg:top-24">
       <Card variant="gradient" className="overflow-hidden border-primary/15">
         <CardContent className="p-6 md:p-8">
-          <BrandMark className="mb-6" />
+          <BrandMark variant="panel" className="mb-6" />
           <p className="text-body mb-6 text-muted-foreground">
             We partner with startups and growing businesses to ship web, mobile, and growth
             products—fast, transparent, and built to scale.

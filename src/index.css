@@ -100,6 +100,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -122,7 +123,7 @@
   }
 
   body {
-    @apply bg-background font-sans text-body text-foreground antialiased;
+    @apply overflow-x-hidden bg-background font-sans text-body text-foreground antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
@@ -145,7 +146,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-20 md:py-24 lg:py-28;
+    @apply py-14 sm:py-20 md:py-24 lg:py-28;
   }
 
   .text-gradient {
@@ -251,18 +252,18 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #16a34a, #10b981, transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
   }
 
   .footer-premium::after {
     content: '';
     position: absolute;
-    top: -120px;
+    top: -80px;
     left: 50%;
-    width: 60%;
-    height: 240px;
+    width: 50%;
+    height: 160px;
     transform: translateX(-50%);
-    background: radial-gradient(ellipse, hsl(142 70% 48% / 0.08), transparent 70%);
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.04), transparent 70%);
     pointer-events: none;
   }
 
@@ -271,20 +272,24 @@
   }
 
   .footer-heading {
-    @apply mb-5 text-caption font-semibold uppercase tracking-[0.18em] text-[#10b981];
+    @apply mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-white/45;
   }
 
   .footer-link {
-    @apply block rounded-lg px-2 py-2.5 text-left text-sm text-white/60 transition-smooth hover:bg-white/5 hover:text-white focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50;
+    @apply flex min-h-[44px] items-center rounded-lg px-3 py-2 text-left text-sm text-white/60 transition-smooth hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30;
+  }
+
+  .footer-link-nav {
+    @apply flex min-h-0 items-center rounded-md px-2 py-2 text-left text-sm text-white/55 transition-smooth hover:bg-white/5 hover:text-white/90;
   }
 
   .footer-social {
-    @apply flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-all duration-300;
+    @apply flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/65 transition-all duration-300;
   }
 
   .footer-social:hover {
-    @apply border-primary/40 bg-primary/15 text-[#10b981];
-    box-shadow: 0 0 24px hsl(142 70% 48% / 0.35);
+    @apply border-white/25 bg-white/10 text-white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
   }
 
