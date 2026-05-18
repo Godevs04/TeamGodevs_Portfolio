@@ -14,7 +14,9 @@ import {
 import BrandMark from '@/components/BrandMark';
 import PageContainer from '@/components/layout/PageContainer';
 import { Button } from '@/components/ui/button';
+import { useTheme } from '@/contexts/ThemeContext';
 import { scrollToSection } from '@/lib/scroll';
+import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 const exploreLinks = [
@@ -45,7 +47,15 @@ const socialLinks = [
   { name: 'GitHub', icon: Github, href: '#' },
 ];
 
+const contactIconClass = cn(
+  'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 text-muted-foreground transition-smooth',
+  'group-hover/contact:border-primary/25 group-hover/contact:bg-primary/10 group-hover/contact:text-primary',
+  'dark:border-white/10 dark:bg-white/5 dark:text-white/50',
+  'dark:group-hover/contact:border-white/20 dark:group-hover/contact:bg-white/10 dark:group-hover/contact:text-white/80'
+);
+
 const Footer = () => {
+  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -77,12 +87,13 @@ const Footer = () => {
   return (
     <footer className="footer-premium">
       <PageContainer className="relative z-10">
-        {/* Main grid */}
         <div className="grid grid-cols-1 items-start gap-10 py-14 sm:gap-12 sm:py-20 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-12">
-          {/* About */}
           <div className="lg:col-span-4">
-            <BrandMark variant="footer" onClick={() => scrollToSection('home')} />
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
+            <BrandMark
+              variant={theme === 'dark' ? 'footer' : 'header'}
+              onClick={() => scrollToSection('home')}
+            />
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground dark:text-white/55">
               TeamGoDevs is a product studio helping startups and SMBs ship web apps, mobile
               experiences, and growth systems that drive real revenue—not just pretty pixels.
             </p>
@@ -97,16 +108,16 @@ const Footer = () => {
                   {href ? (
                     <a
                       href={href}
-                      className="group/contact flex items-center gap-3 text-sm text-white/55 transition-smooth hover:text-white/90"
+                      className="group/contact flex items-center gap-3 text-sm text-muted-foreground transition-smooth hover:text-foreground dark:text-white/55 dark:hover:text-white/90"
                     >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/50 transition-smooth group-hover/contact:border-white/20 group-hover/contact:bg-white/10 group-hover/contact:text-white/80">
+                      <span className={contactIconClass}>
                         <Icon className="h-3.5 w-3.5" aria-hidden />
                       </span>
                       {text}
                     </a>
                   ) : (
-                    <span className="flex items-center gap-3 text-sm text-white/55">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/50">
+                    <span className="flex items-center gap-3 text-sm text-muted-foreground dark:text-white/55">
+                      <span className={cn(contactIconClass, 'group-hover/contact:border-border')}>
                         <Icon className="h-3.5 w-3.5" aria-hidden />
                       </span>
                       {text}
@@ -117,7 +128,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Explore */}
           <div className="lg:col-span-2 lg:pt-0.5">
             <h3 className="footer-heading">Explore</h3>
             <ul className="space-y-0.5">
@@ -135,7 +145,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
           <div className="lg:col-span-2 lg:pt-0.5">
             <h3 className="footer-heading">Services</h3>
             <ul className="space-y-0.5">
@@ -153,12 +162,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter + social */}
           <div className="lg:col-span-4">
             <h3 className="footer-heading">Stay in the loop</h3>
             <div className="footer-newsletter">
-              <p className="text-sm font-semibold text-white">Product & growth insights</p>
-              <p className="mt-1 text-caption text-white/50">
+              <p className="text-sm font-semibold text-foreground dark:text-white">
+                Product & growth insights
+              </p>
+              <p className="mt-1 text-caption text-muted-foreground dark:text-white/50">
                 Monthly tips on shipping faster, converting better, and scaling smarter.
               </p>
               <form onSubmit={handleNewsletter} className="mt-5 space-y-3">
@@ -172,7 +182,7 @@ const Footer = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@company.com"
-                    className="min-h-[48px] flex-1 rounded-xl border border-white/10 bg-white/5 px-4 text-sm text-white placeholder:text-white/35 focus:border-white/25 focus:outline-none focus:ring-2 focus:ring-white/15"
+                    className="min-h-[48px] flex-1 rounded-xl border border-border bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/35 dark:focus:border-white/25 dark:focus:ring-white/15"
                   />
                   <Button
                     type="submit"
@@ -190,7 +200,9 @@ const Footer = () => {
                     )}
                   </Button>
                 </div>
-                <p className="text-caption text-white/40">No spam. Unsubscribe anytime.</p>
+                <p className="text-caption text-muted-foreground dark:text-white/40">
+                  No spam. Unsubscribe anytime.
+                </p>
               </form>
             </div>
 
@@ -215,10 +227,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="footer-divider py-8">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <p className="text-caption text-white/40">
+            <p className="text-caption text-muted-foreground dark:text-white/40">
               © {currentYear} TeamGoDevs. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-1 md:gap-2">
@@ -232,14 +243,14 @@ const Footer = () => {
         </div>
 
         <div className="footer-divider pb-10 pt-8 text-center">
-          <p className="inline-flex flex-wrap items-center justify-center gap-1.5 text-caption text-white/35">
+          <p className="inline-flex flex-wrap items-center justify-center gap-1.5 text-caption text-muted-foreground dark:text-white/35">
             Built with
-            <Heart className="h-3.5 w-3.5 fill-white/40 text-white/40" aria-hidden />
+            <Heart className="h-3.5 w-3.5 fill-primary/50 text-primary/50 dark:fill-white/40 dark:text-white/40" aria-hidden />
             by
             <button
               type="button"
               onClick={() => scrollToSection('home')}
-              className="font-medium text-white/55 transition-smooth hover:text-white/85"
+              className="font-medium text-foreground/70 transition-smooth hover:text-primary dark:text-white/55 dark:hover:text-white/85"
             >
               TeamGoDevs
             </button>

@@ -9,7 +9,7 @@ const LazyImage = ({ priority = false, className, alt = '', ...props }: LazyImag
     alt={alt}
     loading={priority ? 'eager' : 'lazy'}
     decoding="async"
-    fetchPriority={priority ? 'high' : 'auto'}
+    {...(priority ? { fetchpriority: 'high' as const } : {})}
     className={cn(className)}
     {...props}
   />

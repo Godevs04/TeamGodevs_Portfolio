@@ -1,106 +1,140 @@
-import { ArrowRight, Calendar, Play, Shield, Star, Zap, Clock } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Rocket, Shield, Star, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import PageContainer from '@/components/layout/PageContainer';
+import HeroVisual from '@/components/hero/HeroVisual';
 import { scrollToSection } from '@/lib/scroll';
-import LazyImage from '@/components/ui/lazy-image';
-import heroBg from '@/assets/hero-bg.jpg';
+import { cn } from '@/lib/utils';
 
-const trustBadges = [
+const trustItems = [
   { icon: Shield, label: '50+ clients' },
-  { icon: Star, label: '4.9★ rated' },
-  { icon: Zap, label: '2-week sprints' },
+  { icon: Star, label: '4.9★ rating' },
+  { icon: Zap, label: '2-week sprint cycles' },
   { icon: Clock, label: '2hr response' },
+];
+
+const stagger = [
+  'hero-stagger-1',
+  'hero-stagger-2',
+  'hero-stagger-3',
+  'hero-stagger-4',
+  'hero-stagger-5',
+  'hero-stagger-6',
+  'hero-stagger-7',
 ];
 
 const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden pt-16"
+      className="hero-premium relative flex min-h-[100dvh] items-center overflow-hidden border-b border-border/60 pt-20"
     >
-      <div className="absolute inset-0 z-0" aria-hidden>
-        <LazyImage
-          src={heroBg}
-          alt=""
-          priority
-          className="h-full w-full scale-105 object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#052e16]/90 via-[#0f172a]/85 to-[#0f172a]/95" />
-        <div
-          className="hero-glow absolute -left-1/4 top-1/4 h-[280px] w-[280px] rounded-full bg-[#16a34a]/30 blur-[80px] sm:h-[400px] sm:w-[400px] sm:blur-[100px] md:h-[500px] md:w-[500px] md:blur-[120px]"
-          aria-hidden
-        />
-        <div
-          className="hero-glow absolute -right-1/4 bottom-0 h-[220px] w-[220px] rounded-full bg-[#10b981]/25 blur-[70px] sm:h-[320px] sm:w-[320px] sm:blur-[90px] md:h-[400px] md:w-[400px] md:blur-[100px]"
-          style={{ animationDelay: '2s' }}
-          aria-hidden
-        />
-      </div>
+      <div className="hero-base-bg absolute inset-0 z-0" aria-hidden />
+      <div className="hero-radial-glow pointer-events-none absolute inset-0 z-0" aria-hidden />
+      <div className="hero-radial-glow-right pointer-events-none absolute inset-0 z-0" aria-hidden />
+      <div className="hero-blob hero-blob-1 pointer-events-none absolute z-0" aria-hidden />
+      <div className="hero-blob hero-blob-2 pointer-events-none absolute z-0" aria-hidden />
+      <div className="hero-blob hero-blob-3 pointer-events-none absolute z-0" aria-hidden />
+      <div className="hero-noise pointer-events-none absolute inset-0 z-[1]" aria-hidden />
 
-      <PageContainer className="relative z-10 py-12 sm:py-16 md:py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="glass mb-6 inline-flex animate-fade-in items-center gap-2 rounded-full px-4 py-2 text-caption font-medium text-white">
-            <span className="h-2 w-2 animate-pulse-glow rounded-full bg-[#10b981]" aria-hidden />
-            Now booking Q2 2026
-          </span>
-
-          <h1 className="animate-fade-in text-display mb-6 text-balance text-white">
-            Ship products that
-            <span className="mt-2 block bg-gradient-to-r from-[#4ade80] via-[#10b981] to-[#34d399] bg-clip-text text-transparent">
-              convert visitors into revenue
+      <PageContainer className="relative z-10 py-20 sm:py-24 lg:py-28">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+          <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
+            <span
+              className={cn(
+                'mb-6 inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/90 px-4 py-2 text-sm text-muted-foreground shadow-soft backdrop-blur-md transition-all duration-300',
+                'dark:border-white/10 dark:bg-white/5 dark:text-gray-300',
+                'hero-fade-in',
+                stagger[0]
+              )}
+            >
+              <Rocket className="h-4 w-4 text-primary" aria-hidden />
+              Now booking Q2 2026
             </span>
-          </h1>
 
-          <p className="text-body-lg mx-auto mb-10 max-w-xl animate-fade-in text-white/80">
-            End-to-end product studio—strategy, design, code, and launch in weeks.
-          </p>
-
-          <div className="flex flex-col gap-3 animate-fade-in sm:flex-row sm:justify-center">
-            <Button
-              variant="ctaWhite"
-              size="lg"
-              className="hover-lift w-full sm:w-auto"
-              onClick={() => scrollToSection('contact')}
+            <h1
+              className={cn(
+                'hero-fade-in text-4xl font-bold leading-[1.12] tracking-tighter text-foreground dark:text-white md:text-5xl lg:text-6xl',
+                stagger[1]
+              )}
             >
-              Start your project
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="ctaGhost"
-              size="lg"
-              className="hover-lift w-full sm:w-auto"
-              onClick={() => scrollToSection('contact')}
-            >
-              <Calendar className="h-5 w-5" />
-              Book a call
-            </Button>
-          </div>
-
-          <p className="text-caption mt-4 text-white/50">
-            Free 30-min call · Reply in 2 hours
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {trustBadges.map(({ icon: Icon, label }) => (
-              <span
-                key={label}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/75 backdrop-blur-sm transition-smooth hover:border-white/20"
-              >
-                <Icon className="h-3.5 w-3.5 text-[#10b981]" aria-hidden />
-                {label}
+              Build products that turn users into{' '}
+              <span className="bg-gradient-to-r from-green-500 to-emerald-400 bg-clip-text text-transparent">
+                revenue
               </span>
-            ))}
+            </h1>
+
+            <p
+              className={cn(
+                'mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg md:leading-[1.75] lg:mx-0',
+                'dark:text-gray-400',
+                'hero-fade-in',
+                stagger[2]
+              )}
+            >
+              We design, build, and launch high-converting web and mobile products in weeks — not
+              months.
+            </p>
+
+            <div
+              className={cn(
+                'mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start',
+                'hero-fade-in',
+                stagger[3]
+              )}
+            >
+              <Button
+                size="lg"
+                className={cn(
+                  'hero-cta-primary w-full border-0 transition-all duration-300 hover:scale-105 hover:brightness-110 sm:w-auto',
+                  'min-h-[48px] px-8'
+                )}
+                onClick={() => scrollToSection('contact')}
+              >
+                Start your project
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+              <Button
+                size="lg"
+                className={cn(
+                  'hero-cta-glass w-full transition-all duration-300 hover:scale-105 sm:w-auto',
+                  'min-h-[48px] px-8'
+                )}
+                onClick={() => scrollToSection('contact')}
+              >
+                <Calendar className="h-5 w-5" />
+                Book a call
+              </Button>
+            </div>
+
+            <p
+              className={cn(
+                'mt-4 text-sm text-muted-foreground transition-colors duration-300 dark:text-gray-500',
+                'hero-fade-in',
+                stagger[4]
+              )}
+            >
+              Free 30-min call · Reply in 2 hours
+            </p>
+
+            <div
+              className={cn(
+                'mt-10 flex flex-wrap justify-center gap-3 lg:justify-start',
+                'hero-fade-in',
+                stagger[5]
+              )}
+            >
+              {trustItems.map(({ icon: Icon, label }) => (
+                <span key={label} className="hero-trust-pill">
+                  <Icon className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <Button
-            variant="ghost"
-            size="sm"
-            className="mt-8 text-white/60 hover:bg-white/10 hover:text-white sm:mt-10"
-            onClick={() => scrollToSection('projects')}
-          >
-            <Play className="mr-2 h-4 w-4" />
-            See case studies
-          </Button>
+          <div className={cn('hero-fade-in', stagger[6], 'lg:justify-self-end')}>
+            <HeroVisual />
+          </div>
         </div>
       </PageContainer>
     </section>
