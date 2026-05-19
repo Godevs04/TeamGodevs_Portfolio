@@ -128,15 +128,32 @@ export const differentiators = [
   },
 ];
 
-export const techStack = [
-  { name: 'React', color: '#61DAFB', abbr: 'React' },
-  { name: 'Next.js', color: '#171717', abbr: 'Next' },
-  { name: 'TypeScript', color: '#3178C6', abbr: 'TS' },
-  { name: 'Node.js', color: '#339933', abbr: 'Node' },
-  { name: 'Firebase', color: '#FFCA28', abbr: 'Firebase' },
-  { name: 'MongoDB', color: '#47A248', abbr: 'Mongo' },
-  { name: 'Tailwind CSS', color: '#06B6D4', abbr: 'Tailwind' },
-  { name: 'AWS', color: '#FF9900', abbr: 'AWS' },
-  { name: 'React Native', color: '#61DAFB', abbr: 'RN' },
-  { name: 'Stripe', color: '#635BFF', abbr: 'Stripe' },
+export type TechStackItem = {
+  name: string;
+  /** Simple Icons slug — https://simpleicons.org */
+  slug: string;
+  color: string;
+  abbr: string;
+};
+
+export const techStack: TechStackItem[] = [
+  { name: 'React', slug: 'react', color: '#61DAFB', abbr: 'Re' },
+  { name: 'Next.js', slug: 'nextdotjs', color: '#000000', abbr: 'Nx' },
+  { name: 'Vue.js', slug: 'vuedotjs', color: '#4FC08D', abbr: 'Vu' },
+  { name: 'Angular', slug: 'angular', color: '#DD0031', abbr: 'Ng' },
+  { name: 'TypeScript', slug: 'typescript', color: '#3178C6', abbr: 'TS' },
+  { name: 'Node.js', slug: 'nodedotjs', color: '#339933', abbr: 'No' },
+  { name: 'Shopify', slug: 'shopify', color: '#7AB55C', abbr: 'Sh' },
+  { name: 'n8n automations', slug: 'n8n', color: '#EA4B71', abbr: 'n8' },
+  { name: 'Supabase', slug: 'supabase', color: '#3FCF8E', abbr: 'Sb' },
+  { name: 'Firebase', slug: 'firebase', color: '#FFCA28', abbr: 'Fi' },
+  { name: 'MongoDB', slug: 'mongodb', color: '#47A248', abbr: 'Mo' },
+  { name: 'PostgreSQL', slug: 'postgresql', color: '#4169E1', abbr: 'Pg' },
+  { name: 'Tailwind CSS', slug: 'tailwindcss', color: '#06B6D4', abbr: 'Tw' },
+  { name: 'AWS', slug: 'amazonaws', color: '#FF9900', abbr: 'AW' },
+  { name: 'Docker', slug: 'docker', color: '#2496ED', abbr: 'Dc' },
+  { name: 'React Native', slug: 'react', color: '#61DAFB', abbr: 'RN' },
+  { name: 'Flutter', slug: 'flutter', color: '#02569B', abbr: 'Fl' },
+  { name: 'Stripe', slug: 'stripe', color: '#635BFF', abbr: 'St' },
+  { name: 'Vercel', slug: 'vercel', color: '#000000', abbr: 'Ve' },
 ];

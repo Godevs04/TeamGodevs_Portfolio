@@ -1,6 +1,7 @@
 import { Calendar, Clock, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { mailto } from '@/lib/site';
 import { CALENDLY_EMBED_URL } from './constants';
 
 const timeSlots = ['10:00 AM', '11:30 AM', '2:00 PM', '4:30 PM'];
@@ -90,7 +91,7 @@ const BookCallPanel = () => {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button variant="gradient" size="lg" className="flex-1 rounded-xl" asChild>
             <a
-              href="mailto:hello@teamgodevs.com?subject=Book%20a%20discovery%20call"
+              href={mailto('Book a discovery call')}
               className="inline-flex items-center justify-center gap-2"
             >
               <Video className="h-5 w-5" />

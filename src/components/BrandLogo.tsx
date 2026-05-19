@@ -16,7 +16,7 @@ const BrandLogo = ({ size = 'md', framed = true, className }: BrandLogoProps) =>
   const image = (
     <img
       src="/Logo_1.png"
-      alt="TeamGoDevs — Building solutions. Delivering impact."
+      alt="TeamGoDevs logo — web, mobile and SEO studio at teamgodevs.in"
       className={cn('object-contain', sizeClasses[size])}
       decoding="async"
     />

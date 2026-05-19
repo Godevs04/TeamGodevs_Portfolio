@@ -1,3 +1,5 @@
+import { SITE } from '@/lib/site';
+
 /** Replace with your Calendly embed URL when ready */
 export const CALENDLY_EMBED_URL = 'https://calendly.com/godevsteam/30min';
 
@@ -32,8 +34,8 @@ export const QUICK_BENEFITS = [
 ];
 
 export const CONTACT_DETAILS = {
-  email: 'hello@teamgodevs.com',
-  phone: '+91 96777 23429',
-  address: 'HSR Layout, Bangalore, 640022, India',
-  hours: 'Mon – Fri, 10:00 AM – 7:00 PM IST',
+  email: SITE.email,
+  phone: SITE.phone,
+  address: SITE.addressDisplay,
+  hours: SITE.hours,
 };

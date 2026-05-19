@@ -5,6 +5,8 @@ import SocialProof from '@/components/SocialProof';
 import MobileCTABar from '@/components/MobileCTABar';
 import Footer from '@/components/Footer';
 import SectionFallback from '@/components/layout/SectionFallback';
+import PageMeta from '@/components/seo/PageMeta';
+import StructuredData from '@/components/seo/StructuredData';
 
 const Services = lazy(() => import('@/components/Services'));
 const Process = lazy(() => import('@/components/Process'));
@@ -16,7 +18,10 @@ const Contact = lazy(() => import('@/components/Contact'));
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background pb-[calc(5.5rem+env(safe-area-inset-bottom))] md:pb-0">
+    <>
+      <PageMeta />
+      <StructuredData />
+      <div className="min-h-screen bg-background pb-[calc(5.5rem+env(safe-area-inset-bottom))] md:pb-0">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -51,7 +56,8 @@ const Index = () => {
       </main>
       <Footer />
       <MobileCTABar />
-    </div>
+      </div>
+    </>
   );
 };
 

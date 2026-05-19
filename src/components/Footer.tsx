@@ -16,8 +16,10 @@ import PageContainer from '@/components/layout/PageContainer';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/contexts/ThemeContext';
 import { scrollToSection } from '@/lib/scroll';
+import { SITE } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
+import { CONTACT_DETAILS } from '@/components/contact/constants';
 
 const exploreLinks = [
   { name: 'Home', href: 'home' },
@@ -100,9 +102,13 @@ const Footer = () => {
             <div className="footer-divider my-6" />
             <ul className="space-y-2.5">
               {[
-                { icon: Mail, text: 'hello@teamgodevs.com', href: 'mailto:hello@teamgodevs.com' },
-                { icon: Phone, text: '+91 96777 23429', href: 'tel:+919677723429' },
-                { icon: MapPin, text: 'HSR Layout, Bangalore, India' },
+                {
+                  icon: Mail,
+                  text: CONTACT_DETAILS.email,
+                  href: `mailto:${CONTACT_DETAILS.email}`,
+                },
+                { icon: Phone, text: CONTACT_DETAILS.phone, href: `tel:${SITE.phoneTel}` },
+                { icon: MapPin, text: CONTACT_DETAILS.address },
               ].map(({ icon: Icon, text, href }) => (
                 <li key={text}>
                   {href ? (
