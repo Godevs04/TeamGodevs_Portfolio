@@ -704,3 +704,97 @@
   0% { opacity: 0.92; }
   100% { opacity: 1; }
 }
+
+/* Projects showcase — theme-adaptive SaaS case studies */
+.projects-showcase {
+  background: #f7faf9;
+}
+
+.dark .projects-showcase {
+  background: #071018;
+}
+
+.projects-showcase-bg {
+  background: linear-gradient(180deg, #f0f7f4 0%, #f7faf9 50%, #f7faf9 100%);
+}
+
+.dark .projects-showcase-bg {
+  background: linear-gradient(180deg, #071018 0%, #0b1220 48%, #071018 100%);
+}
+
+.projects-showcase-glow-left {
+  background: radial-gradient(
+    ellipse 50% 40% at 10% 20%,
+    rgba(16, 185, 129, 0.08),
+    transparent 70%
+  );
+}
+
+.dark .projects-showcase-glow-left {
+  background: radial-gradient(
+    ellipse 55% 45% at 85% 15%,
+    rgba(16, 185, 129, 0.12),
+    transparent 65%
+  );
+}
+
+.projects-showcase-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.project-category-badge {
+  @apply border border-gray-200 bg-gray-50 text-gray-600;
+}
+
+.dark .project-category-badge {
+  @apply border-white/10 bg-white/[0.06] text-gray-400;
+}
+
+.project-flagship-badge {
+  @apply border border-green-500/30 bg-green-500/10 text-green-800;
+}
+
+.dark .project-flagship-badge {
+  @apply border-green-400/35 bg-green-500/15 text-emerald-300;
+}
+
+.project-insight-problem {
+  @apply border-red-200/80 bg-red-50/80;
+}
+
+.dark .project-insight-problem {
+  @apply border-red-500/10 bg-red-500/5;
+}
+
+.project-insight-solution {
+  @apply border-green-200/80 bg-green-50/80;
+}
+
+.dark .project-insight-solution {
+  @apply border-green-500/10 bg-green-500/5;
+}
+
+.project-metric-cell {
+  @apply border border-gray-100 bg-gray-50/80;
+}
+
+.dark .project-metric-cell {
+  @apply border-white/5 bg-white/[0.03];
+}
+
+.project-tech-pill {
+  @apply border border-gray-200 bg-white text-gray-600;
+}
+
+.dark .project-tech-pill {
+  @apply border-white/5 bg-white/[0.04] text-gray-400;
+}
+
+.project-case-btn-secondary {
+  @apply border-gray-200 bg-white text-gray-800 hover:border-green-500/35 hover:bg-gray-50;
+}
+
+.dark .project-case-btn-secondary {
+  @apply border-white/20 bg-white/10 text-white hover:border-white/30 hover:bg-white/15;
+}

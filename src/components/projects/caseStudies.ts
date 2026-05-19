@@ -1,8 +1,16 @@
-import projectMobile from '@/assets/project-mobile.jpg';
-import projectWeb from '@/assets/project-web.jpg';
-import projectEcommerce from '@/assets/project-ecommerce.jpg';
+import imgLpFuture from '@/assets/projects/Client1_LPFuture.png';
+import imgKsMensWear from '@/assets/projects/Client2_KsMensWear.png';
+import imgTaatom from '@/assets/projects/Client3_Taatom.png';
+import imgBhuvinTodos from '@/assets/projects/Client4_BhuvintoDos.png';
+import imgBudgetBoy from '@/assets/projects/Clinet5_BudgetBoy.png';
+import imgSpotLight from '@/assets/projects/Client6_SpotLight.png';
+import imgSana from '@/assets/projects/Client7_Sana.png';
+import imgPortfolio3d from '@/assets/projects/Client8_PersonalPortfolio.png';
+import imgWhiteberry from '@/assets/projects/Client9_TheWhiteberry.jpeg';
 
-export type ProjectFilter = 'all' | 'web' | 'mobile' | 'seo' | 'ecommerce';
+export type ProjectFilter = 'all' | 'web' | 'mobile' | 'ecommerce' | 'saas';
+
+export type CaseStudyVariant = 'default' | 'flagship' | 'showcase3d';
 
 export type CaseStudyMetric = {
   value: string;
@@ -10,12 +18,13 @@ export type CaseStudyMetric = {
 };
 
 export type CaseStudy = {
-  id: number;
+  id: string;
   title: string;
+  shortDescription: string;
   client: string;
   category: string;
   filters: Exclude<ProjectFilter, 'all'>[];
-  featured?: boolean;
+  variant?: CaseStudyVariant;
   problem: string;
   solution: string;
   results: CaseStudyMetric[];
@@ -25,113 +34,202 @@ export type CaseStudy = {
 };
 
 export const filterOptions: { id: ProjectFilter; label: string }[] = [
-  { id: 'all', label: 'All' },
-  { id: 'web', label: 'Web' },
-  { id: 'mobile', label: 'Mobile' },
-  { id: 'seo', label: 'SEO' },
+  { id: 'all', label: 'All work' },
+  { id: 'web', label: 'Web platforms' },
+  { id: 'mobile', label: 'Mobile apps' },
+  { id: 'saas', label: 'SaaS & tools' },
   { id: 'ecommerce', label: 'E-commerce' },
 ];
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 1,
+    id: 'lp-future',
     title: 'LP Future',
-    client: 'Educational consultancy',
-    category: 'Web · SEO',
-    filters: ['web', 'seo'],
-    featured: true,
-    problem:
-      'Parents couldn’t find clear admission guidance online. The old site had poor SEO and zero lead capture.',
-    solution:
-      'Rebuilt the site on React with structured content, local SEO, and a guided enquiry funnel for counsellors.',
-    results: [
-      { value: '3×', label: 'Organic traffic' },
-      { value: '62%', label: 'More enquiries' },
-      { value: '#1', label: 'Local rankings' },
-    ],
-    image: projectWeb,
-    tags: ['React', 'Node.js', 'TailwindCSS', 'SEO'],
-    website: 'https://lpfuture.in',
-  },
-  {
-    id: 2,
-    title: 'NaturalWaves',
-    client: 'Naturopathy academy',
-    category: 'Web · Learning',
+    shortDescription:
+      'Educational admission platform helping students choose and apply to colleges efficiently.',
+    client: 'LP Future',
+    category: 'Education Platform',
     filters: ['web'],
-    problem:
-      'Course content was scattered across PDFs and WhatsApp. Students dropped off before completing Module 1.',
+    problem: 'Students lacked proper guidance and admission clarity.',
     solution:
-      'Shipped a Next.js learning platform with Stripe payments, progress tracking, and mobile-first lesson UX.',
+      'Built a responsive React educational platform with analytics, PWA support, and WhatsApp inquiry integration.',
     results: [
-      { value: '4.8★', label: 'Course rating' },
-      { value: '2×', label: 'Completion rate' },
-      { value: '40%', label: 'Less support tickets' },
+      { value: '+65%', label: 'Inquiries' },
+      { value: '3×', label: 'Faster response' },
+      { value: 'PWA', label: 'Enabled' },
     ],
-    image: projectWeb,
-    tags: ['Next.js', 'MongoDB', 'Stripe', 'Vercel'],
-    website: 'https://naturalwaves.com',
+    image: imgLpFuture,
+    tags: ['React', 'Express', 'Node.js', 'Tailwind', 'AWS', 'Vercel'],
+    website: 'https://lpfuture.vercel.app/',
   },
   {
-    id: 3,
-    title: 'The Whiteberry',
-    client: "Girls' fashion boutique",
+    id: 'ks-mens-wear',
+    title: 'KS Mens Wear ERP',
+    shortDescription:
+      'Complete business management system for inventory, billing, sales, expenses, and reporting.',
+    client: 'KS Mens Wear',
+    category: 'SaaS Platform',
+    filters: ['web', 'saas'],
+    problem: 'Manual tracking caused stock mismatch and financial confusion.',
+    solution:
+      'Built a full-stack ERP dashboard with role management, analytics, stock handling, and reporting.',
+    results: [
+      { value: '99%', label: 'Stock accuracy' },
+      { value: '2×', label: 'Faster billing' },
+      { value: 'Live', label: 'Reports' },
+    ],
+    image: imgKsMensWear,
+    tags: ['Next.js', 'React', 'Tailwind', 'Render', 'Vercel'],
+    website: 'https://www.ksmenswear.shop/',
+  },
+  {
+    id: 'taatom',
+    title: 'Taatom',
+    shortDescription:
+      'Global travel-focused social media app with real-time interactions and admin infrastructure.',
+    client: 'Taatom',
+    category: 'Social App',
+    filters: ['web', 'mobile', 'saas'],
+    variant: 'flagship',
+    problem: 'Travel creators lacked a dedicated real-time social platform.',
+    solution:
+      'Built scalable mobile + web ecosystem with admin panel, payments, realtime feeds, and cloud infrastructure.',
+    results: [
+      { value: 'iOS + Android', label: 'Shipped' },
+      { value: 'Realtime', label: 'Feeds' },
+      { value: 'Multi-cloud', label: 'Infra' },
+    ],
+    image: imgTaatom,
+    tags: [
+      'React Native',
+      'Next.js',
+      'Express',
+      'MongoDB',
+      'Vite',
+      'Cashfree',
+      'Sentry',
+    ],
+    website: 'https://www.taatom.com',
+  },
+  {
+    id: 'bhuvin-todos',
+    title: 'Bhuvin ToDos',
+    shortDescription: 'Minimal productivity platform designed for civil service aspirants.',
+    client: 'Bhuvin ToDos',
+    category: 'SaaS Platform',
+    filters: ['web', 'saas'],
+    problem: 'Students struggled with consistency and motivation.',
+    solution:
+      'Built a calm productivity tracker with motivational UX and mobile-first simplicity.',
+    results: [
+      { value: 'Fast', label: 'UX' },
+      { value: 'Motivational', label: 'UI' },
+      { value: 'PWA', label: 'Ready' },
+    ],
+    image: imgBhuvinTodos,
+    tags: ['Next.js', 'Framer Motion', 'Tailwind'],
+    website: 'https://bhuvin-todos.vercel.app/',
+  },
+  {
+    id: 'budget-boy',
+    title: 'BudgetBoy',
+    shortDescription:
+      'Smart recharge optimization platform helping families save money on telecom plans.',
+    client: 'BudgetBoy',
+    category: 'SaaS Platform',
+    filters: ['web', 'saas'],
+    problem: 'Users overpaid due to poor recharge planning and unclear plan comparisons.',
+    solution:
+      'Built intelligent usage-based recommendation engine with transparent telecom analysis.',
+    results: [
+      { value: '₹', label: 'Savings optimized' },
+      { value: 'Smart', label: 'Plan analysis' },
+      { value: 'Usage', label: 'Insights' },
+    ],
+    image: imgBudgetBoy,
+    tags: ['Next.js', 'Tailwind', 'Framer Motion'],
+    website: 'https://budgetboy.teamgodevs.in/',
+  },
+  {
+    id: 'spotlight',
+    title: 'SpotLight',
+    shortDescription: 'Instagram-style MVP social platform delivered for iOS.',
+    client: 'SpotLight',
+    category: 'Social App',
+    filters: ['mobile'],
+    problem: 'Client needed rapid MVP launch for social engagement testing.',
+    solution:
+      'Built scalable React Native MVP with realtime backend integrations.',
+    results: [
+      { value: 'Realtime', label: 'Chat' },
+      { value: 'MVP', label: 'Shipped' },
+      { value: 'iOS', label: 'First' },
+    ],
+    image: imgSpotLight,
+    tags: ['React Native', 'Clerk', 'Convex', 'Tailwind', 'Sentry'],
+    website: null,
+  },
+  {
+    id: 'sana',
+    title: 'Sana Fathima Mansion',
+    shortDescription: 'Shared room expense management platform for families and bachelors.',
+    client: 'Sana Fathima Mansion',
+    category: 'SaaS Platform',
+    filters: ['web', 'saas'],
+    problem: 'Manual expense splitting caused confusion and payment imbalance.',
+    solution:
+      'Built modern expense-sharing dashboard with settlements and Telegram notifications.',
+    results: [
+      { value: 'Live', label: 'Balances' },
+      { value: 'Telegram', label: 'Alerts' },
+      { value: '1-tap', label: 'Settlements' },
+    ],
+    image: imgSana,
+    tags: ['Next.js', 'NextAuth', 'Tailwind', 'Framer Motion', 'shadcn/ui'],
+    website: 'https://sana.sukeshiitj.me/',
+  },
+  {
+    id: 'portfolio-3d',
+    title: '3D Portfolio Experience',
+    shortDescription: 'Immersive Three.js portfolio experience with animated interactions.',
+    client: 'Developer showcase',
+    category: '3D Experience',
+    filters: ['web'],
+    variant: 'showcase3d',
+    problem: 'Traditional portfolios lacked creativity and immersion.',
+    solution: 'Built fully interactive 3D portfolio using Three.js and GSAP animations.',
+    results: [
+      { value: '3D', label: 'Interactions' },
+      { value: 'GSAP', label: 'Animations' },
+      { value: 'Immersive', label: 'UX' },
+    ],
+    image: imgPortfolio3d,
+    tags: ['Three.js', 'GSAP', 'Vercel'],
+    website: 'https://three-js-port-folio.vercel.app/',
+  },
+  {
+    id: 'whiteberry',
+    title: 'The WhiteBerry',
+    shortDescription:
+      'Modern fashion ecommerce experience for boutique clothing and curated collections.',
+    client: 'The WhiteBerry',
     category: 'E-commerce',
     filters: ['web', 'ecommerce'],
-    problem:
-      'Instagram-only sales capped growth. Checkout was manual via DMs—slow, error-prone, and unscalable.',
+    problem: 'Client needed premium online shopping presence for boutique sales.',
     solution:
-      'Launched a full e-commerce store with catalog, PayPal checkout, and brand-forward UI that matches their aesthetic.',
+      'Built Shopify-powered ecommerce with payment integration and modern branding.',
     results: [
-      { value: '180%', label: 'Online revenue' },
-      { value: '35%', label: 'Repeat customers' },
-      { value: '<2s', label: 'Page load' },
+      { value: 'Premium', label: 'Storefront' },
+      { value: 'Payments', label: 'Integrated' },
+      { value: 'Mobile', label: 'Optimized' },
     ],
-    image: projectEcommerce,
-    tags: ['React', 'Node.js', 'PayPal', 'UI/UX'],
-    website: 'https://thewhiteberry.in',
-  },
-  {
-    id: 4,
-    title: 'Taatom',
-    client: 'Travel startup',
-    category: 'Mobile app',
-    filters: ['mobile'],
-    problem:
-      'Travelers wanted to share journeys without the noise of generic social feeds. No product existed for memory-first sharing.',
-    solution:
-      'Designed and built a React Native app with maps, offline journals, and a curated feed focused on trips—not followers.',
-    results: [
-      { value: '12K+', label: 'Beta signups' },
-      { value: '4.6★', label: 'TestFlight rating' },
-      { value: '8 wk', label: 'MVP timeline' },
-    ],
-    image: projectMobile,
-    tags: ['React Native', 'Firebase', 'Maps API', 'TypeScript'],
-    website: null,
-  },
-  {
-    id: 5,
-    title: 'Streamora',
-    client: 'Media platform',
-    category: 'Web · Streaming',
-    filters: ['web'],
-    problem:
-      'Creators needed a YouTube-style experience without enterprise licensing costs or slow legacy CMS workflows.',
-    solution:
-      'Built a streaming web app with upload pipelines, adaptive playback, and an admin dashboard on AWS infrastructure.',
-    results: [
-      { value: '99.9%', label: 'Uptime' },
-      { value: '50K+', label: 'Hours streamed' },
-      { value: '60%', label: 'Faster uploads' },
-    ],
-    image: projectWeb,
-    tags: ['React', 'Node.js', 'AWS', 'FFmpeg'],
-    website: null,
+    image: imgWhiteberry,
+    tags: ['Shopify', 'Payment Gateway'],
+    website: 'https://www.thewhiteberry.in',
   },
 ];
 
-export const featuredCaseStudy = caseStudies.find((c) => c.featured) ?? caseStudies[0];
+export const flagshipStudy = caseStudies.find((c) => c.variant === 'flagship')!;
 
 export function filterCaseStudies(filter: ProjectFilter): CaseStudy[] {
   if (filter === 'all') return caseStudies;
