@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import OptionPicker from '@/components/contact/OptionPicker';
 import { BUDGET_RANGES, PROJECT_TYPES } from './constants';
+import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
@@ -81,6 +82,10 @@ const MultiStepForm = () => {
     setIsSubmitting(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
+      trackClarityEvent(CLARITY_EVENTS.CONTACT_SUBMIT, {
+        project_type: formData.projectType,
+        budget: formData.budget,
+      });
       toast.success("You're in! We'll reply within 2 hours with next steps.", {
         duration: 5000,
         style: {

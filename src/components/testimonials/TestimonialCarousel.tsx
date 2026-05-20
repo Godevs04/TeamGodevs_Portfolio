@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { cn } from '@/lib/utils';
 import type { Testimonial } from './data';
 
@@ -29,19 +30,27 @@ const TestimonialCarousel = ({
   const [fadeKey, setFadeKey] = useState(0);
 
   const goTo = useCallback(
-    (index: number) => {
+    (index: number, action: 'dot' | 'next' | 'prev') => {
+      if (index !== activeIndex) {
+        trackClarityEvent(CLARITY_EVENTS.TESTIMONIAL_INTERACTION, {
+          action,
+          testimonial_id: items[index]?.id,
+        });
+      }
       setFadeKey((k) => k + 1);
       onIndexChange(index);
     },
-    [onIndexChange]
+    [activeIndex, items, onIndexChange]
   );
 
   const goNext = useCallback(() => {
-    goTo(activeIndex === items.length - 1 ? 0 : activeIndex + 1);
+    const next = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    goTo(next, 'next');
   }, [activeIndex, items.length, goTo]);
 
   const goPrev = useCallback(() => {
-    goTo(activeIndex === 0 ? items.length - 1 : activeIndex - 1);
+    const prev = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    goTo(prev, 'prev');
   }, [activeIndex, items.length, goTo]);
 
   useEffect(() => {
@@ -120,7 +129,7 @@ const TestimonialCarousel = ({
               role="tab"
               aria-selected={index === activeIndex}
               aria-label={`${item.name} at ${item.company}`}
-              onClick={() => goTo(index)}
+              onClick={() => goTo(index, 'dot')}
               className="flex min-h-10 min-w-10 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span

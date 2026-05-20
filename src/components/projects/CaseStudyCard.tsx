@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Lightbulb, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { scrollToSection } from '@/lib/scroll';
 import type { CaseStudy } from './caseStudies';
 import ProjectMedia from './ProjectMedia';
@@ -25,11 +26,23 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
 
   const openLive = (e: React.MouseEvent) => {
     e.stopPropagation();
+    trackClarityEvent(CLARITY_EVENTS.PROJECT_CLICK, {
+      project_id: study.id,
+      action: study.website ? 'live' : 'contact',
+    });
     if (study.website) {
       window.open(study.website, '_blank', 'noopener,noreferrer');
     } else {
       scrollToSection('contact');
     }
+  };
+
+  const openCaseStudy = () => {
+    trackClarityEvent(CLARITY_EVENTS.PROJECT_CLICK, {
+      project_id: study.id,
+      action: 'case_study',
+    });
+    onOpenCaseStudy(study);
   };
 
   const visibleTags = study.tags.slice(0, 4);
@@ -131,7 +144,7 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
                 type="button"
                 size="sm"
                 className="project-btn-primary h-9 flex-1 rounded-xl text-xs font-semibold"
-                onClick={() => onOpenCaseStudy(study)}
+                onClick={openCaseStudy}
               >
                 Case study
                 <ArrowUpRight className="h-3.5 w-3.5" />

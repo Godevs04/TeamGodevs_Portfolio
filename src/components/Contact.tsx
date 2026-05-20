@@ -6,12 +6,18 @@ import SectionHeader from '@/components/SectionHeader';
 import BookCallPanel from '@/components/contact/BookCallPanel';
 import ContactSidePanel from '@/components/contact/ContactSidePanel';
 import MultiStepForm from '@/components/contact/MultiStepForm';
+import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { cn } from '@/lib/utils';
 
 type ContactMode = 'form' | 'calendar';
 
 const Contact = () => {
   const [mode, setMode] = useState<ContactMode>('form');
+
+  const openCalendar = () => {
+    setMode('calendar');
+    trackClarityEvent(CLARITY_EVENTS.CALENDLY_OPEN, { source: 'contact_tab' });
+  };
 
   return (
     <Section id="contact" variant="muted">
@@ -63,7 +69,7 @@ const Contact = () => {
             type="button"
             role="tab"
             aria-selected={mode === 'calendar'}
-            onClick={() => setMode('calendar')}
+            onClick={openCalendar}
             className={cn(
               'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-smooth',
               mode === 'calendar'

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 
 type Theme = 'light' | 'dark';
 
@@ -53,7 +54,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    setTheme((prev) => {
+      const next = prev === 'light' ? 'dark' : 'light';
+      trackClarityEvent(CLARITY_EVENTS.THEME_TOGGLE, { theme: next });
+      return next;
+    });
   };
 
   const value = {

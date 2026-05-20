@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster as HotToaster } from "react-hot-toast";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import ClarityProvider from "@/components/analytics/ClarityProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -11,6 +12,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light">
+      <ClarityProvider />
       <TooltipProvider>
         <HotToaster position="top-right" />
         <BrowserRouter>
