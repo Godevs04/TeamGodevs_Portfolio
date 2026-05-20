@@ -3,8 +3,16 @@ import { Button } from '@/components/ui/button';
 import PageContainer from '@/components/layout/PageContainer';
 import { scrollToSection } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
+import { usePostHog } from '@posthog/react';
 
 const FinalCTA = () => {
+  const posthog = usePostHog();
+
+  const handleCtaClick = (label: string) => {
+    posthog?.capture('final_cta_clicked', { cta_label: label, section: 'final_cta' });
+    scrollToSection('contact');
+  };
+
   return (
     <section
       id="cta"
@@ -48,7 +56,7 @@ const FinalCTA = () => {
               variant="gradient"
               size="lg"
               className="hover-lift w-full sm:w-auto dark:hidden"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleCtaClick('start_your_project')}
             >
               Start your project
               <ArrowRight className="h-5 w-5" />
@@ -57,7 +65,7 @@ const FinalCTA = () => {
               variant="outline"
               size="lg"
               className="hover-lift w-full border-border bg-card/80 sm:w-auto dark:hidden"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleCtaClick('book_a_call')}
             >
               <Calendar className="h-5 w-5" />
               Book a call
@@ -66,7 +74,7 @@ const FinalCTA = () => {
               variant="ctaWhite"
               size="lg"
               className="hover-lift hidden w-full sm:w-auto dark:inline-flex"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleCtaClick('start_your_project')}
             >
               Start your project
               <ArrowRight className="h-5 w-5" />
@@ -75,7 +83,7 @@ const FinalCTA = () => {
               variant="ctaGhost"
               size="lg"
               className="hover-lift hidden w-full sm:w-auto dark:inline-flex"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleCtaClick('book_a_call')}
             >
               <Calendar className="h-5 w-5" />
               Book a call

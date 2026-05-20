@@ -3,8 +3,11 @@ import BrandMark from '@/components/BrandMark';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CONTACT_DETAILS, QUICK_BENEFITS, WHATSAPP_URL } from './constants';
+import { usePostHog } from '@posthog/react';
 
 const ContactSidePanel = () => {
+  const posthog = usePostHog();
+
   return (
     <div className="space-y-6 lg:sticky lg:top-24">
       <Card variant="gradient" className="overflow-hidden border-primary/15">
@@ -62,7 +65,12 @@ const ContactSidePanel = () => {
         variant="outline"
         className="h-12 w-full rounded-xl border-[#25D366]/40 bg-[#25D366]/5 text-[#128C7E] hover:border-[#25D366] hover:bg-[#25D366]/10 dark:text-[#25D366]"
       >
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => posthog?.capture('whatsapp_chat_clicked', { source: 'contact_side_panel' })}
+        >
           <MessageCircle className="h-5 w-5" />
           Chat on WhatsApp
         </a>

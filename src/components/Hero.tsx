@@ -4,6 +4,7 @@ import PageContainer from '@/components/layout/PageContainer';
 import HeroVisual from '@/components/hero/HeroVisual';
 import { scrollToSection } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
+import { usePostHog } from '@posthog/react';
 
 const trustItems = [
   { icon: Shield, label: '50+ clients' },
@@ -23,6 +24,13 @@ const stagger = [
 ];
 
 const Hero = () => {
+  const posthog = usePostHog();
+
+  const handleCtaClick = (label: string) => {
+    posthog?.capture('hero_cta_clicked', { cta_label: label, section: 'hero' });
+    scrollToSection('contact');
+  };
+
   return (
     <section
       id="home"
@@ -88,7 +96,7 @@ const Hero = () => {
                   'hero-cta-primary w-full border-0 transition-all duration-300 hover:scale-105 hover:brightness-110 sm:w-auto',
                   'min-h-[48px] px-8'
                 )}
-                onClick={() => scrollToSection('contact')}
+                onClick={() => handleCtaClick('start_your_project')}
               >
                 Start your project
                 <ArrowRight className="h-5 w-5" />
@@ -99,7 +107,7 @@ const Hero = () => {
                   'hero-cta-glass w-full transition-all duration-300 hover:scale-105 sm:w-auto',
                   'min-h-[48px] px-8'
                 )}
-                onClick={() => scrollToSection('contact')}
+                onClick={() => handleCtaClick('book_a_call')}
               >
                 <Calendar className="h-5 w-5" />
                 Book a call

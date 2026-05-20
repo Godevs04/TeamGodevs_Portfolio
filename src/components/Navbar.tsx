@@ -6,6 +6,7 @@ import BrandMark from '@/components/BrandMark';
 import PageContainer from '@/components/layout/PageContainer';
 import { scrollToSection } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
+import { usePostHog } from '@posthog/react';
 
 const navItems = [
   { id: 'home', label: 'Home' },
@@ -17,6 +18,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const posthog = usePostHog();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
@@ -98,7 +100,10 @@ const Navbar = () => {
                 variant="cta"
                 size="sm"
                 className="ml-2 transition-all duration-300"
-                onClick={() => handleNav('contact')}
+                onClick={() => {
+                  posthog?.capture('navbar_cta_clicked', { position: 'desktop' });
+                  handleNav('contact');
+                }}
               >
                 Get started
               </Button>
@@ -141,7 +146,10 @@ const Navbar = () => {
                 <Button
                   variant="cta"
                   className="mt-4 w-full"
-                  onClick={() => handleNav('contact')}
+                  onClick={() => {
+                    posthog?.capture('navbar_cta_clicked', { position: 'mobile_menu' });
+                    handleNav('contact');
+                  }}
                 >
                   Get started
                 </Button>
