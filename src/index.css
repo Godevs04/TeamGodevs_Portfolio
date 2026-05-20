@@ -1078,3 +1078,143 @@
     will-change: auto;
   }
 }
+
+/* Testimonials — premium SaaS showcase */
+.testimonials-showcase {
+  background: #f6faf8;
+}
+
+.dark .testimonials-showcase {
+  background: #050a10;
+}
+
+.testimonials-showcase-bg {
+  background: linear-gradient(165deg, #eef8f3 0%, #f6faf8 50%, #f4f9f7 100%);
+}
+
+.dark .testimonials-showcase-bg {
+  background: linear-gradient(165deg, #050a10 0%, #0a121c 55%, #060d14 100%);
+}
+
+.testimonials-showcase-glow {
+  background: radial-gradient(ellipse 70% 45% at 30% 20%, rgba(16, 185, 129, 0.1), transparent 70%);
+}
+
+.dark .testimonials-showcase-glow {
+  background: radial-gradient(ellipse 65% 50% at 25% 15%, rgba(16, 185, 129, 0.14), transparent 68%);
+}
+
+.testimonials-showcase-noise {
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.dark .testimonials-showcase-noise {
+  opacity: 0.055;
+}
+
+.testimonials-showcase-vignette {
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 45%, rgba(15, 23, 42, 0.05) 100%);
+}
+
+.dark .testimonials-showcase-vignette {
+  background: radial-gradient(ellipse 95% 85% at 50% 50%, transparent 32%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+.testimonial-quote-card {
+  @apply rounded-3xl border border-gray-200/70 bg-white/80 shadow-[0_12px_48px_rgba(15,23,42,0.06)] backdrop-blur-xl;
+}
+
+.dark .testimonial-quote-card {
+  @apply border-white/[0.06] bg-white/[0.03] shadow-[0_16px_56px_rgba(0,0,0,0.32)];
+}
+
+.testimonial-quote-card:hover {
+  @apply border-emerald-500/20 shadow-[0_20px_60px_rgba(16,185,129,0.1)];
+}
+
+.dark .testimonial-quote-card:hover {
+  @apply border-white/10 shadow-[0_24px_72px_rgba(16,185,129,0.12)];
+}
+
+.testimonial-impact-row {
+  @apply grid w-full min-w-0 max-w-full grid-cols-3 rounded-3xl border border-gray-200/70 bg-white/60 shadow-[0_8px_32px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-shadow duration-500;
+}
+
+.dark .testimonial-impact-row {
+  @apply border-white/[0.06] bg-white/[0.03] shadow-[0_8px_40px_rgba(0,0,0,0.28)];
+}
+
+.testimonial-impact-row:hover {
+  @apply border-emerald-500/15 shadow-[0_12px_40px_rgba(16,185,129,0.08)];
+}
+
+.testimonial-video-card {
+  @apply rounded-3xl border border-gray-200/60 bg-[#0c1219] shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500;
+}
+
+.dark .testimonial-video-card {
+  @apply border-white/[0.08] shadow-[0_16px_48px_rgba(0,0,0,0.35)];
+}
+
+.testimonial-video-card:hover {
+  @apply -translate-y-0.5 border-emerald-500/20 shadow-[0_20px_56px_rgba(16,185,129,0.15)];
+}
+
+.testimonial-video-glow {
+  background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(16, 185, 129, 0.22), transparent 65%);
+}
+
+.testimonial-video-mesh {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(5, 46, 22, 0.5) 50%, rgba(15, 23, 42, 0.95) 100%);
+}
+
+.testimonial-transform-card {
+  @apply rounded-3xl border border-gray-200/70 bg-white/70 p-5 shadow-[0_8px_32px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-all duration-500 sm:p-6;
+}
+
+.dark .testimonial-transform-card {
+  @apply border-white/[0.06] bg-white/[0.03] shadow-[0_8px_40px_rgba(0,0,0,0.28)];
+}
+
+.testimonial-transform-card:hover {
+  @apply -translate-y-0.5 border-emerald-500/15 shadow-[0_16px_48px_rgba(16,185,129,0.1)];
+}
+
+.testimonial-before-box {
+  @apply border border-red-200/60 bg-red-50/50;
+}
+
+.dark .testimonial-before-box {
+  @apply border-red-500/15 bg-red-500/[0.06];
+}
+
+.testimonial-after-box {
+  @apply border border-emerald-200/60 bg-emerald-50/40 shadow-[0_0_24px_rgba(16,185,129,0.08)];
+}
+
+.dark .testimonial-after-box {
+  @apply border-emerald-500/20 bg-emerald-500/[0.08] shadow-[0_0_28px_rgba(16,185,129,0.1)];
+}
+
+.testimonial-impact-pill {
+  @apply border border-emerald-500/20 bg-emerald-500/10;
+}
+
+.testimonial-trust-row {
+  @apply rounded-3xl border border-gray-200/70 bg-white/50 backdrop-blur-xl;
+}
+
+.dark .testimonial-trust-row {
+  @apply border-white/[0.06] bg-white/[0.03];
+}
+
+.testimonial-nav-btn {
+  @apply border-gray-200/80 bg-white/70 backdrop-blur-md transition-all duration-500 hover:border-emerald-500/30 hover:shadow-[0_0_16px_rgba(16,185,129,0.12)];
+}
+
+.dark .testimonial-nav-btn {
+  @apply border-white/10 bg-white/[0.04] hover:border-white/20;
+}
+

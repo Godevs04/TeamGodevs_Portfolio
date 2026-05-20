@@ -1,63 +1,56 @@
 import { useState } from 'react';
 import PageContainer from '@/components/layout/PageContainer';
-import Section from '@/components/layout/Section';
 import SectionHeader from '@/components/SectionHeader';
 import SectionCTA from '@/components/layout/SectionCTA';
 import Reveal from '@/components/layout/Reveal';
 import BeforeAfterPanel from '@/components/testimonials/BeforeAfterPanel';
+import ImpactStatsRow from '@/components/testimonials/ImpactStatsRow';
 import TestimonialCarousel from '@/components/testimonials/TestimonialCarousel';
 import TrustMetrics from '@/components/testimonials/TrustMetrics';
 import VideoPlaceholder from '@/components/testimonials/VideoPlaceholder';
 import { testimonials } from '@/components/testimonials/data';
-import { Card, CardContent } from '@/components/ui/card';
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const current = testimonials[activeIndex];
 
   return (
-    <Section id="testimonials">
-      <PageContainer>
+    <section
+      id="testimonials"
+      className="testimonials-showcase section-padding relative overflow-hidden border-y border-gray-200/50 dark:border-white/[0.04]"
+    >
+      <div className="testimonials-showcase-bg pointer-events-none absolute inset-0" aria-hidden />
+      <div className="testimonials-showcase-glow pointer-events-none absolute inset-0" aria-hidden />
+      <div className="testimonials-showcase-noise pointer-events-none absolute inset-0" aria-hidden />
+      <div className="testimonials-showcase-vignette pointer-events-none absolute inset-0" aria-hidden />
+
+      <PageContainer className="relative z-10">
         <SectionHeader
           badge="Reviews"
           title="Founders who"
           highlight="shipped faster"
-          description="Short quotes. Real before/after numbers."
+          description="Founders and operators on shipping real products—not generic agency praise."
         />
 
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
-          {/* Main quote + metrics */}
-          <div className="flex flex-col gap-6 lg:col-span-7 xl:col-span-8">
+        <div className="mt-10 grid w-full min-w-0 grid-cols-1 items-stretch gap-6 lg:mt-12 lg:grid-cols-[1.6fr_0.9fr] lg:gap-6">
+          {/* Left — quote + impact strip */}
+          <div className="flex min-w-0 w-full flex-col gap-6">
             <TestimonialCarousel
               items={testimonials}
               activeIndex={activeIndex}
               onIndexChange={setActiveIndex}
             />
-
-            <div
-              key={current.id}
-              className="grid grid-cols-1 gap-3 sm:grid-cols-3"
-              aria-label="Client impact metrics"
-            >
-              {current.impact.map((metric) => (
-                <Card key={metric.label} variant="glass" className="border-primary/10 hover-lift">
-                  <CardContent className="flex flex-col items-center justify-center p-4 text-center sm:p-5">
-                    <p className="text-lg font-bold text-gradient md:text-xl">{metric.value}</p>
-                    <p className="text-caption mt-1 text-muted-foreground">{metric.label}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ImpactStatsRow key={current.id} metrics={current.impact} />
           </div>
 
-          {/* Video + before/after */}
-          <Reveal className="flex flex-col gap-6 lg:col-span-5 xl:col-span-4">
+          {/* Right — video + transformation */}
+          <Reveal className="flex min-w-0 w-full flex-col gap-6">
             <VideoPlaceholder />
             <BeforeAfterPanel key={current.id} data={current.beforeAfter} />
           </Reveal>
         </div>
 
-        <Reveal>
+        <Reveal className="mt-12 w-full min-w-0 sm:mt-14 md:mt-16">
           <TrustMetrics />
         </Reveal>
 
@@ -68,10 +61,10 @@ const Testimonials = () => {
           primaryTarget="contact"
           secondaryLabel="Book a call"
           secondaryTarget="contact"
-          className="mt-16"
+          className="mt-12 sm:mt-14"
         />
       </PageContainer>
-    </Section>
+    </section>
   );
 };
 

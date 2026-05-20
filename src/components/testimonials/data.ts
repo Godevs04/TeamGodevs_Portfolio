@@ -11,109 +11,197 @@ export type BeforeAfter = {
 };
 
 export type Testimonial = {
-  id: number;
+  id: string;
+  quote: string;
+  result: string;
   name: string;
   role: string;
   company: string;
+  category: string;
   avatar: string;
-  quote: string;
   rating: number;
   project: string;
   beforeAfter: BeforeAfter;
   impact: TestimonialMetric[];
 };
 
+const avatar = (name: string) =>
+  `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=059669&color=fff&size=128&bold=true`;
+
 export const testimonials: Testimonial[] = [
   {
-    id: 1,
-    name: 'Sarah Johnson',
-    role: 'CEO',
-    company: 'TechStart Solutions',
-    avatar:
-      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face&auto=format',
+    id: 'lp-future',
     quote:
-      'TeamGoDevs didn’t just redesign our site—they built a growth engine. Organic leads tripled in six months.',
-    rating: 5,
-    project: 'SEO & Mobile App',
-    beforeAfter: {
-      metric: 'Monthly organic leads',
-      before: '42',
-      after: '168',
-      growth: '+300%',
-    },
-    impact: [
-      { value: '400%', label: 'Traffic growth' },
-      { value: '25K+', label: 'App downloads' },
-      { value: '6 mo', label: 'To results' },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Michael Chen',
-    role: 'Marketing Director',
-    company: 'EcoCommerce Ltd',
-    avatar:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format',
-    quote:
-      'Our checkout used to live in DMs. Now it’s a real store—and revenue finally matches our Instagram demand.',
-    rating: 5,
-    project: 'E-commerce Platform',
-    beforeAfter: {
-      metric: 'Online conversion rate',
-      before: '1.2%',
-      after: '2.8%',
-      growth: '+133%',
-    },
-    impact: [
-      { value: '2×', label: 'Conversion rate' },
-      { value: '180%', label: 'Online revenue' },
-      { value: '<2s', label: 'Load time' },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Emily Rodriguez',
+      'We went from scattered WhatsApp threads to a platform students actually finish applications on. TeamGoDevs understood admissions—not just pixels.',
+    result:
+      'Inquiry follow-ups got faster and the student journey finally felt intentional, not like a PDF dump.',
+    name: 'Ram',
     role: 'Founder',
-    company: 'HealthFirst Clinic',
-    avatar:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format',
-    quote:
-      'Patients book online in seconds. Our front desk finally focuses on care—not phone tag.',
+    company: 'LP Future',
+    category: 'Education',
+    avatar: avatar('Ram'),
     rating: 5,
-    project: 'Healthcare App',
+    project: 'Admissions platform',
     beforeAfter: {
-      metric: 'Online appointments / week',
-      before: '28',
-      after: '112',
-      growth: '+300%',
+      metric: 'Inquiry response workflow',
+      before: 'Manual, scattered',
+      after: 'Structured + trackable',
+      growth: 'Clearer ops',
     },
     impact: [
-      { value: '300%', label: 'Bookings' },
-      { value: '4.9★', label: 'Patient rating' },
-      { value: '40%', label: 'Less no-shows' },
+      { value: 'PWA', label: 'Student-ready' },
+      { value: 'WhatsApp', label: 'Inquiry flow' },
+      { value: 'Responsive', label: 'Mobile-first' },
     ],
   },
   {
-    id: 4,
-    name: 'David Park',
-    role: 'Operations Manager',
-    company: 'LogiFlow Industries',
-    avatar:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format',
+    id: 'ks-mens-wear',
     quote:
-      'One dashboard replaced five spreadsheets. The team actually uses it—because it was built for how we work.',
+      'Stock and billing used to disagree every week. Now one dashboard tells the truth—and my team trusts the numbers.',
+    result:
+      'Inventory mismatches dropped and end-of-day billing stopped being a two-hour reconciliation exercise.',
+    name: 'Niranjan',
+    role: 'Founder',
+    company: 'KS Mens Wear',
+    category: 'Retail ERP',
+    avatar: avatar('Niranjan'),
     rating: 5,
-    project: 'Web Application',
+    project: 'Business ERP',
     beforeAfter: {
-      metric: 'Team productivity index',
-      before: '62',
-      after: '155',
-      growth: '+150%',
+      metric: 'Stock vs books alignment',
+      before: 'Weekly mismatches',
+      after: 'Daily confidence',
+      growth: 'Ops clarity',
     },
     impact: [
-      { value: '250%', label: 'Productivity' },
-      { value: '5→1', label: 'Tools replaced' },
-      { value: '8 wk', label: 'Delivery' },
+      { value: 'Live', label: 'Reports' },
+      { value: 'Roles', label: 'Admin access' },
+      { value: 'Faster', label: 'Billing' },
+    ],
+  },
+  {
+    id: 'taatom',
+    quote:
+      'Taatom is not a landing page—it is feeds, payments, admin, and two app stores. They treated it like a product company, not a vendor ticket queue.',
+    result:
+      'We shipped a real multi-platform travel social product with room to iterate without rewriting the foundation.',
+    name: 'Kavin & Ayush',
+    role: 'Co-founders',
+    company: 'Taatom',
+    category: 'Social · Travel',
+    avatar: avatar('Kavin Ayush'),
+    rating: 5,
+    project: 'Travel social platform',
+    beforeAfter: {
+      metric: 'Platform surface area',
+      before: 'Concept + fragments',
+      after: 'iOS, Android, admin',
+      growth: 'Full stack',
+    },
+    impact: [
+      { value: 'Realtime', label: 'Feeds' },
+      { value: 'Payments', label: 'Integrated' },
+      { value: 'Multi-cloud', label: 'Infra' },
+    ],
+  },
+  {
+    id: 'budget-boy',
+    quote:
+      'BudgetBoy does not preach savings—it shows where money leaks on recharge plans. That clarity is what we wanted, and they built it without bloat.',
+    result:
+      'Families finally compare plans with context instead of guessing from bill shock at month-end.',
+    name: 'Rajesh',
+    role: 'Working professional',
+    company: 'BudgetBoy',
+    category: 'Fintech utility',
+    avatar: avatar('Rajesh'),
+    rating: 5,
+    project: 'Recharge optimization',
+    beforeAfter: {
+      metric: 'Plan comparison clarity',
+      before: 'Guesswork',
+      after: 'Usage-based picks',
+      growth: 'Smarter spend',
+    },
+    impact: [
+      { value: 'Usage', label: 'Insights' },
+      { value: 'Transparent', label: 'Analysis' },
+      { value: 'Simple', label: 'UX' },
+    ],
+  },
+  {
+    id: 'spotlight',
+    quote:
+      'We needed an iOS MVP to test social loops—not a six-month roadmap deck. They moved fast, integrated realtime chat, and left us room to learn.',
+    result:
+      'SpotLight hit TestFlight with the core loop intact, so we could validate engagement before overbuilding.',
+    name: 'Roshan',
+    role: 'Founder',
+    company: 'SpotLight',
+    category: 'Social MVP',
+    avatar: avatar('Roshan'),
+    rating: 5,
+    project: 'iOS social MVP',
+    beforeAfter: {
+      metric: 'Time to testable MVP',
+      before: 'Unclear scope',
+      after: 'Shipped on iOS',
+      growth: 'Validation-ready',
+    },
+    impact: [
+      { value: 'Realtime', label: 'Chat' },
+      { value: 'MVP', label: 'Shipped' },
+      { value: 'iOS', label: 'First platform' },
+    ],
+  },
+  {
+    id: 'sana',
+    quote:
+      'Shared rent math was breaking friendships. Balances update live, settlements are obvious, and Telegram pings mean nobody chases spreadsheets at midnight.',
+    result:
+      'Our house runs on one source of truth—fewer awkward conversations, fewer “I already paid” disputes.',
+    name: 'Abdullah & Dinesh',
+    role: 'HR & Management',
+    company: 'Sana Fathima Mansion',
+    category: 'Expense sharing',
+    avatar: avatar('Abdullah Dinesh'),
+    rating: 5,
+    project: 'Shared expenses',
+    beforeAfter: {
+      metric: 'Settlement clarity',
+      before: 'Manual splits',
+      after: 'Live balances',
+      growth: 'Less friction',
+    },
+    impact: [
+      { value: 'Live', label: 'Balances' },
+      { value: 'Telegram', label: 'Alerts' },
+      { value: '1-tap', label: 'Settlements' },
+    ],
+  },
+  {
+    id: 'whiteberry',
+    quote:
+      'The WhiteBerry had to feel boutique online—not marketplace generic. The storefront, checkout, and mobile experience finally match how we sell in person.',
+    result:
+      'Customers browse collections comfortably on phone, and the brand reads premium end-to-end.',
+    name: 'Arthi',
+    role: 'Founder',
+    company: 'The WhiteBerry',
+    category: 'E-commerce',
+    avatar: avatar('Arthi'),
+    rating: 5,
+    project: 'Boutique storefront',
+    beforeAfter: {
+      metric: 'Online brand feel',
+      before: 'Inconsistent',
+      after: 'Premium, cohesive',
+      growth: 'Store-ready',
+    },
+    impact: [
+      { value: 'Shopify', label: 'Commerce' },
+      { value: 'Mobile', label: 'Optimized' },
+      { value: 'Payments', label: 'Integrated' },
     ],
   },
 ];
@@ -123,9 +211,11 @@ export const aggregateMetrics: {
   suffix: string;
   label: string;
   decimals?: number;
+  /** Static value when counter animation is not appropriate */
+  display?: string;
 }[] = [
-  { end: 98, suffix: '%', label: 'Client satisfaction' },
-  { end: 4.9, suffix: '/5', label: 'Average rating', decimals: 1 },
-  { end: 300, suffix: '%', label: 'Avg. growth delivered' },
-  { end: 50, suffix: '+', label: 'Projects completed' },
+  { end: 9, suffix: '+', label: 'Products shipped' },
+  { end: 5, suffix: '/5', label: 'Founder-rated delivery', decimals: 0 },
+  { end: 0, suffix: '', label: 'Typical MVP window', display: '6–8 wk' },
+  { end: 100, suffix: '%', label: 'Scope-first builds' },
 ];
