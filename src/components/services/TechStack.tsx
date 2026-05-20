@@ -2,8 +2,19 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { techStack, type TechStackItem } from './offerings';
 
-const iconUrl = (slug: string, color: string) =>
-  `https://cdn.simpleicons.org/${slug}/${color.replace('#', '')}`;
+/** AWS is not served on cdn.simpleicons.org — use jsDelivr SVG instead */
+const ICON_URL_OVERRIDES: Record<string, string> = {
+  amazonwebservices:
+    'https://cdn.jsdelivr.net/npm/simple-icons@14/icons/amazonwebservices.svg',
+  amazonaws:
+    'https://cdn.jsdelivr.net/npm/simple-icons@14/icons/amazonwebservices.svg',
+};
+
+const iconUrl = (slug: string, color: string) => {
+  const override = ICON_URL_OVERRIDES[slug];
+  if (override) return override;
+  return `https://cdn.simpleicons.org/${slug}/${color.replace('#', '')}`;
+};
 
 const TechIcon = ({ tech }: { tech: TechStackItem }) => {
   const [failed, setFailed] = useState(false);

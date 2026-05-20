@@ -12,6 +12,15 @@ export type ProjectFilter = 'all' | 'web' | 'mobile' | 'ecommerce' | 'saas';
 
 export type CaseStudyVariant = 'default' | 'flagship' | 'showcase3d';
 
+/** Visual layout variant for interactive showcase cards */
+export type CaseStudyCardType =
+  | 'saas'
+  | 'mobile'
+  | 'ecommerce'
+  | 'showcase3d'
+  | 'split'
+  | 'cinematic';
+
 export type CaseStudyMetric = {
   value: string;
   label: string;
@@ -25,6 +34,7 @@ export type CaseStudy = {
   category: string;
   filters: Exclude<ProjectFilter, 'all'>[];
   variant?: CaseStudyVariant;
+  cardType: CaseStudyCardType;
   problem: string;
   solution: string;
   results: CaseStudyMetric[];
@@ -50,6 +60,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'LP Future',
     category: 'Education Platform',
     filters: ['web'],
+    cardType: 'saas',
     problem: 'Students lacked proper guidance and admission clarity.',
     solution:
       'Built a responsive React educational platform with analytics, PWA support, and WhatsApp inquiry integration.',
@@ -70,6 +81,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'KS Mens Wear',
     category: 'SaaS Platform',
     filters: ['web', 'saas'],
+    cardType: 'saas',
     problem: 'Manual tracking caused stock mismatch and financial confusion.',
     solution:
       'Built a full-stack ERP dashboard with role management, analytics, stock handling, and reporting.',
@@ -91,6 +103,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Social App',
     filters: ['web', 'mobile', 'saas'],
     variant: 'flagship',
+    cardType: 'mobile',
     problem: 'Travel creators lacked a dedicated real-time social platform.',
     solution:
       'Built scalable mobile + web ecosystem with admin panel, payments, realtime feeds, and cloud infrastructure.',
@@ -118,6 +131,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Bhuvin ToDos',
     category: 'SaaS Platform',
     filters: ['web', 'saas'],
+    cardType: 'split',
     problem: 'Students struggled with consistency and motivation.',
     solution:
       'Built a calm productivity tracker with motivational UX and mobile-first simplicity.',
@@ -138,6 +152,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'BudgetBoy',
     category: 'SaaS Platform',
     filters: ['web', 'saas'],
+    cardType: 'saas',
     problem: 'Users overpaid due to poor recharge planning and unclear plan comparisons.',
     solution:
       'Built intelligent usage-based recommendation engine with transparent telecom analysis.',
@@ -157,6 +172,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'SpotLight',
     category: 'Social App',
     filters: ['mobile'],
+    cardType: 'mobile',
     problem: 'Client needed rapid MVP launch for social engagement testing.',
     solution:
       'Built scalable React Native MVP with realtime backend integrations.',
@@ -176,6 +192,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Sana Fathima Mansion',
     category: 'SaaS Platform',
     filters: ['web', 'saas'],
+    cardType: 'split',
     problem: 'Manual expense splitting caused confusion and payment imbalance.',
     solution:
       'Built modern expense-sharing dashboard with settlements and Telegram notifications.',
@@ -196,6 +213,7 @@ export const caseStudies: CaseStudy[] = [
     category: '3D Experience',
     filters: ['web'],
     variant: 'showcase3d',
+    cardType: 'showcase3d',
     problem: 'Traditional portfolios lacked creativity and immersion.',
     solution: 'Built fully interactive 3D portfolio using Three.js and GSAP animations.',
     results: [
@@ -215,6 +233,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'The WhiteBerry',
     category: 'E-commerce',
     filters: ['web', 'ecommerce'],
+    cardType: 'ecommerce',
     problem: 'Client needed premium online shopping presence for boutique sales.',
     solution:
       'Built Shopify-powered ecommerce with payment integration and modern branding.',
