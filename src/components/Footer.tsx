@@ -20,6 +20,7 @@ import { SITE } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 import { CONTACT_DETAILS } from '@/components/contact/constants';
+import { usePostHog } from '@posthog/react';
 
 const exploreLinks = [
   { name: 'Home', href: 'home' },
@@ -57,6 +58,7 @@ const contactIconClass = cn(
 );
 
 const Footer = () => {
+  const posthog = usePostHog();
   const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
@@ -71,6 +73,7 @@ const Footer = () => {
     setIsSubscribing(true);
     try {
       await new Promise((r) => setTimeout(r, 1200));
+      posthog?.capture('newsletter_subscribed', { source: 'footer' });
       toast.success("You're subscribed! Check your inbox soon.", {
         style: {
           background: 'hsl(var(--card))',

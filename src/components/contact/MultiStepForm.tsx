@@ -10,6 +10,7 @@ import { BUDGET_RANGES, PROJECT_TYPES } from './constants';
 import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
+import { usePostHog } from '@posthog/react';
 
 export type LeadFormData = {
   name: string;
@@ -34,6 +35,7 @@ const STEPS = [
 ];
 
 const MultiStepForm = () => {
+  const posthog = usePostHog();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<LeadFormData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,6 +72,10 @@ const MultiStepForm = () => {
 
   const handleNext = () => {
     if (!validateStep()) return;
+    posthog?.capture('contact_form_step_completed', {
+      step_completed: step,
+      step_title: STEPS[step - 1].title,
+    });
     setStep((s) => Math.min(s + 1, STEPS.length));
   };
 
@@ -86,6 +92,11 @@ const MultiStepForm = () => {
         project_type: formData.projectType,
         budget: formData.budget,
       });
+      posthog?.capture('contact_form_submitted', {
+        project_type: formData.projectType,
+        budget: formData.budget,
+      });
+      posthog?.identify(formData.email, { name: formData.name, email: formData.email });
       toast.success("You're in! We'll reply within 2 hours with next steps.", {
         duration: 5000,
         style: {

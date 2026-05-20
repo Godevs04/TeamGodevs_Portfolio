@@ -4,13 +4,21 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { scrollToSection } from '@/lib/scroll';
 import type { CaseStudy } from './caseStudies';
+import { usePostHog } from '@posthog/react';
 
 type FeaturedProjectProps = {
   study: CaseStudy;
 };
 
 const FeaturedProject = ({ study }: FeaturedProjectProps) => {
+  const posthog = usePostHog();
+
   const openCaseStudy = () => {
+    posthog?.capture('case_study_opened', {
+      project_title: study.title,
+      client: study.client,
+      has_website: Boolean(study.website),
+    });
     if (study.website) {
       window.open(study.website, '_blank', 'noopener,noreferrer');
     } else {
