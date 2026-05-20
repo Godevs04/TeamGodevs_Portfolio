@@ -12,7 +12,7 @@ type ProjectFiltersProps = {
 const ProjectFilters = ({ active, onChange, counts }: ProjectFiltersProps) => {
   return (
     <div
-      className="mb-12 flex flex-wrap justify-center gap-2"
+      className="project-segmented mx-auto mb-12 flex max-w-full gap-1 overflow-x-auto p-1.5 [-ms-overflow-style:none] [scrollbar-width:none] md:mb-14 md:flex-wrap md:justify-center md:overflow-visible [&::-webkit-scrollbar]:hidden"
       role="tablist"
       aria-label="Filter projects by type"
     >
@@ -26,27 +26,23 @@ const ProjectFilters = ({ active, onChange, counts }: ProjectFiltersProps) => {
             aria-selected={isActive}
             onClick={() => onChange(id)}
             className={cn(
-              'relative min-h-[44px] overflow-hidden rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-300 sm:px-5 sm:text-sm',
-              isActive
-                ? 'border-green-500/40 text-gray-900 dark:border-green-400/40 dark:text-white'
-                : 'border-gray-200 bg-white/80 text-gray-600 hover:border-green-500/30 hover:text-gray-900 dark:border-white/10 dark:bg-white/[0.04] dark:text-gray-400 dark:hover:text-gray-200'
+              'project-segment-item relative min-h-[40px] shrink-0 rounded-full px-3.5 py-2 text-xs font-medium transition-colors duration-500 sm:px-4 sm:text-sm',
+              isActive ? 'project-segment-item--active text-gray-900 dark:text-white' : 'project-segment-item--idle text-gray-600 dark:text-gray-400'
             )}
           >
             {isActive && (
               <motion.span
-                layoutId="project-filter-pill"
-                className="absolute inset-0 bg-green-500/10 dark:bg-green-500/20"
+                layoutId="project-segment-indicator"
+                className="project-segment-indicator absolute inset-0 rounded-full"
                 transition={{ type: 'spring', stiffness: 400, damping: 32 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="relative z-10 flex items-center gap-1.5">
               {label}
               <span
                 className={cn(
-                  'rounded-full px-2 py-0.5 text-[10px] font-bold',
-                  isActive
-                    ? 'bg-green-500/15 text-green-700 dark:bg-green-500/25 dark:text-emerald-300'
-                    : 'bg-gray-100 text-gray-500 dark:bg-white/10 dark:text-gray-500'
+                  'rounded-md px-1.5 py-0.5 text-[10px] font-semibold tabular-nums',
+                  isActive ? 'project-segment-count--active' : 'project-segment-count'
                 )}
               >
                 {counts[id]}

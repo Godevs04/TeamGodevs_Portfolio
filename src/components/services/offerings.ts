@@ -150,7 +150,7 @@ export const techStack: TechStackItem[] = [
   { name: 'MongoDB', slug: 'mongodb', color: '#47A248', abbr: 'Mo' },
   { name: 'PostgreSQL', slug: 'postgresql', color: '#4169E1', abbr: 'Pg' },
   { name: 'Tailwind CSS', slug: 'tailwindcss', color: '#06B6D4', abbr: 'Tw' },
-  { name: 'AWS', slug: 'amazonaws', color: '#FF9900', abbr: 'AW' },
+  { name: 'AWS', slug: 'amazonwebservices', color: '#FF9900', abbr: 'AW' },
   { name: 'Docker', slug: 'docker', color: '#2496ED', abbr: 'Dc' },
   { name: 'React Native', slug: 'react', color: '#61DAFB', abbr: 'RN' },
   { name: 'Flutter', slug: 'flutter', color: '#02569B', abbr: 'Fl' },

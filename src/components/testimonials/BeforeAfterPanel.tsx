@@ -1,7 +1,7 @@
-import { ArrowRight, TrendingUp } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import type { BeforeAfter } from './data';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import type { BeforeAfter } from './data';
 
 type BeforeAfterPanelProps = {
   data: BeforeAfter;
@@ -10,37 +10,50 @@ type BeforeAfterPanelProps = {
 
 const BeforeAfterPanel = ({ data, className }: BeforeAfterPanelProps) => {
   return (
-    <Card variant="elevated" className={cn('overflow-hidden', className)}>
-      <CardContent className="p-5 sm:p-6 md:p-8">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-caption font-semibold uppercase tracking-widest text-muted-foreground">
-            Before vs after
+    <div className={cn('testimonial-transform-card flex h-full flex-col', className)}>
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
+            Transformation
           </p>
-          <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-caption font-bold text-primary">
-            <TrendingUp className="h-3.5 w-3.5" aria-hidden />
-            {data.growth}
-          </span>
+          <p className="mt-1 text-sm font-medium text-gray-900 dark:text-white">{data.metric}</p>
         </div>
+        <span className="testimonial-impact-pill shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold text-emerald-700 dark:text-emerald-400/90">
+          {data.growth}
+        </span>
+      </div>
 
-        <p className="text-body mb-6 font-medium text-foreground">{data.metric}</p>
-
-        <div className="grid grid-cols-1 items-center gap-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
-          <div className="rounded-xl border border-border/80 bg-muted/50 p-4 text-center transition-smooth">
-            <p className="text-caption mb-1 text-muted-foreground">Before</p>
-            <p className="text-lg font-semibold text-muted-foreground line-through decoration-destructive/40 sm:text-h3">
+      <div className="flex flex-1 flex-col items-stretch justify-center gap-3">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
+          <div className="testimonial-before-box rounded-2xl px-3 py-4 text-center sm:px-4 sm:py-5">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-red-600/70 dark:text-red-400/70">
+              Before
+            </p>
+            <p className="mt-2 text-sm font-semibold leading-snug text-gray-600 dark:text-gray-400">
               {data.before}
             </p>
           </div>
 
-          <ArrowRight className="mx-auto h-5 w-5 shrink-0 rotate-90 text-primary sm:rotate-0" aria-hidden />
+          <motion.div
+            animate={{ x: [0, 4, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10"
+            aria-hidden
+          >
+            <ArrowRight className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+          </motion.div>
 
-          <div className="rounded-xl border border-primary/25 bg-primary/5 p-4 text-center shadow-soft">
-            <p className="text-caption mb-1 text-primary">After</p>
-            <p className="text-lg font-bold text-gradient sm:text-h3">{data.after}</p>
+          <div className="testimonial-after-box rounded-2xl px-3 py-4 text-center sm:px-4 sm:py-5">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/80 dark:text-emerald-400/80">
+              After
+            </p>
+            <p className="mt-2 text-sm font-semibold leading-snug text-gray-900 dark:text-white">
+              {data.after}
+            </p>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
