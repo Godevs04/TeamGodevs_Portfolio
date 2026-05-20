@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dialog';
 import LazyImage from '@/components/ui/lazy-image';
 import { Button } from '@/components/ui/button';
+import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { scrollToSection } from '@/lib/scroll';
 import type { CaseStudy } from './caseStudies';
 
@@ -21,6 +22,10 @@ const CaseStudyModal = ({ study, open, onOpenChange }: CaseStudyModalProps) => {
   if (!study) return null;
 
   const openLive = () => {
+    trackClarityEvent(CLARITY_EVENTS.PROJECT_CLICK, {
+      project_id: study.id,
+      action: study.website ? 'live_modal' : 'contact_modal',
+    });
     if (study.website) {
       window.open(study.website, '_blank', 'noopener,noreferrer');
     } else {
