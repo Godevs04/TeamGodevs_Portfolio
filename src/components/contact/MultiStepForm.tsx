@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Send, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -37,8 +37,10 @@ const STEPS = [
 
 const MultiStepForm = () => {
   const posthog = usePostHog();
+  const formStartedAt = useRef(Date.now());
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<LeadFormData>(initialData);
+  const [companyWebsite, setCompanyWebsite] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const progress = (step / STEPS.length) * 100;
@@ -88,7 +90,11 @@ const MultiStepForm = () => {
 
     setIsSubmitting(true);
     try {
-      const result = await submitContactInquiry(formData);
+      const result = await submitContactInquiry({
+        ...formData,
+        companyWebsite,
+        formStartedAt: formStartedAt.current,
+      });
       if (!result.ok) {
         toast.error(result.message);
         return;
@@ -112,6 +118,8 @@ const MultiStepForm = () => {
         },
       });
       setFormData(initialData);
+      setCompanyWebsite('');
+      formStartedAt.current = Date.now();
       setStep(1);
     } catch {
       toast.error('Something went wrong. Try WhatsApp or email us directly.');
@@ -135,6 +143,16 @@ const MultiStepForm = () => {
         </div>
 
         <form onSubmit={step === 3 ? handleSubmit : (e) => e.preventDefault()}>
+          <input
+            type="text"
+            name="companyWebsite"
+            value={companyWebsite}
+            onChange={(e) => setCompanyWebsite(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
           <div key={step} className={cn(step === 2 && 'space-y-8')}>
             {step === 1 && (
               <div className="space-y-5">

@@ -29,8 +29,13 @@ function contactApiDevPlugin(env: Record<string, string>): Plugin {
           try {
             Object.assign(process.env, env);
             const { handleContactSubmission } = await import("./server/contact/handler");
+            const { extractRequestMeta } = await import("./server/contact/request-meta");
             const parsedBody = body ? JSON.parse(body) : {};
-            const result = await handleContactSubmission(parsedBody);
+            const meta = extractRequestMeta({
+              headers: req.headers as Record<string, string | string[] | undefined>,
+              socketRemoteAddress: req.socket?.remoteAddress,
+            });
+            const result = await handleContactSubmission(parsedBody, meta);
 
             res.statusCode = result.ok ? 200 : result.status;
             res.setHeader("Content-Type", "application/json");

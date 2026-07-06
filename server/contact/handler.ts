@@ -1,7 +1,13 @@
 import { Resend } from 'resend';
-import { contactInquirySchema, formatProjectType } from '../../src/lib/contact-form';
-import { buildConfirmationEmailHtml, buildTeamEmailHtml } from './email-templates';
-import { saveContactInquiry } from './save-inquiry';
+import {
+  contactSubmissionBodySchema,
+  formatProjectType,
+} from '../../src/lib/contact-form.js';
+import { checkBotSubmission } from './bot-guard.js';
+import { buildConfirmationEmailHtml, buildTeamEmailHtml } from './email-templates.js';
+import { checkContactRateLimit } from './rate-limit.js';
+import type { VisitorMeta } from './request-meta.js';
+import { saveContactInquiry } from './save-inquiry.js';
 
 export type ContactHandlerResult =
   | { ok: true }
@@ -19,14 +25,30 @@ function parseRecipients(raw: string | undefined): string[] {
   return [...new Set(raw.split(',').map((email) => email.trim()).filter(Boolean))];
 }
 
-export async function handleContactSubmission(body: unknown): Promise<ContactHandlerResult> {
-  const parsed = contactInquirySchema.safeParse(body);
+export async function handleContactSubmission(
+  body: unknown,
+  meta: VisitorMeta
+): Promise<ContactHandlerResult> {
+  const parsed = contactSubmissionBodySchema.safeParse(body);
   if (!parsed.success) {
     return {
       ok: false,
       status: 400,
       message: parsed.error.issues[0]?.message ?? 'Invalid form data.',
     };
+  }
+
+  const botCheck = checkBotSubmission(parsed.data);
+  if (!botCheck.allowed) {
+    console.info(`Contact submission blocked (${botCheck.reason}).`);
+    return { ok: true };
+  }
+
+  const { companyWebsite: _honeypot, formStartedAt: _startedAt, ...inquiry } = parsed.data;
+
+  const rateLimit = await checkContactRateLimit(meta.ipAddress, inquiry.email);
+  if (!rateLimit.allowed) {
+    return { ok: false, status: 429, message: rateLimit.message };
   }
 
   const apiKey = getEnv('RESEND_API_KEY');
@@ -42,10 +64,9 @@ export async function handleContactSubmission(body: unknown): Promise<ContactHan
   }
 
   const resend = new Resend(apiKey);
-  const data = parsed.data;
 
-  const saveResult = await saveContactInquiry(data);
-  if (!saveResult.ok) {
+  const saveResult = await saveContactInquiry(inquiry, meta);
+  if (saveResult.ok === false) {
     return { ok: false, status: 500, message: saveResult.message };
   }
 
@@ -53,15 +74,15 @@ export async function handleContactSubmission(body: unknown): Promise<ContactHan
     resend.emails.send({
       from: fromEmail,
       to: teamRecipients,
-      replyTo: data.email,
-      subject: `New inquiry — ${data.name} (${formatProjectType(data.projectType)})`,
-      html: buildTeamEmailHtml(data),
+      replyTo: inquiry.email,
+      subject: `New inquiry — ${inquiry.name} (${formatProjectType(inquiry.projectType)})`,
+      html: buildTeamEmailHtml(inquiry, meta),
     }),
     resend.emails.send({
       from: fromEmail,
-      to: [data.email],
+      to: [inquiry.email],
       subject: 'We received your inquiry — TeamGoDevs',
-      html: buildConfirmationEmailHtml(data),
+      html: buildConfirmationEmailHtml(inquiry),
     }),
   ]);
 

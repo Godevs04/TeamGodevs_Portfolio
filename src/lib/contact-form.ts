@@ -8,7 +8,14 @@ export const contactInquirySchema = z.object({
   message: z.string().trim().min(1, 'Message is required').max(5000),
 });
 
+/** Client payload — includes anti-bot fields stripped server-side before persistence */
+export const contactSubmissionBodySchema = contactInquirySchema.extend({
+  companyWebsite: z.string().max(200).optional().default(''),
+  formStartedAt: z.number().int().positive().optional(),
+});
+
 export type ContactInquiryPayload = z.infer<typeof contactInquirySchema>;
+export type ContactSubmissionBody = z.infer<typeof contactSubmissionBodySchema>;
 
 export const PROJECT_TYPE_LABELS: Record<string, string> = {
   web: 'Web application',

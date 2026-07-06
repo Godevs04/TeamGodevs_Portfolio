@@ -1,4 +1,4 @@
-import type { ContactInquiryPayload } from '@/lib/contact-form';
+import type { ContactSubmissionBody } from '@/lib/contact-form';
 
 type ContactApiSuccess = { ok: true };
 type ContactApiFailure = { ok: false; message: string };
@@ -6,7 +6,7 @@ type ContactApiFailure = { ok: false; message: string };
 export type ContactApiResult = ContactApiSuccess | ContactApiFailure;
 
 export async function submitContactInquiry(
-  payload: ContactInquiryPayload
+  payload: ContactSubmissionBody
 ): Promise<ContactApiResult> {
   try {
     const response = await fetch('/api/contact', {
