@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import OptionPicker from '@/components/contact/OptionPicker';
 import { BUDGET_RANGES, PROJECT_TYPES } from './constants';
 import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
+import { submitContactInquiry } from '@/lib/contact-api';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 import { usePostHog } from '@posthog/react';
@@ -87,7 +88,12 @@ const MultiStepForm = () => {
 
     setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const result = await submitContactInquiry(formData);
+      if (!result.ok) {
+        toast.error(result.message);
+        return;
+      }
+
       trackClarityEvent(CLARITY_EVENTS.CONTACT_SUBMIT, {
         project_type: formData.projectType,
         budget: formData.budget,
