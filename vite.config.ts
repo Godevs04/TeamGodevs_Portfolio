@@ -3,12 +3,54 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-function contactApiDevPlugin(env: Record<string, string>): Plugin {
+function apiDevPlugin(env: Record<string, string>): Plugin {
   return {
-    name: "contact-api-dev",
+    name: "api-dev",
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (!req.url?.startsWith("/api/contact")) {
+        if (!req.url?.startsWith("/api/")) {
+          next();
+          return;
+        }
+
+        if (req.url.startsWith("/api/geo")) {
+          if (req.method !== "GET") {
+            res.statusCode = 405;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ error: "Method not allowed" }));
+            return;
+          }
+
+          void (async () => {
+            try {
+              const { detectCountryFromHeaders } = await import("./server/geo/detect-country");
+              const { resolvePricingRegion } = await import("./src/lib/pricing/regions");
+              const devCountry = env.DEV_VIEWER_COUNTRY?.trim().toUpperCase();
+              const country =
+                devCountry ||
+                detectCountryFromHeaders(
+                  req.headers as Record<string, string | string[] | undefined>
+                );
+
+              res.statusCode = 200;
+              res.setHeader("Content-Type", "application/json");
+              res.end(
+                JSON.stringify({
+                  country,
+                  region: resolvePricingRegion(country),
+                })
+              );
+            } catch (error) {
+              console.error("Geo API dev error:", error);
+              res.statusCode = 500;
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify({ message: "Internal server error" }));
+            }
+          })();
+          return;
+        }
+
+        if (!req.url.startsWith("/api/contact")) {
           next();
           return;
         }
@@ -66,7 +108,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
-      contactApiDevPlugin(env),
+      apiDevPlugin(env),
       mode === "development" && componentTagger(),
     ].filter(Boolean),
     resolve: {

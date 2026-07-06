@@ -1,6 +1,7 @@
 import { ArrowRight, Check, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useLocalePricing } from '@/hooks/use-locale-pricing';
 import { scrollToSection } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
 
@@ -9,7 +10,8 @@ export type ProductOffering = {
   title: string;
   valueProposition: [string, string];
   benefits: string[];
-  priceFrom: string;
+  priceFromInr: number;
+  priceRecurring?: 'month';
   priceNote?: string;
 };
 
@@ -20,6 +22,8 @@ type ProductCardProps = {
 
 const ProductCard = ({ product, className }: ProductCardProps) => {
   const Icon = product.icon;
+  const { formatFromPrice } = useLocalePricing();
+  const priceLabel = formatFromPrice(product.priceFromInr, product.priceRecurring);
 
   return (
     <Card
@@ -40,7 +44,7 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
             <Icon className="h-6 w-6 text-white sm:h-7 sm:w-7" aria-hidden />
           </div>
           <span className="max-w-full rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary sm:text-caption">
-            {product.priceFrom}
+            {priceLabel}
           </span>
         </div>
 

@@ -8,10 +8,13 @@ import ProductCard from '@/components/services/ProductCard';
 import WhyUsSection from '@/components/services/WhyUsSection';
 import TechStack from '@/components/services/TechStack';
 import { Button } from '@/components/ui/button';
+import { useLocalePricing } from '@/hooks/use-locale-pricing';
 import { offerings } from '@/components/services/offerings';
 import { scrollToSection } from '@/lib/scroll';
 
 const Services = () => {
+  const { formatMoney } = useLocalePricing();
+
   return (
     <Section id="services" variant="default" className="relative overflow-hidden">
       <div
@@ -63,17 +66,17 @@ const Services = () => {
                 Pricing
               </p>
               <h3 className="text-h2 mb-6">
-                From <span className="text-gradient">₹20,000</span> — scoped to your goals
+                From <span className="text-gradient">{formatMoney(20_000)}</span> — scoped to your goals
               </h3>
               <div className="mb-8 flex flex-wrap justify-center gap-3 text-sm">
                 <span className="rounded-full border border-border bg-background/80 px-4 py-2">
-                  MVPs <strong>₹40,000+</strong>
+                  MVPs <strong>{formatMoney(40_000)}+</strong>
                 </span>
                 <span className="rounded-full border border-border bg-background/80 px-4 py-2">
-                  SEO <strong>₹5,000/mo</strong>
+                  SEO <strong>{formatMoney(5_000)}/mo</strong>
                 </span>
                 <span className="rounded-full border border-border bg-background/80 px-4 py-2">
-                  Design <strong>₹10,000</strong>
+                  Design <strong>{formatMoney(10_000)}</strong>
                 </span>
               </div>
               <Button variant="cta" size="lg" onClick={() => scrollToSection('contact')}>

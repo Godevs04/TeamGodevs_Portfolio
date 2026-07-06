@@ -157,7 +157,7 @@ export const caseStudies: CaseStudy[] = [
     solution:
       'Built intelligent usage-based recommendation engine with transparent telecom analysis.',
     results: [
-      { value: '₹', label: 'Savings optimized' },
+      { value: '__CURRENCY__', label: 'Savings optimized' },
       { value: 'Smart', label: 'Plan analysis' },
       { value: 'Usage', label: 'Insights' },
     ],

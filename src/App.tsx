@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster as HotToaster } from "react-hot-toast";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { LocalePricingProvider } from "@/contexts/LocalePricingContext";
 import ClarityProvider from "@/components/analytics/ClarityProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -12,6 +13,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light">
+      <LocalePricingProvider>
       <ClarityProvider />
       <TooltipProvider>
         <HotToaster position="top-right" />
@@ -23,6 +25,7 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
+      </LocalePricingProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );

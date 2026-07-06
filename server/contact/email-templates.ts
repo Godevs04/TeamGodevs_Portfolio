@@ -160,7 +160,7 @@ function truncateUserAgent(userAgent: string | null): string {
 
 export function buildTeamEmailHtml(data: ContactInquiryPayload, meta?: VisitorMeta): string {
   const projectType = formatProjectType(data.projectType);
-  const budget = formatBudget(data.budget);
+  const budget = formatBudget(data.budget, meta?.country);
   const location = meta ? formatVisitorLocation(meta) : 'Unknown';
   const ipAddress = meta?.ipAddress ?? 'Unknown';
   const timezone = meta?.timezone;
@@ -234,9 +234,9 @@ export function buildTeamEmailHtml(data: ContactInquiryPayload, meta?: VisitorMe
   });
 }
 
-export function buildConfirmationEmailHtml(data: ContactInquiryPayload): string {
+export function buildConfirmationEmailHtml(data: ContactInquiryPayload, meta?: VisitorMeta): string {
   const projectType = formatProjectType(data.projectType);
-  const budget = formatBudget(data.budget);
+  const budget = formatBudget(data.budget, meta?.country);
   const name = firstName(data.name);
 
   const body = `
