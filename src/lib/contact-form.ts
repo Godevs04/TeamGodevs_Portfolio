@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { formatBudgetRange, resolvePricingRegion } from './pricing';
 
 export const contactInquirySchema = z.object({
   name: z.string().trim().min(1, 'Name is required').max(120),
@@ -38,6 +39,9 @@ export function formatProjectType(value: string): string {
   return PROJECT_TYPE_LABELS[value] ?? value;
 }
 
-export function formatBudget(value: string): string {
+export function formatBudget(value: string, countryCode?: string | null): string {
+  if (countryCode) {
+    return formatBudgetRange(value, resolvePricingRegion(countryCode));
+  }
   return BUDGET_LABELS[value] ?? value;
 }

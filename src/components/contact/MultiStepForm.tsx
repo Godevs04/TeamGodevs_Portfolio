@@ -6,7 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import OptionPicker from '@/components/contact/OptionPicker';
-import { BUDGET_RANGES, PROJECT_TYPES } from './constants';
+import { PROJECT_TYPES } from './constants';
+import { useLocalePricing } from '@/hooks/use-locale-pricing';
 import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { submitContactInquiry } from '@/lib/contact-api';
 import { cn } from '@/lib/utils';
@@ -37,6 +38,8 @@ const STEPS = [
 
 const MultiStepForm = () => {
   const posthog = usePostHog();
+  const { getBudgetRangeOptions } = useLocalePricing();
+  const budgetRanges = getBudgetRangeOptions();
   const formStartedAt = useRef(Date.now());
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<LeadFormData>(initialData);
@@ -95,7 +98,7 @@ const MultiStepForm = () => {
         companyWebsite,
         formStartedAt: formStartedAt.current,
       });
-      if (!result.ok) {
+      if (result.ok === false) {
         toast.error(result.message);
         return;
       }
@@ -200,7 +203,7 @@ const MultiStepForm = () => {
                   label="Budget range"
                   required
                   value={formData.budget}
-                  options={BUDGET_RANGES}
+                  options={budgetRanges}
                   onChange={(v) => updateField('budget', v)}
                 />
               </>

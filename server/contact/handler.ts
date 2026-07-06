@@ -82,7 +82,7 @@ export async function handleContactSubmission(
       from: fromEmail,
       to: [inquiry.email],
       subject: 'We received your inquiry — TeamGoDevs',
-      html: buildConfirmationEmailHtml(inquiry),
+      html: buildConfirmationEmailHtml(inquiry, meta),
     }),
   ]);
 

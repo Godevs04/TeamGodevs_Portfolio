@@ -1,7 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
 import { ArrowUpRight, TrendingUp } from 'lucide-react';
+import { useLocalePricing } from '@/hooks/use-locale-pricing';
 
 const HeroVisual = () => {
+  const { formatMrrExample } = useLocalePricing();
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, scale: 1 });
 
@@ -57,7 +59,7 @@ const HeroVisual = () => {
           {[
             { label: 'Leads', value: '1.2k' },
             { label: 'Conv.', value: '8.4%' },
-            { label: 'MRR', value: '₹4.2L' },
+            { label: 'MRR', value: formatMrrExample(420_000) },
           ].map((stat) => (
             <div
               key={stat.label}

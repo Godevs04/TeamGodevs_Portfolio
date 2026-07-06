@@ -1,10 +1,11 @@
 import { OG_IMAGE_PATH, SITE, SITE_DESCRIPTION, SITE_TITLE, absoluteUrl } from '@/lib/site';
+import { getSchemaPriceRange, type PricingRegion } from '@/lib/pricing';
 
 const organizationId = `${SITE.url}/#organization`;
 const websiteId = `${SITE.url}/#website`;
 const businessId = `${SITE.url}/#business`;
 
-export const buildStructuredDataGraph = () => ({
+export const buildStructuredDataGraph = (region: PricingRegion = 'IN') => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -70,7 +71,7 @@ export const buildStructuredDataGraph = () => ({
       description: SITE_DESCRIPTION,
       email: SITE.email,
       telephone: SITE.phoneTel,
-      priceRange: '₹₹',
+      priceRange: getSchemaPriceRange(region),
       areaServed: {
         '@type': 'Country',
         name: 'India',

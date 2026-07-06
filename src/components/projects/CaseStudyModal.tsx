@@ -9,6 +9,8 @@ import {
 import LazyImage from '@/components/ui/lazy-image';
 import { Button } from '@/components/ui/button';
 import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
+import { useLocalePricing } from '@/hooks/use-locale-pricing';
+import { resolveMetricDisplayValue } from '@/lib/pricing';
 import { scrollToSection } from '@/lib/scroll';
 import type { CaseStudy } from './caseStudies';
 
@@ -19,6 +21,8 @@ type CaseStudyModalProps = {
 };
 
 const CaseStudyModal = ({ study, open, onOpenChange }: CaseStudyModalProps) => {
+  const { currencySymbol } = useLocalePricing();
+
   if (!study) return null;
 
   const openLive = () => {
@@ -87,7 +91,9 @@ const CaseStudyModal = ({ study, open, onOpenChange }: CaseStudyModalProps) => {
             <div className="grid grid-cols-3 gap-3">
               {study.results.map((m) => (
                 <div key={m.label} className="project-metric-cell rounded-2xl px-3 py-4 text-center">
-                  <p className="text-xl font-semibold text-green-600 dark:text-emerald-400">{m.value}</p>
+                  <p className="text-xl font-semibold text-green-600 dark:text-emerald-400">
+                    {resolveMetricDisplayValue(m.value, currencySymbol)}
+                  </p>
                   <p className="mt-1 text-[11px] text-gray-500 dark:text-gray-400">{m.label}</p>
                 </div>
               ))}

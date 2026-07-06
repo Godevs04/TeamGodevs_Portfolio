@@ -18,12 +18,12 @@ export const PROJECT_TYPES = [
   { value: 'other', label: 'Other / not sure' },
 ] as const;
 
-export const BUDGET_RANGES = [
-  { value: 'under-50k', label: 'Under ₹50,000' },
-  { value: '50k-1.5l', label: '₹50,000 – ₹1.5L' },
-  { value: '1.5l-5l', label: '₹1.5L – ₹5L' },
-  { value: '5l-plus', label: '₹5L+' },
-  { value: 'undecided', label: 'Not sure yet' },
+export const BUDGET_RANGE_KEYS = [
+  'under-50k',
+  '50k-1.5l',
+  '1.5l-5l',
+  '5l-plus',
+  'undecided',
 ] as const;
 
 export const QUICK_BENEFITS = [

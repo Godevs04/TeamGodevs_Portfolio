@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import type { ProductOffering } from './ProductCard';
 
+/** Base amounts in INR — displayed in the visitor's local currency via LocalePricingProvider */
 export const offerings: ProductOffering[] = [
   {
     icon: TrendingUp,
@@ -21,7 +22,8 @@ export const offerings: ProductOffering[] = [
       'Content strategy + on-page optimization',
       'Monthly performance reporting',
     ],
-    priceFrom: 'From ₹5,000/mo',
+    priceFromInr: 5_000,
+    priceRecurring: 'month',
     priceNote: 'Scoped to your market & competition',
   },
   {
@@ -36,7 +38,7 @@ export const offerings: ProductOffering[] = [
       'API design & Node.js backends',
       'Auth, payments & admin dashboards',
     ],
-    priceFrom: 'From ₹20,000',
+    priceFromInr: 20_000,
     priceNote: 'Fixed-scope MVP packages available',
   },
   {
@@ -51,7 +53,7 @@ export const offerings: ProductOffering[] = [
       'Push notifications & offline support',
       'Store submission & release management',
     ],
-    priceFrom: 'From ₹40,000',
+    priceFromInr: 40_000,
     priceNote: 'Includes 30-day post-launch support',
   },
   {
@@ -66,7 +68,7 @@ export const offerings: ProductOffering[] = [
       'High-fidelity Figma design system',
       'Prototype for stakeholder sign-off',
     ],
-    priceFrom: 'From ₹10,000',
+    priceFromInr: 10_000,
     priceNote: 'Design-only or dev handoff included',
   },
   {
@@ -81,7 +83,7 @@ export const offerings: ProductOffering[] = [
       'Brand guidelines & asset kit',
       'Social & marketing templates',
     ],
-    priceFrom: 'From ₹5,000',
+    priceFromInr: 5_000,
     priceNote: 'Full rebrand packages on request',
   },
   {
@@ -96,7 +98,8 @@ export const offerings: ProductOffering[] = [
       'AWS / Firebase / Vercel setup',
       'Monitoring, alerts & 99.9% uptime targets',
     ],
-    priceFrom: 'From ₹5,000/mo',
+    priceFromInr: 5_000,
+    priceRecurring: 'month',
     priceNote: 'Retainer or per-project setup',
   },
 ];

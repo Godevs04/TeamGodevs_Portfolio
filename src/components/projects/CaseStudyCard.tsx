@@ -4,6 +4,8 @@ import { ArrowUpRight, ExternalLink, Lightbulb, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
+import { useLocalePricing } from '@/hooks/use-locale-pricing';
+import { resolveMetricDisplayValue } from '@/lib/pricing';
 import { scrollToSection } from '@/lib/scroll';
 import type { CaseStudy } from './caseStudies';
 import ProjectMedia from './ProjectMedia';
@@ -20,6 +22,7 @@ type CaseStudyCardProps = {
 
 const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStudyCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { currencySymbol } = useLocalePricing();
   const prefersReducedMotion = useReducedMotion();
   const tiltEnabled = !prefersReducedMotion;
   const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = useTilt3D(tiltEnabled);
@@ -117,7 +120,7 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
                   className="project-metric-mini flex flex-1 flex-col items-center rounded-xl py-2 text-center"
                 >
                   <span className="text-sm font-semibold text-green-600 dark:text-emerald-400/95">
-                    {m.value}
+                    {resolveMetricDisplayValue(m.value, currencySymbol)}
                   </span>
                   <span className="mt-0.5 text-[9px] uppercase tracking-wide text-gray-500 dark:text-gray-500">
                     {m.label}
