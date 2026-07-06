@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 import { contactInquirySchema, formatProjectType } from '../../src/lib/contact-form';
 import { buildConfirmationEmailHtml, buildTeamEmailHtml } from './email-templates';
+import { saveContactInquiry } from './save-inquiry';
 
 export type ContactHandlerResult =
   | { ok: true }
@@ -42,6 +43,11 @@ export async function handleContactSubmission(body: unknown): Promise<ContactHan
 
   const resend = new Resend(apiKey);
   const data = parsed.data;
+
+  const saveResult = await saveContactInquiry(data);
+  if (!saveResult.ok) {
+    return { ok: false, status: 500, message: saveResult.message };
+  }
 
   const [teamResult, userResult] = await Promise.all([
     resend.emails.send({
