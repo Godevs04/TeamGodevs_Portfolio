@@ -1,4 +1,5 @@
-import { formatBudget, formatProjectType, type ContactInquiryPayload } from '../../src/lib/contact-form';
+import { formatBudget, formatProjectType, type ContactInquiryPayload } from '../../src/lib/contact-form.js';
+import { formatVisitorLocation, type VisitorMeta } from './request-meta.js';
 
 const SITE_URL = 'https://teamgodevs.in';
 const SITE_EMAIL = 'hello@teamgodevs.in';
@@ -152,9 +153,25 @@ function detailRow(label: string, value: string, isLink = false): string {
   `;
 }
 
-export function buildTeamEmailHtml(data: ContactInquiryPayload): string {
+function truncateUserAgent(userAgent: string | null): string {
+  if (!userAgent) return 'Unknown';
+  return userAgent.length > 120 ? `${userAgent.slice(0, 117)}...` : userAgent;
+}
+
+export function buildTeamEmailHtml(data: ContactInquiryPayload, meta?: VisitorMeta): string {
   const projectType = formatProjectType(data.projectType);
   const budget = formatBudget(data.budget);
+  const location = meta ? formatVisitorLocation(meta) : 'Unknown';
+  const ipAddress = meta?.ipAddress ?? 'Unknown';
+  const timezone = meta?.timezone;
+  const userAgent = truncateUserAgent(meta?.userAgent ?? null);
+
+  const visitorRows = [
+    detailRow('Location', location),
+    detailRow('IP address', ipAddress),
+    ...(timezone ? [detailRow('Timezone', timezone)] : []),
+    detailRow('Device / browser', userAgent),
+  ].join('');
 
   const body = `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #e2e8f0;border-radius:18px;overflow:hidden;background:#ffffff;">
@@ -176,6 +193,15 @@ export function buildTeamEmailHtml(data: ContactInquiryPayload): string {
         </td>
       </tr>
     </table>
+
+    <div style="margin-top:20px;padding:20px;border-radius:18px;background:#f8fafc;border:1px solid #e2e8f0;">
+      <p style="margin:0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#64748b;">
+        Visitor info
+      </p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        ${visitorRows}
+      </table>
+    </div>
 
     <div style="margin-top:20px;padding:20px;border-radius:18px;background:#f8fafc;border:1px solid #e2e8f0;">
       <p style="margin:0 0 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#64748b;">
