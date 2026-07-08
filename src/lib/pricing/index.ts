@@ -5,7 +5,7 @@ export {
   REGION_CONFIG,
   type PricingCurrency,
   type PricingRegion,
-} from './regions';
+} from './regions.js';
 
 export {
   convertInrToLocal,
@@ -18,4 +18,4 @@ export {
   getCurrencySymbol,
   resolveMetricDisplayValue,
   type BudgetRangeKey,
-} from './format';
+} from './format.js';

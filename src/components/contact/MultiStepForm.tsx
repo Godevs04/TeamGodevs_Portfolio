@@ -87,8 +87,7 @@ const MultiStepForm = () => {
 
   const handleBack = () => setStep((s) => Math.max(s - 1, 1));
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!validateStep()) return;
 
     setIsSubmitting(true);
@@ -145,7 +144,7 @@ const MultiStepForm = () => {
           <p className="text-caption mt-2 text-muted-foreground">{STEPS[step - 1].description}</p>
         </div>
 
-        <form onSubmit={step === 3 ? handleSubmit : (e) => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             name="companyWebsite"
@@ -254,9 +253,10 @@ const MultiStepForm = () => {
               </Button>
             ) : (
               <Button
-                type="submit"
+                type="button"
                 variant="gradient"
                 disabled={isSubmitting}
+                onClick={handleSubmit}
                 className="h-12 flex-1 rounded-xl"
               >
                 {isSubmitting ? (

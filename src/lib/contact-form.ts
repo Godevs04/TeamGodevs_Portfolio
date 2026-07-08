@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { formatBudgetRange, resolvePricingRegion } from './pricing';
+import { formatBudgetRange, resolvePricingRegion } from './pricing/index.js';
 
 export const contactInquirySchema = z.object({
   name: z.string().trim().min(1, 'Name is required').max(120),

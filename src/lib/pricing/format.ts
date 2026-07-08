@@ -3,7 +3,7 @@ import {
   type PricingCurrency,
   type PricingRegion,
   type RegionConfig,
-} from './regions';
+} from './regions.js';
 
 function getConfig(region: PricingRegion): RegionConfig {
   return REGION_CONFIG[region];
