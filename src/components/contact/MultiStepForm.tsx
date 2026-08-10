@@ -12,7 +12,7 @@ import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { submitContactInquiry } from '@/lib/contact-api';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
-import { usePostHog } from '@posthog/react';
+import { captureEvent, identifyUser } from '@/lib/captureEvent';
 
 export type LeadFormData = {
   name: string;
@@ -37,7 +37,6 @@ const STEPS = [
 ];
 
 const MultiStepForm = () => {
-  const posthog = usePostHog();
   const { getBudgetRangeOptions } = useLocalePricing();
   const budgetRanges = getBudgetRangeOptions();
   const formStartedAt = useRef(Date.now());
@@ -78,7 +77,7 @@ const MultiStepForm = () => {
 
   const handleNext = () => {
     if (!validateStep()) return;
-    posthog?.capture('contact_form_step_completed', {
+    captureEvent('contact_form_step_completed', {
       step_completed: step,
       step_title: STEPS[step - 1].title,
     });
@@ -106,11 +105,11 @@ const MultiStepForm = () => {
         project_type: formData.projectType,
         budget: formData.budget,
       });
-      posthog?.capture('contact_form_submitted', {
+      captureEvent('contact_form_submitted', {
         project_type: formData.projectType,
         budget: formData.budget,
       });
-      posthog?.identify(formData.email, { name: formData.name, email: formData.email });
+      identifyUser(formData.email, { name: formData.name, email: formData.email });
       toast.success("You're in! We'll reply within 2 hours with next steps.", {
         duration: 5000,
         style: {

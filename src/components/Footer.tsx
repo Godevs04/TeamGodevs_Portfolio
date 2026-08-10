@@ -21,7 +21,7 @@ import {
   CONTACT_DETAILS,
   WHATSAPP_URL,
 } from '@/components/contact/constants';
-import { usePostHog } from '@posthog/react';
+import { captureEvent } from '@/lib/captureEvent';
 
 const exploreLinks = [
   { name: 'Home', href: 'home' },
@@ -70,7 +70,6 @@ const contactIconClass = cn(
 );
 
 const Footer = () => {
-  const posthog = usePostHog();
   const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
@@ -85,7 +84,7 @@ const Footer = () => {
     setIsSubscribing(true);
     try {
       await new Promise((r) => setTimeout(r, 1200));
-      posthog?.capture('newsletter_subscribed', { source: 'footer' });
+      captureEvent('newsletter_subscribed', { source: 'footer' });
       toast.success("You're subscribed! Check your inbox soon.", {
         style: {
           background: 'hsl(var(--card))',

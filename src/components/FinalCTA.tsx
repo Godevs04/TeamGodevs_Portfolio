@@ -3,13 +3,11 @@ import { Button } from '@/components/ui/button';
 import PageContainer from '@/components/layout/PageContainer';
 import { scrollToSection } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
-import { usePostHog } from '@posthog/react';
+import { captureEvent } from '@/lib/captureEvent';
 
 const FinalCTA = () => {
-  const posthog = usePostHog();
-
   const handleCtaClick = (label: string) => {
-    posthog?.capture('final_cta_clicked', { cta_label: label, section: 'final_cta' });
+    captureEvent('final_cta_clicked', { cta_label: label, section: 'final_cta' });
     scrollToSection('contact');
   };
 

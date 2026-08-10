@@ -4,17 +4,15 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { scrollToSection } from '@/lib/scroll';
 import type { CaseStudy } from './caseStudies';
-import { usePostHog } from '@posthog/react';
+import { captureEvent } from '@/lib/captureEvent';
 
 type FeaturedProjectProps = {
   study: CaseStudy;
 };
 
 const FeaturedProject = ({ study }: FeaturedProjectProps) => {
-  const posthog = usePostHog();
-
   const openCaseStudy = () => {
-    posthog?.capture('case_study_opened', {
+    captureEvent('case_study_opened', {
       project_title: study.title,
       client: study.client,
       has_website: Boolean(study.website),

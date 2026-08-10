@@ -4,7 +4,7 @@ import PageContainer from '@/components/layout/PageContainer';
 import HeroVisual from '@/components/hero/HeroVisual';
 import { scrollToSection } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
-import { usePostHog } from '@posthog/react';
+import { captureEvent } from '@/lib/captureEvent';
 
 const trustItems = [
   { icon: Shield, label: '50+ clients' },
@@ -24,10 +24,8 @@ const stagger = [
 ];
 
 const Hero = () => {
-  const posthog = usePostHog();
-
   const handleCtaClick = (label: string) => {
-    posthog?.capture('hero_cta_clicked', { cta_label: label, section: 'hero' });
+    captureEvent('hero_cta_clicked', { cta_label: label, section: 'hero' });
     scrollToSection('contact');
   };
 
@@ -49,7 +47,7 @@ const Hero = () => {
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <span
               className={cn(
-                'mb-6 inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/90 px-4 py-2 text-sm text-muted-foreground shadow-soft backdrop-blur-md transition-all duration-300',
+                'mb-6 inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/90 px-4 py-2 text-sm text-muted-foreground shadow-soft backdrop-blur-md',
                 'dark:border-white/10 dark:bg-white/5 dark:text-gray-300',
                 'hero-fade-in',
                 stagger[0]
@@ -59,12 +57,7 @@ const Hero = () => {
               Now booking Q2 2026
             </span>
 
-            <h1
-              className={cn(
-                'hero-fade-in text-4xl font-bold leading-[1.12] tracking-tighter text-foreground dark:text-white md:text-5xl lg:text-6xl',
-                stagger[1]
-              )}
-            >
+            <h1 className="text-4xl font-bold leading-[1.12] tracking-tighter text-foreground dark:text-white md:text-5xl lg:text-6xl">
               Build products that turn users into{' '}
               <span className="bg-gradient-to-r from-green-500 to-emerald-400 bg-clip-text text-transparent">
                 revenue
@@ -93,7 +86,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className={cn(
-                  'hero-cta-primary w-full border-0 transition-all duration-300 hover:scale-105 hover:brightness-110 sm:w-auto',
+                  'hero-cta-primary w-full border-0 hover:scale-105 sm:w-auto',
                   'min-h-[48px] px-8'
                 )}
                 onClick={() => handleCtaClick('start_your_project')}
@@ -104,7 +97,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className={cn(
-                  'hero-cta-glass w-full transition-all duration-300 hover:scale-105 sm:w-auto',
+                  'hero-cta-glass w-full hover:scale-105 sm:w-auto',
                   'min-h-[48px] px-8'
                 )}
                 onClick={() => handleCtaClick('book_a_call')}
@@ -116,7 +109,7 @@ const Hero = () => {
 
             <p
               className={cn(
-                'mt-4 text-sm text-muted-foreground transition-colors duration-300 dark:text-gray-500',
+                'mt-4 text-sm text-muted-foreground dark:text-gray-500',
                 'hero-fade-in',
                 stagger[4]
               )}

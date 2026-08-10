@@ -5,20 +5,19 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { mailto } from '@/lib/site';
 import { CALENDLY_EMBED_URL } from './constants';
-import { usePostHog } from '@posthog/react';
+import { captureEvent } from '@/lib/captureEvent';
 
 const timeSlots = ['10:00 AM', '11:30 AM', '2:00 PM', '4:30 PM'];
 
 const BookCallPanel = () => {
-  const posthog = usePostHog();
   const trackedEmbed = useRef(false);
 
   useEffect(() => {
     if (!CALENDLY_EMBED_URL || trackedEmbed.current) return;
     trackedEmbed.current = true;
     trackClarityEvent(CLARITY_EVENTS.CALENDLY_OPEN, { source: 'calendly_embed' });
-    posthog?.capture('book_call_viewed', { type: 'calendly_embed' });
-  }, [posthog]);
+    captureEvent('book_call_viewed', { type: 'calendly_embed' });
+  }, []);
 
   if (CALENDLY_EMBED_URL) {
     return (

@@ -205,17 +205,18 @@
   }
 
   .transition-smooth {
-    transition: var(--transition-smooth);
+    transition-property: transform, opacity;
+    transition-duration: 280ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hover-lift {
     @apply transition-smooth;
-    transition-property: transform, box-shadow, border-color;
+    transition-property: transform;
   }
 
   .hover-lift:hover {
     @apply -translate-y-1;
-    box-shadow: var(--shadow-large);
   }
 
   .badge-pill {
@@ -347,7 +348,7 @@
   }
 
   .footer-link-nav {
-    @apply flex min-h-0 items-center rounded-md px-2 py-2 text-left text-sm text-muted-foreground transition-smooth hover:bg-muted/50 hover:text-foreground;
+    @apply flex min-h-0 items-center rounded-md px-2 py-2 text-left text-sm text-muted-foreground hover:bg-muted/50 hover:text-foreground;
   }
 
   .dark .footer-link-nav {
@@ -460,8 +461,6 @@
       hsl(142 45% 97%) 70%,
       hsl(210 40% 98%) 100%
     );
-    background-size: 200% 200%;
-    animation: hero-gradient-shift 22s ease-in-out infinite;
   }
 
   .dark .hero-premium .hero-base-bg {
@@ -472,8 +471,6 @@
       #052e16 70%,
       #020617 100%
     );
-    background-size: 200% 200%;
-    animation: hero-gradient-shift 22s ease-in-out infinite;
   }
 
   .hero-radial-glow {
@@ -498,7 +495,6 @@
       hsl(142 76% 36% / 0.14),
       transparent 58%
     );
-    animation: hero-glow 10s ease-in-out infinite;
   }
 
   .dark .hero-radial-glow-right {
@@ -515,10 +511,11 @@
     mix-blend-mode: overlay;
   }
 
+  /* Static decorative blobs — filter + infinite transform was non-composited (×45 elems) */
   .hero-blob {
     border-radius: 9999px;
     filter: blur(80px);
-    animation: hero-blob-drift 14s ease-in-out infinite;
+    transform: translateZ(0);
   }
 
   .hero-blob-1 {
@@ -539,7 +536,6 @@
     width: 380px;
     height: 380px;
     background: rgba(16, 185, 129, 0.08);
-    animation-delay: -5s;
   }
 
   .dark .hero-blob-2 {
@@ -552,7 +548,6 @@
     width: 300px;
     height: 300px;
     background: rgba(59, 130, 246, 0.09);
-    animation-delay: -9s;
   }
 
   .dark .hero-blob-3 {
@@ -566,14 +561,16 @@
   .hero-cta-primary {
     @apply rounded-full bg-gradient-to-r from-green-500 to-emerald-400 text-primary-foreground;
     box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+    transition: transform 0.25s ease, filter 0.25s ease;
   }
 
   .hero-cta-primary:hover {
-    box-shadow: 0 0 36px rgba(16, 185, 129, 0.55);
+    filter: brightness(1.08);
   }
 
   .hero-cta-glass {
-    @apply rounded-full border border-border/80 bg-card/70 backdrop-blur-md transition-all duration-300;
+    @apply rounded-full border border-border/80 bg-card/70 backdrop-blur-md;
+    transition: transform 0.25s ease, background-color 0.25s ease;
   }
 
   .hero-cta-glass:hover {
@@ -589,7 +586,8 @@
   }
 
   .hero-trust-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/80 px-4 py-2 text-xs font-medium text-muted-foreground shadow-soft backdrop-blur-md transition-all duration-300;
+    @apply inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/80 px-4 py-2 text-xs font-medium text-muted-foreground shadow-soft backdrop-blur-md;
+    transition: transform 0.2s ease, background-color 0.2s ease;
   }
 
   .hero-trust-pill:hover {
@@ -605,7 +603,7 @@
   }
 
   .hero-visual-card {
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     transform-style: preserve-3d;
   }
 
@@ -623,19 +621,33 @@
 
   .hero-fade-in {
     opacity: 0;
-    animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateY(12px);
+    animation: hero-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: opacity, transform;
   }
 
-  .hero-stagger-1 { animation-delay: 0.05s; }
-  .hero-stagger-2 { animation-delay: 0.15s; }
-  .hero-stagger-3 { animation-delay: 0.25s; }
-  .hero-stagger-4 { animation-delay: 0.35s; }
-  .hero-stagger-5 { animation-delay: 0.45s; }
-  .hero-stagger-6 { animation-delay: 0.55s; }
-  .hero-stagger-7 { animation-delay: 0.65s; }
+  .hero-stagger-1 { animation-delay: 0.04s; }
+  .hero-stagger-2 { animation-delay: 0.1s; }
+  .hero-stagger-3 { animation-delay: 0.16s; }
+  .hero-stagger-4 { animation-delay: 0.22s; }
+  .hero-stagger-5 { animation-delay: 0.28s; }
+  .hero-stagger-6 { animation-delay: 0.34s; }
+  .hero-stagger-7 { animation-delay: 0.4s; }
 
   .hero-visual-float {
     animation: hero-float 5s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade-in,
+    .hero-visual-float,
+    .hero-blob,
+    .hero-radial-glow,
+    .hero-radial-glow-right {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 
   .process-line {
