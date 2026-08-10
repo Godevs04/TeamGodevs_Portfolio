@@ -2,8 +2,9 @@
 export const SITE = {
   name: 'TeamGoDevs',
   legalName: 'TeamGoDevs',
-  tagline: 'Web, mobile & growth studio',
-  url: 'https://teamgodevs.in',
+  tagline: 'Web, Mobile & SaaS Product Development Studio',
+  /** Prefer www — keep consistent across canonical, sitemap, schema, and OG */
+  url: 'https://www.teamgodevs.in',
   email: 'hello@teamgodevs.in',
   phone: '+91 96777 23429',
   phoneTel: '+919677723429',
@@ -24,30 +25,34 @@ export const SITE = {
 } as const;
 
 export const SITE_TITLE =
-  'TeamGoDevs — Web & Mobile App Development, SEO & Digital Growth Studio';
+  'TeamGoDevs — Web, Mobile & SaaS Product Development Studio';
 
 export const SITE_DESCRIPTION =
-  'TeamGoDevs (teamgodevs.in) designs and ships high-converting websites, mobile apps, and SEO growth systems for startups and SMBs in India. Free discovery call — hello@teamgodevs.in.';
+  'TeamGoDevs designs and builds web apps, mobile apps, SaaS products, and digital platforms for startups and growing businesses. React, Next.js, React Native — hello@teamgodevs.in.';
 
 export const SITE_KEYWORDS = [
   'TeamGoDevs',
-  'teamgodevs.in',
-  'web development company India',
-  'mobile app development Bangalore',
-  'React development agency',
-  'SEO services India',
+  'software development company',
+  'web development company',
+  'mobile app development',
+  'SaaS development',
+  'React development',
+  'Next.js development',
+  'React Native app development',
+  'MVP development',
   'digital product studio',
   'UI UX design',
-  'e-commerce development',
-  'startup development partner',
-  'SaaS development',
-  'HSR Layout web developers',
+  'ecommerce development',
+  'CRM development',
+  'custom software development',
 ].join(', ');
 
-export const OG_IMAGE_PATH = '/logo-nav.png';
+/** Social share preview — 1200×630 */
+export const OG_IMAGE_PATH = '/og-image.png';
 
 export const absoluteUrl = (path = '/') => {
   const normalized = path.startsWith('/') ? path : `/${path}`;
+  if (normalized === '/') return `${SITE.url}/`;
   return `${SITE.url}${normalized}`;
 };
 

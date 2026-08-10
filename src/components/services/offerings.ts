@@ -15,7 +15,7 @@ export const offerings: ProductOffering[] = [
     title: 'SEO & Growth',
     valueProposition: [
       'Capture demand when buyers are searching.',
-      'Turn rankings into qualified pipeline—not vanity traffic.',
+      'Technical SEO, on-page optimization, and content strategy that turn rankings into qualified pipeline—not vanity traffic.',
     ],
     benefits: [
       'Technical SEO audit & fixes',
@@ -30,8 +30,8 @@ export const offerings: ProductOffering[] = [
     icon: Rocket,
     title: 'Web Applications',
     valueProposition: [
-      'Ship production-ready web apps in weeks.',
-      'Architecture that scales from MVP to enterprise.',
+      'Custom web applications built with React and Next.js.',
+      'Scalable APIs, auth, payments, and admin dashboards—from MVP to production.',
     ],
     benefits: [
       'React / Next.js frontends',
@@ -45,8 +45,8 @@ export const offerings: ProductOffering[] = [
     icon: Smartphone,
     title: 'Mobile Apps',
     valueProposition: [
-      'One codebase. iOS & Android. App Store ready.',
-      'Ship faster without maintaining two native teams.',
+      'Cross-platform iOS and Android apps with React Native.',
+      'Authentication, payments, notifications, and analytics in one shared codebase.',
     ],
     benefits: [
       'React Native cross-platform builds',
@@ -60,8 +60,8 @@ export const offerings: ProductOffering[] = [
     icon: MousePointerClick,
     title: 'UI/UX Design',
     valueProposition: [
-      'Interfaces built around conversion, not aesthetics alone.',
-      'Reduce friction from landing page to checkout.',
+      'Product interfaces built around conversion and usability.',
+      'Flows, wireframes, and Figma systems that reduce friction from landing to checkout.',
     ],
     benefits: [
       'User flows & wireframes',
@@ -75,8 +75,8 @@ export const offerings: ProductOffering[] = [
     icon: Sparkles,
     title: 'Brand Identity',
     valueProposition: [
-      'Look funded and trustworthy from day one.',
-      'Stand out in pitch decks, ads, and product UI.',
+      'Clear visual identity for product, pitch, and marketing.',
+      'Logo systems, guidelines, and assets that look consistent from day one.',
     ],
     benefits: [
       'Logo & visual identity system',
@@ -90,13 +90,13 @@ export const offerings: ProductOffering[] = [
     icon: Server,
     title: 'Cloud & DevOps',
     valueProposition: [
-      'Deploy with confidence. Sleep through launch night.',
-      'Infra that grows with traffic—not your AWS bill panic.',
+      'CI/CD, staging, and cloud deployment you can trust at launch.',
+      'Setup on Vercel, AWS, and Firebase with monitoring that scales with traffic.',
     ],
     benefits: [
       'CI/CD pipelines & staging environments',
       'AWS / Firebase / Vercel setup',
-      'Monitoring, alerts & 99.9% uptime targets',
+      'Monitoring, alerts & uptime targets',
     ],
     priceFromInr: 5_000,
     priceRecurring: 'month',

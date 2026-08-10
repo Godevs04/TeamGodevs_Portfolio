@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import {
   ArrowRight,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Github,
   Mail,
   Phone,
   MapPin,
   Heart,
+  MessageCircle,
+  CalendarDays,
 } from 'lucide-react';
 import BrandMark from '@/components/BrandMark';
 import PageContainer from '@/components/layout/PageContainer';
@@ -19,35 +16,50 @@ import { scrollToSection } from '@/lib/scroll';
 import { SITE } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
-import { CONTACT_DETAILS } from '@/components/contact/constants';
+import {
+  CALENDLY_EMBED_URL,
+  CONTACT_DETAILS,
+  WHATSAPP_URL,
+} from '@/components/contact/constants';
 import { usePostHog } from '@posthog/react';
 
 const exploreLinks = [
   { name: 'Home', href: 'home' },
-  { name: 'Features', href: 'services' },
+  { name: 'Services', href: 'services' },
   { name: 'Process', href: 'process' },
-  { name: 'Case studies', href: 'projects' },
-  { name: 'Reviews', href: 'testimonials' },
+  { name: 'Selected work', href: 'projects' },
+  { name: 'Client reviews', href: 'testimonials' },
   { name: 'Contact', href: 'contact' },
 ];
 
 const serviceLinks = [
-  'Web applications',
-  'Mobile apps',
-  'SEO & growth',
-  'UI/UX design',
-  'Brand identity',
-  'Cloud & DevOps',
+  { name: 'Web applications', href: 'services' },
+  { name: 'Mobile apps', href: 'services' },
+  { name: 'SEO & growth', href: 'services' },
+  { name: 'UI/UX design', href: 'services' },
+  { name: 'Brand identity', href: 'services' },
+  { name: 'Cloud & DevOps', href: 'services' },
 ];
 
-const legalLinks = ['Privacy Policy', 'Terms of Service', 'Cookie Policy'];
-
-const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'GitHub', icon: Github, href: '#' },
+const reachLinks = [
+  {
+    name: 'Email',
+    href: `mailto:${SITE.email}`,
+    icon: Mail,
+    label: 'Email TeamGoDevs',
+  },
+  {
+    name: 'WhatsApp',
+    href: WHATSAPP_URL,
+    icon: MessageCircle,
+    label: 'Chat on WhatsApp',
+  },
+  {
+    name: 'Book a call',
+    href: CALENDLY_EMBED_URL,
+    icon: CalendarDays,
+    label: 'Book a discovery call',
+  },
 ];
 
 const contactIconClass = cn(
@@ -99,8 +111,8 @@ const Footer = () => {
               onClick={() => scrollToSection('home')}
             />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground dark:text-white/55">
-              TeamGoDevs is a product studio helping startups and SMBs ship web apps, mobile
-              experiences, and growth systems that drive real revenue—not just pretty pixels.
+              TeamGoDevs is a digital product studio that designs and builds web applications,
+              mobile apps, SaaS products, and growth systems for startups and growing businesses.
             </p>
             <div className="footer-divider my-6" />
             <ul className="space-y-2.5">
@@ -157,14 +169,14 @@ const Footer = () => {
           <div className="lg:col-span-2 lg:pt-0.5">
             <h3 className="footer-heading">Services</h3>
             <ul className="space-y-0.5">
-              {serviceLinks.map((name) => (
-                <li key={name}>
+              {serviceLinks.map((link) => (
+                <li key={link.name}>
                   <button
                     type="button"
-                    onClick={() => scrollToSection('services')}
+                    onClick={() => scrollToSection(link.href)}
                     className="footer-link-nav w-full"
                   >
-                    {name}
+                    {link.name}
                   </button>
                 </li>
               ))}
@@ -215,20 +227,20 @@ const Footer = () => {
               </form>
             </div>
 
-            <p className="footer-heading mb-4 mt-8">Follow us</p>
+            <p className="footer-heading mb-4 mt-8">Get in touch</p>
             <div className="flex flex-wrap gap-2.5">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
+              {reachLinks.map((channel) => {
+                const Icon = channel.icon;
                 return (
                   <a
-                    key={social.name}
-                    href={social.href}
+                    key={channel.name}
+                    href={channel.href}
                     className="footer-social"
-                    aria-label={social.name}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    aria-label={channel.label}
+                    target={channel.href.startsWith('http') ? '_blank' : undefined}
+                    rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-4 w-4" aria-hidden />
                   </a>
                 );
               })}
@@ -241,12 +253,21 @@ const Footer = () => {
             <p className="text-caption text-muted-foreground dark:text-white/40">
               © {currentYear} TeamGoDevs. All rights reserved.
             </p>
-            <div className="flex flex-wrap justify-center gap-1 md:gap-2">
-              {legalLinks.map((label) => (
-                <button key={label} type="button" className="footer-link text-caption">
-                  {label}
-                </button>
-              ))}
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+              <button
+                type="button"
+                onClick={() => scrollToSection('projects')}
+                className="footer-link text-caption"
+              >
+                View selected work
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection('contact')}
+                className="footer-link text-caption"
+              >
+                Start a project
+              </button>
             </div>
           </div>
         </div>

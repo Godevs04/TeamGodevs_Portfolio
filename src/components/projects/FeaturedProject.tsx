@@ -35,7 +35,7 @@ const FeaturedProject = ({ study }: FeaturedProjectProps) => {
         <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] lg:min-h-[420px]">
           <LazyImage
             src={study.image}
-            alt=""
+            alt={study.imageAlt || `${study.title} case study preview`}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#0f172a]/50 to-transparent lg:bg-gradient-to-t lg:from-[#0f172a] lg:via-[#0f172a]/60 lg:to-transparent" />

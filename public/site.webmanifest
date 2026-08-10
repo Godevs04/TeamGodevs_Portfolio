@@ -1,7 +1,7 @@
 {
-  "name": "TeamGoDevs — Web, Mobile & SEO Studio",
+  "name": "TeamGoDevs — Web, Mobile & SaaS Product Development Studio",
   "short_name": "TeamGoDevs",
-  "description": "Web & mobile app development and SEO growth studio in Bengaluru, India.",
+  "description": "TeamGoDevs designs and builds web apps, mobile apps, SaaS products, and digital platforms for startups and growing businesses.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -18,7 +18,13 @@
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/Logo_1.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
