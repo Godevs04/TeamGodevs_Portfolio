@@ -106,6 +106,45 @@ export default defineConfig(({ mode }) => {
       host: "::",
       port: 8080,
     },
+    build: {
+      target: "es2022",
+      cssCodeSplit: true,
+      sourcemap: false,
+      chunkSizeWarningLimit: 700,
+      modulePreload: {
+        resolveDependencies: (_filename, deps) =>
+          deps.filter(
+            (dep) =>
+              !dep.includes("vendor-analytics") &&
+              !dep.includes("vendor-motion") &&
+              !dep.includes("Projects-")
+          ),
+      },
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              if (id.includes("posthog") || id.includes("@microsoft/clarity")) {
+                return "vendor-analytics";
+              }
+              if (id.includes("framer-motion")) {
+                return "vendor-motion";
+              }
+              if (id.includes("@tanstack/react-query")) {
+                return "vendor-query";
+              }
+              if (
+                id.includes("/react/") ||
+                id.includes("/react-dom/") ||
+                id.includes("react-router")
+              ) {
+                return "vendor-react";
+              }
+            }
+          },
+        },
+      },
+    },
     plugins: [
       react(),
       apiDevPlugin(env),

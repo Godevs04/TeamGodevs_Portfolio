@@ -1,13 +1,11 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { scrollToSection } from '@/lib/scroll';
-import { usePostHog } from '@posthog/react';
+import { captureEvent } from '@/lib/captureEvent';
 
 const MobileCTABar = () => {
-  const posthog = usePostHog();
-
   const handleClick = () => {
-    posthog?.capture('mobile_cta_clicked', { section: 'mobile_cta_bar' });
+    captureEvent('mobile_cta_clicked', { section: 'mobile_cta_bar' });
     scrollToSection('contact');
   };
 

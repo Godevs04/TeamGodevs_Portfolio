@@ -7,7 +7,22 @@ import { initClarity } from '@/lib/clarity';
  */
 const ClarityProvider = () => {
   useEffect(() => {
-    initClarity();
+    const schedule =
+      'requestIdleCallback' in window
+        ? (cb: () => void) => window.requestIdleCallback(cb, { timeout: 4000 })
+        : (cb: () => void) => window.setTimeout(cb, 2500);
+
+    const id = schedule(() => {
+      initClarity();
+    });
+
+    return () => {
+      if (typeof id === 'number' && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(id);
+      } else if (typeof id === 'number') {
+        window.clearTimeout(id);
+      }
+    };
   }, []);
 
   return null;

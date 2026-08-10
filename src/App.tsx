@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster as HotToaster } from "react-hot-toast";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LocalePricingProvider } from "@/contexts/LocalePricingContext";
-import ClarityProvider from "@/components/analytics/ClarityProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -14,17 +13,15 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light">
       <LocalePricingProvider>
-      <ClarityProvider />
-      <TooltipProvider>
-        <HotToaster position="top-right" />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+        <TooltipProvider>
+          <HotToaster position="top-right" />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
       </LocalePricingProvider>
     </ThemeProvider>
   </QueryClientProvider>

@@ -1,15 +1,15 @@
-import imgLpFuture from '@/assets/projects/Client1_LPFuture.png';
-import imgKsMensWear from '@/assets/projects/Client2_KsMensWear.png';
-import imgTaatom from '@/assets/projects/Client3_Taatom.png';
-import imgBhuvinTodos from '@/assets/projects/Client4_BhuvintoDos.png';
-import imgBudgetBoy from '@/assets/projects/Clinet5_BudgetBoy.png';
-import imgSpotLight from '@/assets/projects/Client6_SpotLight.png';
-import imgSana from '@/assets/projects/Client7_Sana.png';
-import imgPortfolio3d from '@/assets/projects/Client8_PersonalPortfolio.png';
-import imgWhiteberry from '@/assets/projects/Client9_TheWhiteberry.jpeg';
-import imgLakshyaCrm from '@/assets/projects/Client10_Lakshya_CRM.png';
-import imgLakshya from '@/assets/projects/Client11_Lakshya.png';
-import imgXelarvis from '@/assets/projects/Client12_Xelarvis.png';
+import imgLpFuture from '@/assets/projects/Client1_LPFuture.webp';
+import imgKsMensWear from '@/assets/projects/Client2_KsMensWear.webp';
+import imgTaatom from '@/assets/projects/Client3_Taatom.webp';
+import imgBhuvinTodos from '@/assets/projects/Client4_BhuvintoDos.webp';
+import imgBudgetBoy from '@/assets/projects/Clinet5_BudgetBoy.webp';
+import imgSpotLight from '@/assets/projects/Client6_SpotLight.webp';
+import imgSana from '@/assets/projects/Client7_Sana.webp';
+import imgPortfolio3d from '@/assets/projects/Client8_PersonalPortfolio.webp';
+import imgWhiteberry from '@/assets/projects/Client9_TheWhiteberry.webp';
+import imgLakshyaCrm from '@/assets/projects/Client10_Lakshya_CRM.webp';
+import imgLakshya from '@/assets/projects/Client11_Lakshya.webp';
+import imgXelarvis from '@/assets/projects/Client12_Xelarvis.webp';
 
 export type ProjectFilter = 'all' | 'web' | 'mobile' | 'ecommerce' | 'saas';
 
