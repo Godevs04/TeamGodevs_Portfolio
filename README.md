@@ -1,73 +1,117 @@
-# Welcome to your Lovable project
+<p align="center">
+  <img src="./docs/banner.png" alt="TeamGoDevs Digital Studio — We build digital products that drive real growth" width="100%" />
+</p>
 
-## Project info
+<h1 align="center">TeamGoDevs</h1>
 
-**URL**: https://lovable.dev/projects/d3fc5797-dd7b-45de-b379-ca034a5ad16e
+<p align="center">
+  <strong>Web, Mobile &amp; SaaS Product Development Studio</strong>
+</p>
 
-## How can I edit this code?
+<p align="center">
+  We design, build, launch, and support digital products for startups and growing businesses —
+  from MVPs to production platforms.
+</p>
 
-There are several ways of editing your application.
+<p align="center">
+  <a href="https://www.teamgodevs.in/">Website</a> ·
+  <a href="mailto:hello@teamgodevs.in">hello@teamgodevs.in</a> ·
+  <a href="https://wa.me/919677723429">+91 96777 23429</a>
+</p>
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d3fc5797-dd7b-45de-b379-ca034a5ad16e) and start prompting.
+## About us
 
-Changes made via Lovable will be committed automatically to this repo.
+**TeamGoDevs** is a digital product studio based in **HSR Layout, Bengaluru**.
 
-**Use your preferred IDE**
+We partner with founders and teams to ship high-performing:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Web applications (React / Next.js)
+- Mobile apps for iOS & Android (React Native)
+- SaaS platforms, CRMs, and business software
+- Ecommerce experiences
+- UI/UX design & brand identity
+- SEO, growth, and cloud / DevOps support
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Our focus is simple: **build products that ship**, stay maintainable, and support real business outcomes — not just demos.
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## What this repo is
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+This repository powers the official TeamGoDevs portfolio site:
 
-# Step 3: Install the necessary dependencies.
-npm i
+**[https://www.teamgodevs.in/](https://www.teamgodevs.in/)**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+It showcases our studio, services, process, selected client work, and contact flow.
+
+### Selected work highlights
+
+| Project | Focus |
+|--------|--------|
+| **Taatom** | Travel social platform (web + mobile) |
+| **KS Mens Wear ERP** | Business management / inventory & billing |
+| **Lakshya CRM** | Lead & operations CRM |
+| **Lakshya** | Finance-focused web platform |
+| **Xelarvis** | AI research & consulting web presence |
+| **BudgetBoy** | Telecom plan optimization |
+| **The WhiteBerry** | Boutique ecommerce |
+| **SpotLight** | Social app MVP |
+| **LP Future** | Education admissions platform |
+
+Explore the full Work section on the live site.
+
+---
+
+## Tech stack
+
+Built with a modern React stack:
+
+- **Vite** + **React** + **TypeScript**
+- **Tailwind CSS** + **shadcn/ui**
+- **Framer Motion**
+- Deployed on **Vercel**
+
+---
+
+## Local development
+
+```bash
+# Install dependencies
+npm install
+
+# Start the dev server
 npm run dev
+
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+
+# SEO readiness checks
+npm run seo:audit
 ```
 
-**Edit a file directly in GitHub**
+Create a `.env` from `.env.example` if you need analytics or contact API keys locally.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Contact
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| Channel | Details |
+|--------|---------|
+| Website | [www.teamgodevs.in](https://www.teamgodevs.in/) |
+| Email | [hello@teamgodevs.in](mailto:hello@teamgodevs.in) |
+| WhatsApp | [+91 96777 23429](https://wa.me/919677723429) |
+| Office | HSR Layout, Bengaluru, Karnataka, India |
+| Hours | Mon – Fri, 10:00 AM – 7:00 PM IST |
 
-## What technologies are used for this project?
+Have an idea? Let’s build something useful together.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d3fc5797-dd7b-45de-b379-ca034a5ad16e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+<p align="center">
+  <sub>© TeamGoDevs · Digital product studio since 2019</sub>
+</p>
