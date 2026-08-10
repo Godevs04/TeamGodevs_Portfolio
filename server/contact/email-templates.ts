@@ -1,7 +1,7 @@
 import { formatBudget, formatProjectType, type ContactInquiryPayload } from '../../src/lib/contact-form.js';
 import { formatVisitorLocation, type VisitorMeta } from './request-meta.js';
 
-const SITE_URL = 'https://teamgodevs.in';
+const SITE_URL = 'https://www.teamgodevs.in';
 const SITE_EMAIL = 'hello@teamgodevs.in';
 const LOGO_URL = `${SITE_URL}/Logo_1.png`;
 

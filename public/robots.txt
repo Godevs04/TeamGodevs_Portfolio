@@ -1,12 +1,17 @@
-# https://teamgodevs.in
+# https://www.teamgodevs.in
 User-agent: *
 Allow: /
 
-# AI crawlers (optional — allow for discoverability)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://teamgodevs.in/sitemap.xml
+Sitemap: https://www.teamgodevs.in/sitemap.xml

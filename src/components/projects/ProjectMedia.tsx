@@ -2,12 +2,49 @@ import { motion } from 'framer-motion';
 import { Sparkles, TrendingUp } from 'lucide-react';
 import LazyImage from '@/components/ui/lazy-image';
 import { cn } from '@/lib/utils';
-import type { CaseStudy } from './caseStudies';
+import type {
+  CaseStudy,
+  ProjectImageConfig,
+  ProjectImageFit,
+  ProjectImageOverlay,
+  ProjectImagePresentation,
+} from './caseStudies';
 
 type ProjectMediaProps = {
   study: CaseStudy;
   isHovered: boolean;
 };
+
+const HOVER_SCALE = 1.03;
+const easePremium = [0.22, 1, 0.36, 1] as const;
+
+type ResolvedImageConfig = {
+  fit: ProjectImageFit;
+  position: string;
+  scale: number;
+  overlay: ProjectImageOverlay;
+  presentation: ProjectImagePresentation;
+};
+
+function resolveImageConfig(study: CaseStudy): ResolvedImageConfig {
+  const cfg: ProjectImageConfig = study.imageConfig ?? {};
+  const fromCardType: ProjectImagePresentation =
+    study.cardType === 'mobile'
+      ? 'phone'
+      : study.cardType === 'showcase3d'
+        ? '3d'
+        : study.cardType === 'split'
+          ? 'split'
+          : 'default';
+
+  return {
+    fit: cfg.fit ?? 'cover',
+    position: cfg.position ?? 'center top',
+    scale: cfg.scale ?? 1,
+    overlay: cfg.overlay ?? 'soft',
+    presentation: cfg.presentation ?? fromCardType,
+  };
+}
 
 const LiveIndicator = () => (
   <span className="project-live-dot flex items-center gap-1.5 rounded-full border border-white/20 bg-black/40 px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider text-white/90 backdrop-blur-md">
@@ -32,93 +69,130 @@ const FloatingChip = ({ children, className }: { children: React.ReactNode; clas
   </motion.span>
 );
 
+type ShotProps = {
+  study: CaseStudy;
+  config: ResolvedImageConfig;
+  isHovered: boolean;
+  alt: string;
+  className?: string;
+};
+
+const ProjectShot = ({ study, config, isHovered, alt, className }: ShotProps) => {
+  const baseScale = config.scale;
+  const activeScale = isHovered ? baseScale * HOVER_SCALE : baseScale;
+  const resolvedAlt = alt || study.imageAlt || `${study.title} product preview`;
+
+  return (
+    <LazyImage
+      src={study.image}
+      alt={resolvedAlt}
+      className={cn(
+        'project-shot relative z-10 h-full w-full transition-transform duration-500 ease-out will-change-transform',
+        className
+      )}
+      style={{
+        objectFit: config.fit,
+        objectPosition: config.position,
+        transform: `scale(${activeScale})`,
+      }}
+    />
+  );
+};
+
 const ProjectMedia = ({ study, isHovered }: ProjectMediaProps) => {
   const { cardType, variant } = study;
+  const config = resolveImageConfig(study);
   const isFlagship = variant === 'flagship';
-  const isMobile = cardType === 'mobile';
-  const is3d = cardType === 'showcase3d';
-  const isEcom = cardType === 'ecommerce';
   const isSaas = cardType === 'saas';
-  const isSplit = cardType === 'split';
+  const isEcom = cardType === 'ecommerce';
+  const { presentation, fit, overlay } = config;
 
   return (
     <div
       className={cn(
-        'project-card-media relative aspect-[16/10] w-full shrink-0 overflow-hidden',
-        isMobile && 'project-card-media--mobile flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-50 dark:from-[#0c1219] dark:to-[#060d14]',
-        is3d && 'project-card-media--3d',
+        'project-card-media relative aspect-[16/9] w-full shrink-0 overflow-hidden',
+        'ring-1 ring-inset ring-gray-200/70 dark:ring-white/10',
+        fit === 'contain' && 'project-card-media--contain',
+        presentation === 'phone' && 'project-card-media--mobile flex items-center justify-center',
+        presentation === '3d' && 'project-card-media--3d',
         isEcom && 'project-card-media--ecommerce'
       )}
       style={{ transformStyle: 'preserve-3d' }}
     >
-      {/* Ambient glow behind media */}
       <div className="project-card-media-glow pointer-events-none absolute inset-0" aria-hidden />
 
-      {isMobile ? (
+      {presentation === 'phone' ? (
         <div
-          className="project-phone-frame relative z-10 mx-auto mt-2 h-[88%] w-[42%] max-w-[140px] overflow-hidden rounded-[22px] border border-white/20 bg-black/80 p-[3px] shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+          className="project-phone-frame relative z-10 mx-auto mt-1.5 h-[90%] w-[40%] max-w-[132px] overflow-hidden rounded-[22px] border border-white/20 bg-black/80 p-[3px] shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
           style={{ transform: isHovered ? 'translateZ(24px)' : 'translateZ(12px)' }}
         >
           <div className="relative h-full w-full overflow-hidden rounded-[18px] bg-black">
-            <LazyImage
-              src={study.image}
-              alt={`${study.title} app preview`}
-              className={cn(
-                'h-full w-full object-cover object-top transition-transform duration-700 ease-out',
-                isHovered && 'scale-110'
-              )}
+            <ProjectShot
+              study={study}
+              config={{ ...config, fit: 'cover', position: 'center top' }}
+              isHovered={isHovered}
+              alt={study.imageAlt || `${study.title} app preview`}
             />
-            <div className="project-media-treatment pointer-events-none absolute inset-0 mix-blend-overlay" />
           </div>
           <div className="absolute left-1/2 top-1.5 h-1 w-8 -translate-x-1/2 rounded-full bg-white/20" />
         </div>
-      ) : is3d ? (
+      ) : presentation === '3d' ? (
         <div className="relative h-full w-full" style={{ perspective: '900px' }}>
           <motion.div
-            animate={isHovered ? { rotateY: 6, rotateX: -4, scale: 1.04 } : { rotateY: 0, rotateX: 0, scale: 1 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            animate={
+              isHovered
+                ? { rotateY: 6, rotateX: -4, scale: 1.03 }
+                : { rotateY: 0, rotateX: 0, scale: 1 }
+            }
+            transition={{ duration: 0.5, ease: easePremium }}
             className="project-3d-stack relative h-full w-full"
           >
             <div className="project-3d-layer project-3d-layer--back absolute inset-[8%] rounded-2xl opacity-40 blur-sm" />
             <div className="project-3d-layer project-3d-layer--mid absolute inset-[4%] rounded-2xl opacity-70" />
-            <LazyImage
-              src={study.image}
-              alt={`${study.title} 3D preview`}
-              className="project-3d-layer--front relative z-10 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            <ProjectShot
+              study={study}
+              config={config}
+              isHovered={false}
+              alt={study.imageAlt || `${study.title} 3D preview`}
+              className="project-3d-layer--front relative z-10"
             />
           </motion.div>
         </div>
-      ) : isSplit ? (
+      ) : presentation === 'split' ? (
         <div className="flex h-full w-full">
           <div className="relative w-1/2 overflow-hidden border-r border-white/10">
-            <LazyImage
-              src={study.image}
-              alt={`${study.title} preview`}
-              className={cn('h-full w-full object-cover object-left transition-transform duration-700', isHovered && 'scale-105')}
+            <ProjectShot
+              study={study}
+              config={{ ...config, fit: 'cover', position: 'left center' }}
+              isHovered={isHovered}
+              alt={study.imageAlt || `${study.title} preview`}
             />
           </div>
           <div className="relative flex w-1/2 flex-col justify-center gap-2 bg-gradient-to-br from-emerald-500/10 to-transparent p-3">
             <div className="h-2 w-3/4 rounded-full bg-white/20" />
             <div className="h-2 w-1/2 rounded-full bg-white/15" />
-            <div className="mt-2 h-16 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" />
+            <div className="mt-2 h-16 rounded-lg border border-white/10 bg-white/5" />
           </div>
         </div>
       ) : (
-        <LazyImage
-          src={study.image}
-          alt={`${study.title} preview`}
-          className={cn(
-            'relative z-10 h-full w-full object-cover object-top transition-transform duration-700 ease-out',
-            isHovered && 'scale-105',
-            isEcom && 'object-center'
-          )}
+        <ProjectShot
+          study={study}
+          config={config}
+          isHovered={isHovered}
+          alt={study.imageAlt || `${study.title} product preview`}
         />
       )}
 
-      <div className="project-media-treatment pointer-events-none absolute inset-0 z-[11] mix-blend-overlay" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 z-[12] bg-gradient-to-t from-[#071018]/90 via-[#071018]/25 to-transparent dark:from-[#071018] dark:via-[#071018]/30" />
-      <div className="project-media-sweep pointer-events-none absolute inset-0 z-[13]" aria-hidden />
-      <div className="project-media-reflection pointer-events-none absolute inset-0 z-[14]" aria-hidden />
+      {/* Subtle bottom-only contrast — never a full-image blackout */}
+      {overlay !== 'none' && (
+        <div
+          className={cn(
+            'project-media-overlay pointer-events-none absolute inset-0 z-[12]',
+            overlay === 'soft' && 'project-media-overlay--soft'
+          )}
+          aria-hidden
+        />
+      )}
 
       <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-2">
         <span className="project-category-badge rounded-full px-2 py-0.5 text-[10px] font-medium tracking-wide">
@@ -136,21 +210,22 @@ const ProjectMedia = ({ study, isHovered }: ProjectMediaProps) => {
         <LiveIndicator />
       </div>
 
-      {isSaas && (
+      {/* Decorative chips only on hover so resting screenshot stays readable */}
+      {isSaas && isHovered && (
         <>
           <FloatingChip className="bottom-10 left-3">
             <TrendingUp className="mr-1 inline h-3 w-3 text-emerald-400" />
-            +24% growth
+            Analytics
           </FloatingChip>
-          <FloatingChip className="bottom-4 right-3">Analytics</FloatingChip>
+          <FloatingChip className="bottom-4 right-3">Live ops</FloatingChip>
         </>
       )}
 
-      {isEcom && (
+      {isEcom && isHovered && (
         <FloatingChip className="bottom-8 left-1/2 -translate-x-1/2">Premium storefront</FloatingChip>
       )}
 
-      {isMobile && (
+      {presentation === 'phone' && (
         <motion.span
           className="project-fake-cursor pointer-events-none absolute z-20 h-3 w-3 rounded-full border-2 border-white/80 bg-emerald-400/80 shadow-lg"
           animate={{ x: [40, 52, 44], y: [60, 72, 65] }}
@@ -159,7 +234,7 @@ const ProjectMedia = ({ study, isHovered }: ProjectMediaProps) => {
         />
       )}
 
-      {is3d && isHovered && (
+      {presentation === '3d' && isHovered && (
         <div className="pointer-events-none absolute inset-0 z-[15] bg-gradient-to-tr from-emerald-500/10 via-transparent to-violet-500/10" />
       )}
     </div>

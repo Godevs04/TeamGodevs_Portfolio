@@ -74,8 +74,9 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
           variant="ctaOutline"
           className="mt-auto w-full transition-smooth group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary"
           onClick={() => scrollToSection('contact')}
+          aria-label={`Discuss ${product.title} with TeamGoDevs`}
         >
-          Learn more
+          Discuss this service
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Button>
       </CardContent>

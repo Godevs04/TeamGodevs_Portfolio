@@ -24,10 +24,10 @@ const Services = () => {
 
       <PageContainer className="relative">
         <SectionHeader
-          badge="Offerings"
-          title="Products that"
+          badge="Services"
+          title="Services that"
           highlight="ship outcomes"
-          description="Fixed-scope packages with clear deliverables—bundle or start with one."
+          description="Web applications, mobile apps, SaaS platforms, UI/UX, branding, SEO & growth, and cloud DevOps—fixed-scope packages with clear deliverables."
         />
 
         <Reveal>

@@ -53,12 +53,15 @@ const PageMeta = ({
     setMeta('og:site_name', SITE.name, 'property');
     setMeta('og:locale', SITE.locale, 'property');
     setMeta('og:image', ogImage, 'property');
+    setMeta('og:image:width', '1200', 'property');
+    setMeta('og:image:height', '630', 'property');
     setMeta('og:image:alt', `${SITE.name} — ${SITE.tagline}`, 'property');
 
     setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:title', title);
     setMeta('twitter:description', description);
     setMeta('twitter:image', ogImage);
+    setMeta('twitter:image:alt', `${SITE.name} — ${SITE.tagline}`);
 
     setLink('canonical', canonical);
 

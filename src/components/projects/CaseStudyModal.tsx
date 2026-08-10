@@ -12,6 +12,7 @@ import { CLARITY_EVENTS, trackClarityEvent } from '@/lib/clarity';
 import { useLocalePricing } from '@/hooks/use-locale-pricing';
 import { resolveMetricDisplayValue } from '@/lib/pricing';
 import { scrollToSection } from '@/lib/scroll';
+import { cn } from '@/lib/utils';
 import type { CaseStudy } from './caseStudies';
 
 type CaseStudyModalProps = {
@@ -44,11 +45,21 @@ const CaseStudyModal = ({ study, open, onOpenChange }: CaseStudyModalProps) => {
         <div className="project-modal-hero relative aspect-[16/9] max-h-[280px] w-full overflow-hidden rounded-t-[28px]">
           <LazyImage
             src={study.image}
-            alt={`${study.title} preview`}
-            className="h-full w-full object-cover object-top"
+            alt={study.imageAlt || `${study.title} preview`}
+            className="project-shot h-full w-full"
+            style={{
+              objectFit: study.imageConfig?.fit ?? 'cover',
+              objectPosition: study.imageConfig?.position ?? 'center top',
+            }}
           />
-          <div className="project-media-treatment pointer-events-none absolute inset-0" aria-hidden />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071018] via-[#071018]/40 to-transparent" />
+          <div
+            className={cn(
+              'project-media-overlay pointer-events-none absolute inset-0',
+              (study.imageConfig?.overlay ?? 'subtle') === 'soft' && 'project-media-overlay--soft',
+              study.imageConfig?.overlay === 'none' && 'opacity-0'
+            )}
+            aria-hidden
+          />
           <span className="project-category-badge absolute left-5 top-5 rounded-full px-3 py-1 text-[11px] font-medium tracking-wide">
             {study.category}
           </span>

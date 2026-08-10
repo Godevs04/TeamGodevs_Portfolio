@@ -7,6 +7,9 @@ import imgSpotLight from '@/assets/projects/Client6_SpotLight.png';
 import imgSana from '@/assets/projects/Client7_Sana.png';
 import imgPortfolio3d from '@/assets/projects/Client8_PersonalPortfolio.png';
 import imgWhiteberry from '@/assets/projects/Client9_TheWhiteberry.jpeg';
+import imgLakshyaCrm from '@/assets/projects/Client10_Lakshya_CRM.png';
+import imgLakshya from '@/assets/projects/Client11_Lakshya.png';
+import imgXelarvis from '@/assets/projects/Client12_Xelarvis.png';
 
 export type ProjectFilter = 'all' | 'web' | 'mobile' | 'ecommerce' | 'saas';
 
@@ -26,6 +29,22 @@ export type CaseStudyMetric = {
   label: string;
 };
 
+/** Per-project screenshot framing — optional; sensible defaults apply when omitted. */
+export type ProjectImageFit = 'cover' | 'contain';
+export type ProjectImageOverlay = 'subtle' | 'soft' | 'none';
+export type ProjectImagePresentation = 'default' | 'phone' | '3d' | 'split';
+
+export type ProjectImageConfig = {
+  fit?: ProjectImageFit;
+  /** CSS object-position value, e.g. "center top" or "left center" */
+  position?: string;
+  /** Visual scale multiplier applied via transform (1 = 100%) */
+  scale?: number;
+  overlay?: ProjectImageOverlay;
+  /** Overrides cardType-derived media layout when set */
+  presentation?: ProjectImagePresentation;
+};
+
 export type CaseStudy = {
   id: string;
   title: string;
@@ -39,6 +58,9 @@ export type CaseStudy = {
   solution: string;
   results: CaseStudyMetric[];
   image: string;
+  /** Accessible, SEO-friendly description of the project screenshot */
+  imageAlt?: string;
+  imageConfig?: ProjectImageConfig;
   tags: string[];
   website: string | null;
 };
@@ -70,6 +92,8 @@ export const caseStudies: CaseStudy[] = [
       { value: 'PWA', label: 'Enabled' },
     ],
     image: imgLpFuture,
+    imageAlt: 'LP Future educational admissions platform website',
+    imageConfig: { fit: 'cover', position: 'left 8%', overlay: 'soft' },
     tags: ['React', 'Express', 'Node.js', 'Tailwind', 'AWS', 'Vercel'],
     website: 'https://lpfuture.vercel.app/',
   },
@@ -91,6 +115,8 @@ export const caseStudies: CaseStudy[] = [
       { value: 'Live', label: 'Reports' },
     ],
     image: imgKsMensWear,
+    imageAlt: 'KS Mens Wear business management ERP dashboard',
+    imageConfig: { fit: 'cover', position: 'left 12%', overlay: 'soft' },
     tags: ['Next.js', 'React', 'Tailwind', 'Render', 'Vercel'],
     website: 'https://www.ksmenswear.shop/',
   },
@@ -113,6 +139,13 @@ export const caseStudies: CaseStudy[] = [
       { value: 'Multi-cloud', label: 'Infra' },
     ],
     image: imgTaatom,
+    imageAlt: 'Taatom travel social platform sign-in and homepage interface',
+    imageConfig: {
+      fit: 'contain',
+      position: 'center',
+      overlay: 'none',
+      presentation: 'default',
+    },
     tags: [
       'React Native',
       'Next.js',
@@ -141,6 +174,13 @@ export const caseStudies: CaseStudy[] = [
       { value: 'PWA', label: 'Ready' },
     ],
     image: imgBhuvinTodos,
+    imageAlt: 'Bhuvin ToDos productivity app dashboard for civil service aspirants',
+    imageConfig: {
+      fit: 'cover',
+      position: 'center top',
+      overlay: 'soft',
+      presentation: 'default',
+    },
     tags: ['Next.js', 'Framer Motion', 'Tailwind'],
     website: 'https://bhuvin-todos.vercel.app/',
   },
@@ -162,6 +202,8 @@ export const caseStudies: CaseStudy[] = [
       { value: 'Usage', label: 'Insights' },
     ],
     image: imgBudgetBoy,
+    imageAlt: 'BudgetBoy telecom plan optimization dashboard',
+    imageConfig: { fit: 'contain', position: 'center', overlay: 'none' },
     tags: ['Next.js', 'Tailwind', 'Framer Motion'],
     website: 'https://budgetboy.teamgodevs.in/',
   },
@@ -182,6 +224,13 @@ export const caseStudies: CaseStudy[] = [
       { value: 'iOS', label: 'First' },
     ],
     image: imgSpotLight,
+    imageAlt: 'SpotLight social mobile app interface in development',
+    imageConfig: {
+      fit: 'contain',
+      position: 'center',
+      overlay: 'none',
+      presentation: 'default',
+    },
     tags: ['React Native', 'Clerk', 'Convex', 'Tailwind', 'Sentry'],
     website: null,
   },
@@ -202,6 +251,13 @@ export const caseStudies: CaseStudy[] = [
       { value: '1-tap', label: 'Settlements' },
     ],
     image: imgSana,
+    imageAlt: 'Sana Fathima Mansion shared expense management platform',
+    imageConfig: {
+      fit: 'contain',
+      position: 'center',
+      overlay: 'none',
+      presentation: 'default',
+    },
     tags: ['Next.js', 'NextAuth', 'Tailwind', 'Framer Motion', 'shadcn/ui'],
     website: 'https://sana.sukeshiitj.me/',
   },
@@ -222,6 +278,13 @@ export const caseStudies: CaseStudy[] = [
       { value: 'Immersive', label: 'UX' },
     ],
     image: imgPortfolio3d,
+    imageAlt: 'Interactive Three.js 3D portfolio room experience',
+    imageConfig: {
+      fit: 'cover',
+      position: 'center',
+      scale: 1.22,
+      overlay: 'none',
+    },
     tags: ['Three.js', 'GSAP', 'Vercel'],
     website: 'https://three-js-port-folio.vercel.app/',
   },
@@ -243,8 +306,86 @@ export const caseStudies: CaseStudy[] = [
       { value: 'Mobile', label: 'Optimized' },
     ],
     image: imgWhiteberry,
+    imageAlt: 'The WhiteBerry boutique fashion ecommerce storefront',
+    imageConfig: {
+      fit: 'contain',
+      position: 'center',
+      overlay: 'none',
+    },
     tags: ['Shopify', 'Payment Gateway'],
     website: 'https://www.thewhiteberry.in',
+  },
+  {
+    id: 'lakshya-crm',
+    title: 'Lakshya CRM',
+    shortDescription:
+      'Operational CRM built to centralize leads, follow-ups, customer data, and sales workflows for a growing finance-focused business.',
+    client: 'Lakshya International Edwise',
+    category: 'SaaS Platform',
+    filters: ['web', 'saas'],
+    cardType: 'saas',
+    problem:
+      'Manual lead tracking and scattered follow-ups made it difficult to maintain a consistent sales pipeline.',
+    solution:
+      'Built a centralized CRM workspace for lead management, customer tracking, follow-ups, and day-to-day sales operations.',
+    results: [
+      { value: 'Centralized', label: 'Lead Pipeline' },
+      { value: 'Follow-ups', label: 'Managed' },
+      { value: 'Ops', label: 'Dashboard' },
+    ],
+    image: imgLakshyaCrm,
+    imageAlt: 'Lakshya CRM business management analytics dashboard',
+    imageConfig: { fit: 'cover', position: 'center 22%', scale: 1.06, overlay: 'soft' },
+    tags: ['Next.js', 'React', 'Auth.js', 'Vercel'],
+    website: 'https://www.lakshyainternationaledwise.com/admin',
+  },
+  {
+    id: 'lakshya',
+    title: 'Lakshya',
+    shortDescription:
+      'Finance-focused digital platform designed to build trust, explain services clearly, and generate qualified customer enquiries.',
+    client: 'Lakshya International Edwise',
+    category: 'Finance Platform',
+    filters: ['web'],
+    cardType: 'saas',
+    problem:
+      'The existing digital presence did not clearly communicate the finance offering or provide a strong conversion-focused journey for potential customers.',
+    solution:
+      'Built a focused finance-first experience with clearer service positioning, stronger information architecture, and conversion-oriented lead journeys.',
+    results: [
+      { value: 'Finance-first', label: 'Positioning' },
+      { value: 'Lead', label: 'Generation' },
+      { value: 'Conversion', label: 'Focused' },
+    ],
+    image: imgLakshya,
+    imageAlt: 'Lakshya finance platform website homepage',
+    imageConfig: { fit: 'cover', position: 'center 24%', scale: 1.05, overlay: 'soft' },
+    tags: ['Next.js', 'React', 'Vercel'],
+    website: 'https://www.lakshyainternationaledwise.com/',
+  },
+  {
+    id: 'xelarvis',
+    title: 'Xelarvis',
+    shortDescription:
+      'Corporate web platform for an AI research, consulting, data science, and healthcare technology practice.',
+    client: 'Xelarvis',
+    category: 'AI Platform',
+    filters: ['web'],
+    cardType: 'saas',
+    problem:
+      'The brand needed a digital presence that clearly communicates AI research depth alongside enterprise and healthcare delivery capabilities.',
+    solution:
+      'Built a premium corporate experience that positions AI research, consulting, data science, and healthcare capabilities in one coherent narrative.',
+    results: [
+      { value: 'AI Research', label: 'Positioned' },
+      { value: 'Healthcare', label: 'Focused' },
+      { value: 'Enterprise', label: 'Ready' },
+    ],
+    image: imgXelarvis,
+    imageAlt: 'Xelarvis AI research and consulting platform website',
+    imageConfig: { fit: 'cover', position: 'center 24%', scale: 1.05, overlay: 'soft' },
+    tags: ['Next.js', 'Payload', 'Vercel'],
+    website: 'https://www.xelarvis.in/',
   },
 ];
 

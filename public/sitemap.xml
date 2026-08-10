@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- SPA homepage — section anchors (#services, #projects, etc.) are not separate URLs -->
   <url>
-    <loc>https://teamgodevs.in/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://www.teamgodevs.in/</loc>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://teamgodevs.in/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://teamgodevs.in/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.teamgodevs.in/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.teamgodevs.in/" />
   </url>
 </urlset>
