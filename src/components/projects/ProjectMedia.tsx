@@ -87,7 +87,7 @@ const ProjectShot = ({ study, config, isHovered, alt, className }: ShotProps) =>
       src={study.image}
       alt={resolvedAlt}
       className={cn(
-        'project-shot relative z-10 h-full w-full transition-transform duration-500 ease-out will-change-transform',
+        'project-shot relative z-10 h-full w-full transition-transform duration-200 ease-out will-change-transform',
         className
       )}
       style={{
@@ -144,7 +144,7 @@ const ProjectMedia = ({ study, isHovered }: ProjectMediaProps) => {
                 ? { rotateY: 6, rotateX: -4, scale: 1.03 }
                 : { rotateY: 0, rotateX: 0, scale: 1 }
             }
-            transition={{ duration: 0.5, ease: easePremium }}
+            transition={{ duration: 0.18, ease: easePremium }}
             className="project-3d-stack relative h-full w-full"
           >
             <div className="project-3d-layer project-3d-layer--back absolute inset-[8%] rounded-2xl opacity-40 blur-sm" />
