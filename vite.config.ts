@@ -82,7 +82,14 @@ function apiDevPlugin(env: Record<string, string>): Plugin {
             res.statusCode = result.ok ? 200 : result.status;
             res.setHeader("Content-Type", "application/json");
             res.end(
-              JSON.stringify(result.ok ? { ok: true } : { message: result.message })
+              JSON.stringify(
+                result.ok
+                  ? { ok: true }
+                  : {
+                      message: result.message,
+                      ...(result.fallback ? { fallback: result.fallback } : {}),
+                    }
+              )
             );
           } catch (error) {
             console.error("Contact API dev error:", error);
