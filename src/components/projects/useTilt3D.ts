@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 import { useMotionValue, useSpring } from 'framer-motion';
 
 const MAX_DEG = 5;
-const SPRING = { stiffness: 280, damping: 28, mass: 0.6 };
+const SPRING = { stiffness: 620, damping: 38, mass: 0.28 };
 
 export function useTilt3D(enabled = true) {
   const ref = useRef<HTMLDivElement>(null);

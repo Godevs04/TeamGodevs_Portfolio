@@ -67,7 +67,7 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
       {/* Layer 1 — card ambient glow */}
       <div
         className={cn(
-          'project-card-ambient pointer-events-none absolute -inset-3 rounded-[36px] opacity-0 transition-opacity duration-700',
+          'project-card-ambient pointer-events-none absolute -inset-3 rounded-[36px] opacity-0 transition-opacity duration-200',
           isHovered && 'opacity-100'
         )}
         aria-hidden
@@ -90,7 +90,7 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
                 scale: isHovered ? 1.02 : 1,
               }
         }
-        transition={{ duration: 0.6, ease: easePremium }}
+        transition={{ duration: 0.18, ease: easePremium }}
         className={cn(
           'project-showcase-card group relative flex w-full flex-col overflow-hidden rounded-[32px]',
           study.variant === 'flagship' && 'project-showcase-card--flagship'
@@ -111,12 +111,12 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
             </p>
 
             <div className="mt-3 flex gap-2">
-              {study.results.map((m, i) => (
+              {study.results.map((m) => (
                 <motion.div
                   key={m.label}
                   initial={false}
                   animate={{ opacity: 1, y: isHovered ? 0 : 2 }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                  transition={{ duration: 0.16, ease: easePremium }}
                   className="project-metric-mini flex flex-1 flex-col items-center rounded-xl py-2 text-center"
                 >
                   <span className="text-sm font-semibold text-green-600 dark:text-emerald-400/95">
@@ -168,7 +168,7 @@ const CaseStudyCard = ({ study, index = 0, onOpenCaseStudy, className }: CaseStu
           {/* Hover reveal — problem / solution */}
           <div
             className={cn(
-              'grid border-t border-white/5 transition-[grid-template-rows,opacity] duration-500 ease-out',
+              'grid border-t border-white/5 transition-[grid-template-rows,opacity] duration-200 ease-out',
               isHovered ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
             )}
             style={{ transform: 'translateZ(16px)' }}
