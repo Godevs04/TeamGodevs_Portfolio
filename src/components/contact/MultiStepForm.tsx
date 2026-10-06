@@ -13,6 +13,7 @@ import { submitContactInquiry } from '@/lib/contact-api';
 import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 import { captureEvent, identifyUser } from '@/lib/captureEvent';
+import { scrollToSection } from '@/lib/scroll';
 
 export type LeadFormData = {
   name: string;
@@ -36,7 +37,17 @@ const STEPS = [
   { id: 3, title: 'Details', description: 'Tell us more' },
 ];
 
-const MultiStepForm = () => {
+type MultiStepFormProps = {
+  onBookCall?: () => void;
+};
+
+const toastStyle = {
+  background: 'hsl(var(--card))',
+  color: 'hsl(var(--foreground))',
+  border: '1px solid hsl(var(--primary))',
+};
+
+const MultiStepForm = ({ onBookCall }: MultiStepFormProps) => {
   const { getBudgetRangeOptions } = useLocalePricing();
   const budgetRanges = getBudgetRangeOptions();
   const formStartedAt = useRef(Date.now());
@@ -86,6 +97,15 @@ const MultiStepForm = () => {
 
   const handleBack = () => setStep((s) => Math.max(s - 1, 1));
 
+  const offerBookCall = () => {
+    toast.error(
+      "We couldn't save your inquiry just now. Book a free call instead — pick a time that works.",
+      { duration: 7000, style: toastStyle }
+    );
+    onBookCall?.();
+    scrollToSection('contact');
+  };
+
   const handleSubmit = async () => {
     if (!validateStep()) return;
 
@@ -97,7 +117,11 @@ const MultiStepForm = () => {
         formStartedAt: formStartedAt.current,
       });
       if (result.ok === false) {
-        toast.error(result.message);
+        if (result.fallback === 'book_call') {
+          offerBookCall();
+        } else {
+          toast.error(result.message);
+        }
         return;
       }
 
@@ -112,18 +136,14 @@ const MultiStepForm = () => {
       identifyUser(formData.email, { name: formData.name, email: formData.email });
       toast.success("You're in! We'll reply within 2 hours with next steps.", {
         duration: 5000,
-        style: {
-          background: 'hsl(var(--card))',
-          color: 'hsl(var(--foreground))',
-          border: '1px solid hsl(var(--primary))',
-        },
+        style: toastStyle,
       });
       setFormData(initialData);
       setCompanyWebsite('');
       formStartedAt.current = Date.now();
       setStep(1);
     } catch {
-      toast.error('Something went wrong. Try WhatsApp or email us directly.');
+      offerBookCall();
     } finally {
       setIsSubmitting(false);
     }

@@ -19,5 +19,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const errorResult = result as Extract<typeof result, { ok: false }>;
-  return res.status(errorResult.status).json({ message: errorResult.message });
+  return res.status(errorResult.status).json({
+    message: errorResult.message,
+    ...(errorResult.fallback ? { fallback: errorResult.fallback } : {}),
+  });
 }

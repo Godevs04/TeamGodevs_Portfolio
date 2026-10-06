@@ -11,7 +11,7 @@ import { saveContactInquiry } from './save-inquiry.js';
 
 export type ContactHandlerResult =
   | { ok: true }
-  | { ok: false; status: number; message: string };
+  | { ok: false; status: number; message: string; fallback?: 'book_call' };
 
 function getEnv(name: string): string | undefined {
   const value = process.env[name];
@@ -56,18 +56,28 @@ export async function handleContactSubmission(
   const fromEmail = getEnv('RESEND_FROM_EMAIL') ?? 'TeamGoDevs <hello@teamgodevs.in>';
 
   if (!apiKey) {
-    return { ok: false, status: 500, message: 'Email service is not configured.' };
+    return {
+      ok: false,
+      status: 500,
+      message: 'Email service is not configured.',
+      fallback: 'book_call',
+    };
   }
 
   if (teamRecipients.length === 0) {
-    return { ok: false, status: 500, message: 'Notification recipients are not configured.' };
+    return {
+      ok: false,
+      status: 500,
+      message: 'Notification recipients are not configured.',
+      fallback: 'book_call',
+    };
   }
 
   const resend = new Resend(apiKey);
 
   const saveResult = await saveContactInquiry(inquiry, meta);
   if (saveResult.ok === false) {
-    return { ok: false, status: 500, message: saveResult.message };
+    return { ok: false, status: 500, message: saveResult.message, fallback: 'book_call' };
   }
 
   const [teamResult, userResult] = await Promise.all([
@@ -92,6 +102,7 @@ export async function handleContactSubmission(
       ok: false,
       status: 502,
       message: 'Failed to send email. Please try again or contact us directly.',
+      fallback: 'book_call',
     };
   }
 

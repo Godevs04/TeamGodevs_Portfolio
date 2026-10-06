@@ -84,7 +84,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
-            {mode === 'form' ? <MultiStepForm /> : <BookCallPanel />}
+            {mode === 'form' ? <MultiStepForm onBookCall={openCalendar} /> : <BookCallPanel />}
           </div>
           <div className="lg:col-span-5">
             <ContactSidePanel />
