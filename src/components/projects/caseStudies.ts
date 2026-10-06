@@ -259,7 +259,7 @@ export const caseStudies: CaseStudy[] = [
       presentation: 'default',
     },
     tags: ['Next.js', 'NextAuth', 'Tailwind', 'Framer Motion', 'shadcn/ui'],
-    website: 'https://sana.sukeshiitj.me/',
+    website: 'https://sana.campusresults.co.in/',
   },
   {
     id: 'portfolio-3d',
@@ -337,7 +337,7 @@ export const caseStudies: CaseStudy[] = [
     imageAlt: 'Lakshya CRM business management analytics dashboard',
     imageConfig: { fit: 'cover', position: 'center 22%', scale: 1.06, overlay: 'soft' },
     tags: ['Next.js', 'React', 'Auth.js', 'Vercel'],
-    website: 'https://www.lakshyainternationaledwise.com/admin',
+    website: 'https://www.lakshyainternationaledwise.com/login',
   },
   {
     id: 'lakshya',
