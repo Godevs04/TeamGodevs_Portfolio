@@ -25,6 +25,7 @@ export const PROJECT_TYPE_LABELS: Record<string, string> = {
   seo: 'SEO & growth',
   design: 'UI/UX & branding',
   other: 'Other / not sure',
+  'student-project': 'Student / college project',
 };
 
 export const BUDGET_LABELS: Record<string, string> = {

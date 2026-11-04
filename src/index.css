@@ -101,6 +101,8 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    /* Keep section headings clear of the fixed floating navbar */
+    scroll-padding-top: 5.5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,6 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { scrollToSection } from '@/lib/scroll';
+import { IS_COLLEGE_PROJECT } from '@/lib/features';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
@@ -13,11 +15,21 @@ const Services = lazy(() => import('@/components/Services'));
 const Process = lazy(() => import('@/components/Process'));
 const Projects = lazy(() => import('@/components/Projects'));
 const Results = lazy(() => import('@/components/Results'));
+const StudentProjectsTeaser = lazy(() => import('@/components/StudentProjectsTeaser'));
 const Testimonials = lazy(() => import('@/components/Testimonials'));
 const FinalCTA = lazy(() => import('@/components/FinalCTA'));
 const Contact = lazy(() => import('@/components/Contact'));
 
 const Index = () => {
+  // Deep links like /#contact: the target lives in a lazy section, so the
+  // browser's native hash jump fires before it exists. Scroll once mounted.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.length > 1 && hash !== '#main-content') {
+      scrollToSection(hash);
+    }
+  }, []);
+
   return (
     <>
       <PageMeta />
@@ -48,6 +60,13 @@ const Index = () => {
               <Projects />
             </Suspense>
           </LazySection>
+          {IS_COLLEGE_PROJECT && (
+            <LazySection>
+              <Suspense fallback={<SectionFallback />}>
+                <StudentProjectsTeaser />
+              </Suspense>
+            </LazySection>
+          )}
           <LazySection>
             <Suspense fallback={<SectionFallback />}>
               <Results />
