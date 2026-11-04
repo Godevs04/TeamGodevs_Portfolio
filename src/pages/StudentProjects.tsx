@@ -27,6 +27,11 @@ import {
   DOMAINS,
   DOMAIN_COUNTS,
   LEVEL_LABELS,
+  PRICE_TIERS,
+  PRICE_TIER_IDS,
+  TEAM_SIZE,
+  perPersonPrice,
+  type PriceTier,
   STARTING_PRICE,
   STUDENT_PROJECTS,
   STUDENT_PROJECT_COUNT_LABEL,
@@ -46,7 +51,7 @@ const CUSTOM_CARD_SLOT = 7;
 
 const STEPS = [
   { title: 'Pick a project', text: 'Filter by domain, level and tech stack.' },
-  { title: 'Confirm on WhatsApp / email', text: 'We share a demo and confirm any changes.' },
+  { title: 'Confirm on WhatsApp / email', text: 'Share your deadline & changes — we confirm the scope, price and delivery date.' },
   { title: 'Get your package', text: 'Abstract, documentation & source code — with setup help.' },
 ];
 
@@ -79,6 +84,10 @@ const StudentProjects = () => {
   const level: StudentLevel | 'all' =
     levelParam === 'mini' || levelParam === 'final-year' ? levelParam : 'all';
   const sort = (params.get('sort') as SortKey | null) ?? 'popular';
+  const tierParam = Number(params.get('tier'));
+  const tier: PriceTier | 'all' = (PRICE_TIER_IDS as readonly number[]).includes(tierParam)
+    ? (tierParam as PriceTier)
+    : 'all';
   const q = (params.get('q') ?? '').toLowerCase();
 
   const setParam = (key: string, value: string | null) => {
@@ -120,6 +129,7 @@ const StudentProjects = () => {
     const list = STUDENT_PROJECTS.filter((p) => {
       if (domain !== 'all' && p.domain !== domain) return false;
       if (level !== 'all' && p.level !== level) return false;
+      if (tier !== 'all' && p.tier !== tier) return false;
       if (!q) return true;
       return [p.title, p.abstract, p.code, ...p.tech].some((v) => v.toLowerCase().includes(q));
     });
@@ -129,9 +139,9 @@ const StudentProjects = () => {
     else if (sort === 'name') sorted.sort((a, b) => a.title.localeCompare(b.title));
     else sorted.sort((a, b) => Number(b.popular) - Number(a.popular));
     return sorted;
-  }, [domain, level, sort, q]);
+  }, [domain, level, tier, sort, q]);
 
-  useEffect(() => setVisible(PAGE_SIZE), [domain, level, sort, q]);
+  useEffect(() => setVisible(PAGE_SIZE), [domain, level, tier, sort, q]);
 
   const openProject = (project: StudentProject) => {
     setSelected(project);
@@ -149,7 +159,16 @@ const StudentProjects = () => {
     setParams(new URLSearchParams(), { replace: true });
   };
 
-  const hasFilters = domain !== 'all' || level !== 'all' || Boolean(q);
+  const hasFilters = domain !== 'all' || level !== 'all' || tier !== 'all' || Boolean(q);
+
+  const tierCounts = useMemo(
+    () =>
+      STUDENT_PROJECTS.reduce<Record<number, number>>((acc, p) => {
+        acc[p.tier] = (acc[p.tier] ?? 0) + 1;
+        return acc;
+      }, {}),
+    []
+  );
 
   return (
     <>
@@ -202,8 +221,64 @@ const StudentProjects = () => {
               ))}
             </ol>
 
+            {/* Pick by budget */}
+            <section aria-labelledby="budget-heading" className="mt-14">
+              <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+                <div>
+                  <h2 id="budget-heading" className="text-lg font-semibold text-foreground sm:text-xl">
+                    Pick by budget
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    Same complete package in every tier — split it with your team of {TEAM_SIZE}.
+                  </p>
+                </div>
+                {tier !== 'all' && (
+                  <button type="button" onClick={() => setParam('tier', null)} className="text-sm font-medium text-primary hover:underline">
+                    Show all budgets
+                  </button>
+                )}
+              </div>
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4" role="group" aria-label="Filter by budget">
+                {PRICE_TIER_IDS.map((id) => {
+                  const info = PRICE_TIERS[id];
+                  const active = tier === id;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setParam('tier', active ? null : String(id))}
+                      className={cn(
+                        'group relative flex flex-col items-start justify-start overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 sm:p-5',
+                        active
+                          ? 'border-primary bg-primary/[0.08] shadow-glow'
+                          : 'border-border bg-card hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-medium'
+                      )}
+                    >
+                      {id === 1 && (
+                        <span className="absolute right-3 top-3 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
+                          Best value
+                        </span>
+                      )}
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">{info.label}</p>
+                      <p className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                        {formatINR(info.price)}
+                      </p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {formatINR(perPersonPrice(info.price))} each · team of {TEAM_SIZE}
+                      </p>
+                      <p className="mt-3 text-sm leading-snug text-foreground/80">{info.description}</p>
+                      <p className="mt-auto pt-3 text-xs font-medium text-muted-foreground group-hover:text-primary">
+                        {tierCounts[id] ?? 0} projects →
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+
             {/* Filters */}
-            <section aria-label="Filter projects" className="mt-12 space-y-4">
+            <section aria-label="Filter projects" className="mt-10 space-y-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="relative flex-1">
                   <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />

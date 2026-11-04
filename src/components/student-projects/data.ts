@@ -65,14 +65,29 @@ export const OPTIONAL_ADDONS = [
   'Custom changes / extra modules',
 ];
 
-export const PRICE_TIERS: Record<PriceTier, { price: number; label: string }> = {
-  1: { price: 2500, label: 'Essential' },
-  2: { price: 3500, label: 'Standard' },
-  3: { price: 4500, label: 'Advanced' },
-  4: { price: 6000, label: 'Research-grade' },
+export type PriceTierInfo = {
+  price: number;
+  label: string;
+  /** Who / what this tier is for — shown in the "Pick by budget" row */
+  description: string;
 };
 
+/** Charm pricing (₹x,499 / ₹x,999) — every project price comes from here. */
+export const PRICE_TIERS: Record<PriceTier, PriceTierInfo> = {
+  1: { price: 2499, label: 'Essential', description: 'Mini projects & classic CRUD apps' },
+  2: { price: 3499, label: 'Standard', description: 'ML models, full web & mobile apps' },
+  3: { price: 4499, label: 'Advanced', description: 'Deep learning, IoT & multi-module systems' },
+  4: { price: 5999, label: 'Research-grade', description: 'Medical AI, blockchain & research topics' },
+};
+
+export const PRICE_TIER_IDS = [1, 2, 3, 4] as const satisfies readonly PriceTier[];
+
 export const STARTING_PRICE = PRICE_TIERS[1].price;
+
+/** College projects are usually done in teams — show the split as well. */
+export const TEAM_SIZE = 4;
+export const perPersonPrice = (price: number, teamSize = TEAM_SIZE) =>
+  Math.ceil(price / teamSize);
 
 export const LEVEL_LABELS: Record<StudentLevel, string> = {
   mini: 'Mini project',

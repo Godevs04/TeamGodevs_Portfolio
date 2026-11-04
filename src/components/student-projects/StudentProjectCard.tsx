@@ -1,7 +1,7 @@
 import { ArrowRight, Flame } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ProjectCover from './ProjectCover';
-import { LEVEL_LABELS, formatINR, type StudentProject } from './data';
+import { LEVEL_LABELS, TEAM_SIZE, formatINR, perPersonPrice, type StudentProject } from './data';
 
 type StudentProjectCardProps = {
   project: StudentProject;
@@ -68,7 +68,12 @@ const StudentProjectCard = ({ project, onOpen, priority }: StudentProjectCardPro
         Abstract · Docs · Source code
       </p>
       <div className="mt-1 flex items-center justify-between gap-3">
-        <p className="text-lg font-bold text-foreground">{formatINR(project.price)}</p>
+        <div>
+          <p className="text-xl font-bold leading-none tracking-tight text-foreground">{formatINR(project.price)}</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            {formatINR(perPersonPrice(project.price))} each · team of {TEAM_SIZE}
+          </p>
+        </div>
         <button
           type="button"
           onClick={() => onOpen(project)}

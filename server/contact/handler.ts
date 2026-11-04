@@ -39,7 +39,8 @@ export async function handleContactSubmission(
   }
 
   const botCheck = checkBotSubmission(parsed.data);
-  if (!botCheck.allowed) {
+  // `=== false` (not `!`) so narrowing works with strictNullChecks off (Vercel uses root tsconfig)
+  if (botCheck.allowed === false) {
     console.info(`Contact submission blocked (${botCheck.reason}).`);
     return { ok: true };
   }
@@ -47,7 +48,7 @@ export async function handleContactSubmission(
   const { companyWebsite: _honeypot, formStartedAt: _startedAt, ...inquiry } = parsed.data;
 
   const rateLimit = await checkContactRateLimit(meta.ipAddress, inquiry.email);
-  if (!rateLimit.allowed) {
+  if (rateLimit.allowed === false) {
     return { ok: false, status: 429, message: rateLimit.message };
   }
 
