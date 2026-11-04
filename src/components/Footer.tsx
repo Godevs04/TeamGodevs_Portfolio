@@ -22,12 +22,17 @@ import {
   WHATSAPP_URL,
 } from '@/components/contact/constants';
 import { captureEvent } from '@/lib/captureEvent';
+import { useNavigate } from 'react-router-dom';
+import { IS_COLLEGE_PROJECT, STUDENT_PROJECTS_PATH } from '@/lib/features';
 
-const exploreLinks = [
+const exploreLinks: { name: string; href: string; to?: string }[] = [
   { name: 'Home', href: 'home' },
   { name: 'Services', href: 'services' },
   { name: 'Process', href: 'process' },
   { name: 'Selected work', href: 'projects' },
+  ...(IS_COLLEGE_PROJECT
+    ? [{ name: 'Student projects', href: 'student-projects', to: STUDENT_PROJECTS_PATH }]
+    : []),
   { name: 'Client reviews', href: 'testimonials' },
   { name: 'Contact', href: 'contact' },
 ];
@@ -71,6 +76,7 @@ const contactIconClass = cn(
 
 const Footer = () => {
   const { theme } = useTheme();
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -155,7 +161,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     type="button"
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => (link.to ? navigate(link.to) : scrollToSection(link.href))}
                     className="footer-link-nav w-full"
                   >
                     {link.name}
