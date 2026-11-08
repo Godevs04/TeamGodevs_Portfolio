@@ -2,8 +2,10 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import { env } from './config/env.js';
+import { getHealth } from './controllers/health.controller.js';
 import { razorpayWebhookHandler } from './controllers/payment.controller.js';
 import { errorHandler, notFoundHandler } from './middleware/error-handler.js';
+import { docsRouter } from './routes/docs.js';
 import { apiRouter } from './routes/index.js';
 
 export function createApp() {
@@ -32,6 +34,11 @@ export function createApp() {
   app.get('/', (_req, res) => {
     res.json({ ok: true, name: 'TeamGoDevs API' });
   });
+  app.get('/health', getHealth);
+
+  if (env.apiDocsEnabled) {
+    app.use(docsRouter);
+  }
 
   app.use('/api', apiRouter);
 

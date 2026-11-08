@@ -92,7 +92,9 @@ Explore the full Work section on the live site.
 
 | Method | Path | Purpose |
 |--------|------|---------|
-| GET | `/api/health` | Service status (database, payments, email) |
+| GET | `/api/health` (also `/health`) | Service status (database, payments, email) |
+| GET | `/docs` | Scalar API reference with a "Try it" client |
+| GET | `/openapi.json` | OpenAPI 3.1 spec (import into Postman / Insomnia) |
 | GET | `/api/geo` | Visitor country → pricing region |
 | POST | `/api/contact` | Contact form (saved to MongoDB + emails) |
 | POST | `/api/create-order` | Create a Razorpay order |
@@ -100,6 +102,9 @@ Explore the full Work section on the live site.
 | POST | `/api/payment-failed` | Record a failed payment attempt |
 | GET | `/api/orders/:orderId` | Public order status |
 | POST | `/api/webhooks/razorpay` | Razorpay webhook (`payment.captured`, `order.paid`, `payment.failed`) |
+
+`/docs` and `/openapi.json` are on by default outside production; set `API_DOCS_ENABLED=true` to expose them in production.
+The spec lives in `api/src/docs/openapi.ts` — update it when you add or change an endpoint.
 
 ---
 

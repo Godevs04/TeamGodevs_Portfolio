@@ -23,6 +23,13 @@ function int(name: string, fallback: number): number {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
+function bool(name: string, fallback: boolean): boolean {
+  const raw = optional(name)?.toLowerCase();
+  if (raw === 'true' || raw === '1') return true;
+  if (raw === 'false' || raw === '0') return false;
+  return fallback;
+}
+
 function list(name: string, fallback: string[] = []): string[] {
   const raw = optional(name);
   if (!raw) return fallback;
@@ -38,6 +45,8 @@ export const env = {
   /** Number of reverse proxies in front of the API (Render / Railway / Nginx = 1). */
   trustProxy: int('TRUST_PROXY', 1),
   corsOrigins: list('CORS_ORIGINS', ['http://localhost:8080']),
+  /** Scalar API reference at /docs and the spec at /openapi.json (default: on outside production). */
+  apiDocsEnabled: bool('API_DOCS_ENABLED', nodeEnv !== 'production'),
 
   mongodbUri: optional('MONGODB_URI'),
   mongodbDbName: optional('MONGODB_DB_NAME') ?? 'teamgodevs',

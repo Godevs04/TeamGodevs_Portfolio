@@ -1,8 +1,7 @@
 import { Router } from 'express';
-import { isDatabaseReady } from '../config/db.js';
-import { isRazorpayConfigured } from '../config/razorpay.js';
 import { submitContact } from '../controllers/contact.controller.js';
 import { getGeo } from '../controllers/geo.controller.js';
+import { getHealth } from '../controllers/health.controller.js';
 import {
   createOrderHandler,
   getOrderHandler,
@@ -10,20 +9,10 @@ import {
   verifyPaymentHandler,
 } from '../controllers/payment.controller.js';
 import { contactLimiter, paymentLimiter } from '../middleware/rate-limiters.js';
-import { isEmailConfigured } from '../services/email.service.js';
 
 export const apiRouter = Router();
 
-apiRouter.get('/health', (_req, res) => {
-  res.status(200).json({
-    ok: true,
-    services: {
-      database: isDatabaseReady(),
-      payments: isRazorpayConfigured(),
-      email: isEmailConfigured(),
-    },
-  });
-});
+apiRouter.get('/health', getHealth);
 
 apiRouter.get('/geo', getGeo);
 apiRouter.post('/contact', contactLimiter, submitContact);
