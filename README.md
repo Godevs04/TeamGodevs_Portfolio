@@ -64,37 +64,75 @@ Explore the full Work section on the live site.
 
 ---
 
+## Repository structure
+
+```
+.
+├── api/                     Express + MongoDB backend (TypeScript)
+│   └── src/
+│       ├── config/          env, MongoDB connection, Razorpay client
+│       ├── constants/       server-side price catalog
+│       ├── controllers/     HTTP handlers
+│       ├── middleware/      error handling, rate limiting
+│       ├── models/          Mongoose models (ContactInquiry, Order)
+│       ├── routes/          /api router
+│       ├── services/        business logic (contact, payments, email)
+│       ├── templates/       transactional email HTML
+│       ├── utils/           request metadata, pricing, helpers
+│       └── validators/      Zod request schemas
+└── web/                     Vite + React frontend (deployed on Vercel)
+```
+
 ## Tech stack
 
-Built with a modern React stack:
+- **web** — Vite, React, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion
+- **api** — Express 5, Mongoose (MongoDB Atlas), Razorpay, Resend, Zod
 
-- **Vite** + **React** + **TypeScript**
-- **Tailwind CSS** + **shadcn/ui**
-- **Framer Motion**
-- Deployed on **Vercel**
+### API endpoints
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| GET | `/api/health` | Service status (database, payments, email) |
+| GET | `/api/geo` | Visitor country → pricing region |
+| POST | `/api/contact` | Contact form (saved to MongoDB + emails) |
+| POST | `/api/create-order` | Create a Razorpay order |
+| POST | `/api/verify-payment` | Verify checkout signature, mark order paid |
+| POST | `/api/payment-failed` | Record a failed payment attempt |
+| GET | `/api/orders/:orderId` | Public order status |
+| POST | `/api/webhooks/razorpay` | Razorpay webhook (`payment.captured`, `order.paid`, `payment.failed`) |
 
 ---
 
 ## Local development
 
 ```bash
-# Install dependencies
-npm install
+# Install both apps
+npm run install:all
 
-# Start the dev server
-npm run dev
+# Configure secrets
+cp api/.env.example api/.env   # MongoDB, Razorpay, Resend
+cp web/.env.example web/.env   # public build-time vars
 
-# Production build
-npm run build
+# Terminal 1 — API on http://localhost:5050
+npm run dev:api
 
-# Preview production build
-npm run preview
-
-# SEO readiness checks
-npm run seo:audit
+# Terminal 2 — web on http://localhost:8080 (proxies /api to the API)
+npm run dev:web
 ```
 
-Create a `.env` from `.env.example` if you need analytics or contact API keys locally.
+Other web scripts (`npm --prefix web run …`): `build`, `preview`, `lint`, `seo:audit`.
+
+### Payments
+
+- `/payment?project=<student-project-id>` — fixed-price student project (priced on the server).
+- `/payment?amount=5000&for=Invoice%20INV-1042` — shareable custom-amount payment link.
+
+### Deployment
+
+- **web** → Vercel with Root Directory `web`. Set `VITE_API_URL` to the API origin.
+- **api** → any Node 20+ host (Render, Railway, Fly, VPS): `npm run build && npm start`.
+  Add the web origin to `CORS_ORIGINS`, and register `https://<api-host>/api/webhooks/razorpay`
+  in Razorpay Dashboard → Webhooks with the same secret as `RAZORPAY_WEBHOOK_SECRET`.
 
 ---
 

@@ -1,0 +1,942 @@
+{
+  "fake-news-detection-using-machine-learning": {
+    "code": "ML-001",
+    "title": "Fake News Detection using Machine Learning",
+    "tier": 2
+  },
+  "credit-card-fraud-detection": {
+    "code": "ML-002",
+    "title": "Credit Card Fraud Detection",
+    "tier": 2
+  },
+  "house-price-prediction": {
+    "code": "ML-003",
+    "title": "House Price Prediction",
+    "tier": 1
+  },
+  "student-performance-prediction": {
+    "code": "ML-004",
+    "title": "Student Performance Prediction",
+    "tier": 1
+  },
+  "crop-recommendation-system": {
+    "code": "ML-005",
+    "title": "Crop Recommendation System",
+    "tier": 2
+  },
+  "heart-disease-prediction": {
+    "code": "ML-006",
+    "title": "Heart Disease Prediction",
+    "tier": 2
+  },
+  "movie-recommendation-system": {
+    "code": "ML-007",
+    "title": "Movie Recommendation System",
+    "tier": 1
+  },
+  "customer-churn-prediction": {
+    "code": "ML-008",
+    "title": "Customer Churn Prediction",
+    "tier": 2
+  },
+  "loan-approval-prediction": {
+    "code": "ML-009",
+    "title": "Loan Approval Prediction",
+    "tier": 1
+  },
+  "diabetes-prediction-with-explainable-ai": {
+    "code": "ML-010",
+    "title": "Diabetes Prediction with Explainable AI",
+    "tier": 3
+  },
+  "stock-price-prediction-using-lstm": {
+    "code": "ML-011",
+    "title": "Stock Price Prediction using LSTM",
+    "tier": 3
+  },
+  "air-quality-index-prediction": {
+    "code": "ML-012",
+    "title": "Air Quality Index Prediction",
+    "tier": 1
+  },
+  "medical-insurance-cost-prediction": {
+    "code": "ML-013",
+    "title": "Medical Insurance Cost Prediction",
+    "tier": 1
+  },
+  "employee-salary-prediction": {
+    "code": "ML-014",
+    "title": "Employee Salary Prediction",
+    "tier": 1
+  },
+  "parkinson-s-disease-detection-from-voice": {
+    "code": "ML-015",
+    "title": "Parkinson’s Disease Detection from Voice",
+    "tier": 2
+  },
+  "flight-fare-prediction": {
+    "code": "ML-016",
+    "title": "Flight Fare Prediction",
+    "tier": 1
+  },
+  "rainfall-prediction-for-agriculture": {
+    "code": "ML-017",
+    "title": "Rainfall Prediction for Agriculture",
+    "tier": 2
+  },
+  "product-demand-forecasting": {
+    "code": "ML-018",
+    "title": "Product Demand Forecasting",
+    "tier": 2
+  },
+  "smart-traffic-signal-using-reinforcement-learning": {
+    "code": "ML-019",
+    "title": "Smart Traffic Signal using Reinforcement Learning",
+    "tier": 4
+  },
+  "face-recognition-attendance-system": {
+    "code": "CV-001",
+    "title": "Face Recognition Attendance System",
+    "tier": 3
+  },
+  "driver-drowsiness-detection": {
+    "code": "CV-002",
+    "title": "Driver Drowsiness Detection",
+    "tier": 3
+  },
+  "plant-leaf-disease-detection": {
+    "code": "CV-003",
+    "title": "Plant Leaf Disease Detection",
+    "tier": 3
+  },
+  "brain-tumor-detection-from-mri": {
+    "code": "CV-004",
+    "title": "Brain Tumor Detection from MRI",
+    "tier": 4
+  },
+  "sign-language-to-text-recognition": {
+    "code": "CV-005",
+    "title": "Sign Language to Text Recognition",
+    "tier": 3
+  },
+  "vehicle-number-plate-recognition": {
+    "code": "CV-006",
+    "title": "Vehicle Number Plate Recognition",
+    "tier": 4
+  },
+  "face-mask-detection": {
+    "code": "CV-007",
+    "title": "Face Mask Detection",
+    "tier": 2
+  },
+  "real-time-object-detection-with-yolo": {
+    "code": "CV-008",
+    "title": "Real-time Object Detection with YOLO",
+    "tier": 3
+  },
+  "handwritten-digit-recognition": {
+    "code": "CV-009",
+    "title": "Handwritten Digit Recognition",
+    "tier": 1
+  },
+  "pneumonia-detection-from-chest-x-ray": {
+    "code": "CV-010",
+    "title": "Pneumonia Detection from Chest X-ray",
+    "tier": 4
+  },
+  "emotion-detection-from-facial-expressions": {
+    "code": "CV-011",
+    "title": "Emotion Detection from Facial Expressions",
+    "tier": 3
+  },
+  "deepfake-image-detection": {
+    "code": "CV-012",
+    "title": "Deepfake Image Detection",
+    "tier": 4
+  },
+  "skin-cancer-detection": {
+    "code": "CV-013",
+    "title": "Skin Cancer Detection",
+    "tier": 4
+  },
+  "image-caption-generator": {
+    "code": "CV-014",
+    "title": "Image Caption Generator",
+    "tier": 3
+  },
+  "crowd-counting-and-density-estimation": {
+    "code": "CV-015",
+    "title": "Crowd Counting & Density Estimation",
+    "tier": 4
+  },
+  "fire-and-smoke-detection-from-cctv": {
+    "code": "CV-016",
+    "title": "Fire & Smoke Detection from CCTV",
+    "tier": 3
+  },
+  "diabetic-retinopathy-detection": {
+    "code": "CV-017",
+    "title": "Diabetic Retinopathy Detection",
+    "tier": 4
+  },
+  "helmet-detection-and-number-plate-capture": {
+    "code": "CV-018",
+    "title": "Helmet Detection & Number Plate Capture",
+    "tier": 3
+  },
+  "age-and-gender-prediction": {
+    "code": "CV-019",
+    "title": "Age & Gender Prediction",
+    "tier": 2
+  },
+  "college-enquiry-chatbot": {
+    "code": "NLP-001",
+    "title": "College Enquiry Chatbot",
+    "tier": 1
+  },
+  "ai-resume-screening-and-ranking": {
+    "code": "NLP-002",
+    "title": "AI Resume Screening & Ranking",
+    "tier": 3
+  },
+  "sentiment-analysis-of-product-reviews": {
+    "code": "NLP-003",
+    "title": "Sentiment Analysis of Product Reviews",
+    "tier": 1
+  },
+  "text-summarization-using-transformers": {
+    "code": "NLP-004",
+    "title": "Text Summarization using Transformers",
+    "tier": 3
+  },
+  "spam-email-and-sms-classifier": {
+    "code": "NLP-005",
+    "title": "Spam Email & SMS Classifier",
+    "tier": 1
+  },
+  "pdf-question-answering-bot-rag": {
+    "code": "NLP-006",
+    "title": "PDF Question-Answering Bot (RAG)",
+    "tier": 4
+  },
+  "desktop-voice-assistant": {
+    "code": "NLP-007",
+    "title": "Desktop Voice Assistant",
+    "tier": 1
+  },
+  "hate-speech-detection-on-social-media": {
+    "code": "NLP-008",
+    "title": "Hate Speech Detection on Social Media",
+    "tier": 3
+  },
+  "language-translator-web-app": {
+    "code": "NLP-009",
+    "title": "Language Translator Web App",
+    "tier": 2
+  },
+  "healthcare-symptom-checker-chatbot": {
+    "code": "NLP-010",
+    "title": "Healthcare Symptom Checker Chatbot",
+    "tier": 3
+  },
+  "social-media-sentiment-dashboard": {
+    "code": "NLP-011",
+    "title": "Social Media Sentiment Dashboard",
+    "tier": 2
+  },
+  "ai-interview-question-generator": {
+    "code": "NLP-012",
+    "title": "AI Interview Question Generator",
+    "tier": 3
+  },
+  "automatic-answer-sheet-evaluation": {
+    "code": "NLP-013",
+    "title": "Automatic Answer Sheet Evaluation",
+    "tier": 3
+  },
+  "video-transcript-summarizer": {
+    "code": "NLP-014",
+    "title": "Video Transcript Summarizer",
+    "tier": 3
+  },
+  "speech-emotion-recognition": {
+    "code": "NLP-015",
+    "title": "Speech Emotion Recognition",
+    "tier": 3
+  },
+  "plagiarism-checker": {
+    "code": "NLP-016",
+    "title": "Plagiarism Checker",
+    "tier": 2
+  },
+  "multilingual-customer-support-chatbot": {
+    "code": "NLP-017",
+    "title": "Multilingual Customer Support Chatbot",
+    "tier": 3
+  },
+  "fake-product-review-detection": {
+    "code": "NLP-018",
+    "title": "Fake Product Review Detection",
+    "tier": 2
+  },
+  "sales-forecasting-dashboard": {
+    "code": "DS-001",
+    "title": "Sales Forecasting Dashboard",
+    "tier": 2
+  },
+  "covid-19-data-analysis-and-visualization": {
+    "code": "DS-002",
+    "title": "COVID-19 Data Analysis & Visualization",
+    "tier": 1
+  },
+  "cricket-match-analytics-and-win-predictor": {
+    "code": "DS-003",
+    "title": "Cricket Match Analytics & Win Predictor",
+    "tier": 1
+  },
+  "customer-segmentation-using-k-means": {
+    "code": "DS-004",
+    "title": "Customer Segmentation using K-Means",
+    "tier": 1
+  },
+  "retail-market-basket-analysis": {
+    "code": "DS-005",
+    "title": "Retail Market Basket Analysis",
+    "tier": 1
+  },
+  "hr-employee-attrition-analytics": {
+    "code": "DS-006",
+    "title": "HR Employee Attrition Analytics",
+    "tier": 2
+  },
+  "power-bi-business-sales-dashboard": {
+    "code": "DS-007",
+    "title": "Power BI Business Sales Dashboard",
+    "tier": 1
+  },
+  "weather-data-analysis-and-forecasting": {
+    "code": "DS-008",
+    "title": "Weather Data Analysis & Forecasting",
+    "tier": 1
+  },
+  "restaurant-ratings-analysis-and-prediction": {
+    "code": "DS-009",
+    "title": "Restaurant Ratings Analysis & Prediction",
+    "tier": 1
+  },
+  "road-accident-analysis-and-hotspot-mapping": {
+    "code": "DS-010",
+    "title": "Road Accident Analysis & Hotspot Mapping",
+    "tier": 2
+  },
+  "ott-content-analysis-dashboard": {
+    "code": "DS-011",
+    "title": "OTT Content Analysis Dashboard",
+    "tier": 1
+  },
+  "stock-portfolio-analyzer": {
+    "code": "DS-012",
+    "title": "Stock Portfolio Analyzer",
+    "tier": 2
+  },
+  "student-placement-analytics-and-prediction": {
+    "code": "DS-013",
+    "title": "Student Placement Analytics & Prediction",
+    "tier": 1
+  },
+  "electricity-consumption-forecasting": {
+    "code": "DS-014",
+    "title": "Electricity Consumption Forecasting",
+    "tier": 2
+  },
+  "ride-hailing-trip-data-analysis": {
+    "code": "DS-015",
+    "title": "Ride-hailing Trip Data Analysis",
+    "tier": 1
+  },
+  "hospital-readmission-prediction": {
+    "code": "DS-016",
+    "title": "Hospital Readmission Prediction",
+    "tier": 2
+  },
+  "online-examination-system": {
+    "code": "WEB-001",
+    "title": "Online Examination System",
+    "tier": 2
+  },
+  "hospital-management-system": {
+    "code": "WEB-002",
+    "title": "Hospital Management System",
+    "tier": 2
+  },
+  "e-commerce-website-with-payment-gateway": {
+    "code": "WEB-003",
+    "title": "E-commerce Website with Payment Gateway",
+    "tier": 3
+  },
+  "college-event-management-portal": {
+    "code": "WEB-004",
+    "title": "College Event Management Portal",
+    "tier": 2
+  },
+  "online-library-management-system": {
+    "code": "WEB-005",
+    "title": "Online Library Management System",
+    "tier": 1
+  },
+  "job-portal-with-resume-upload": {
+    "code": "WEB-006",
+    "title": "Job Portal with Resume Upload",
+    "tier": 3
+  },
+  "real-time-chat-application": {
+    "code": "WEB-007",
+    "title": "Real-time Chat Application",
+    "tier": 2
+  },
+  "blood-bank-management-system": {
+    "code": "WEB-008",
+    "title": "Blood Bank Management System",
+    "tier": 1
+  },
+  "online-food-ordering-system": {
+    "code": "WEB-009",
+    "title": "Online Food Ordering System",
+    "tier": 2
+  },
+  "hostel-management-system": {
+    "code": "WEB-010",
+    "title": "Hostel Management System",
+    "tier": 1
+  },
+  "learning-management-system-lms": {
+    "code": "WEB-011",
+    "title": "Learning Management System (LMS)",
+    "tier": 3
+  },
+  "personal-portfolio-and-blog-cms": {
+    "code": "WEB-012",
+    "title": "Personal Portfolio & Blog CMS",
+    "tier": 1
+  },
+  "bus-ticket-booking-system": {
+    "code": "WEB-013",
+    "title": "Bus Ticket Booking System",
+    "tier": 2
+  },
+  "online-voting-system-with-otp": {
+    "code": "WEB-014",
+    "title": "Online Voting System with OTP",
+    "tier": 2
+  },
+  "alumni-management-portal": {
+    "code": "WEB-015",
+    "title": "Alumni Management Portal",
+    "tier": 2
+  },
+  "real-estate-property-listing-portal": {
+    "code": "WEB-016",
+    "title": "Real Estate Property Listing Portal",
+    "tier": 3
+  },
+  "doctor-appointment-booking-system": {
+    "code": "WEB-017",
+    "title": "Doctor Appointment Booking System",
+    "tier": 2
+  },
+  "online-complaint-and-grievance-portal": {
+    "code": "WEB-018",
+    "title": "Online Complaint & Grievance Portal",
+    "tier": 1
+  },
+  "car-rental-management-system": {
+    "code": "WEB-019",
+    "title": "Car Rental Management System",
+    "tier": 2
+  },
+  "freelance-marketplace": {
+    "code": "WEB-020",
+    "title": "Freelance Marketplace",
+    "tier": 3
+  },
+  "video-conferencing-web-app": {
+    "code": "WEB-021",
+    "title": "Video Conferencing Web App",
+    "tier": 3
+  },
+  "expense-tracker-app": {
+    "code": "APP-001",
+    "title": "Expense Tracker App",
+    "tier": 1
+  },
+  "women-safety-app-with-sos-and-live-location": {
+    "code": "APP-002",
+    "title": "Women Safety App with SOS & Live Location",
+    "tier": 3
+  },
+  "smart-attendance-app-using-qr-code": {
+    "code": "APP-003",
+    "title": "Smart Attendance App using QR Code",
+    "tier": 2
+  },
+  "medicine-reminder-app": {
+    "code": "APP-004",
+    "title": "Medicine Reminder App",
+    "tier": 1
+  },
+  "campus-navigation-app": {
+    "code": "APP-005",
+    "title": "Campus Navigation App",
+    "tier": 2
+  },
+  "online-grocery-delivery-app": {
+    "code": "APP-006",
+    "title": "Online Grocery Delivery App",
+    "tier": 3
+  },
+  "fitness-and-diet-tracker": {
+    "code": "APP-007",
+    "title": "Fitness & Diet Tracker",
+    "tier": 2
+  },
+  "blood-donor-finder-app": {
+    "code": "APP-008",
+    "title": "Blood Donor Finder App",
+    "tier": 2
+  },
+  "notes-app-with-cloud-sync": {
+    "code": "APP-009",
+    "title": "Notes App with Cloud Sync",
+    "tier": 1
+  },
+  "plant-disease-detection-mobile-app": {
+    "code": "APP-010",
+    "title": "Plant Disease Detection Mobile App",
+    "tier": 4
+  },
+  "college-erp-mobile-app": {
+    "code": "APP-011",
+    "title": "College ERP Mobile App",
+    "tier": 3
+  },
+  "college-bus-tracking-app": {
+    "code": "APP-012",
+    "title": "College Bus Tracking App",
+    "tier": 3
+  },
+  "campus-lost-and-found-app": {
+    "code": "APP-013",
+    "title": "Campus Lost & Found App",
+    "tier": 1
+  },
+  "pet-adoption-app": {
+    "code": "APP-014",
+    "title": "Pet Adoption App",
+    "tier": 2
+  },
+  "flashcard-language-learning-app": {
+    "code": "APP-015",
+    "title": "Flashcard Language Learning App",
+    "tier": 1
+  },
+  "mood-tracker-and-mental-wellness-journal": {
+    "code": "APP-016",
+    "title": "Mood Tracker & Mental Wellness Journal",
+    "tier": 2
+  },
+  "smart-home-automation-using-esp32": {
+    "code": "IOT-001",
+    "title": "Smart Home Automation using ESP32",
+    "tier": 3
+  },
+  "smart-irrigation-system": {
+    "code": "IOT-002",
+    "title": "Smart Irrigation System",
+    "tier": 3
+  },
+  "iot-health-monitoring-system": {
+    "code": "IOT-003",
+    "title": "IoT Health Monitoring System",
+    "tier": 4
+  },
+  "rfid-based-attendance-system": {
+    "code": "IOT-004",
+    "title": "RFID-based Attendance System",
+    "tier": 2
+  },
+  "smart-parking-system": {
+    "code": "IOT-005",
+    "title": "Smart Parking System",
+    "tier": 3
+  },
+  "gas-leakage-detection-and-alert": {
+    "code": "IOT-006",
+    "title": "Gas Leakage Detection & Alert",
+    "tier": 2
+  },
+  "iot-weather-monitoring-station": {
+    "code": "IOT-007",
+    "title": "IoT Weather Monitoring Station",
+    "tier": 2
+  },
+  "accident-detection-and-alert-system": {
+    "code": "IOT-008",
+    "title": "Accident Detection & Alert System",
+    "tier": 3
+  },
+  "smart-dustbin-and-waste-monitoring": {
+    "code": "IOT-009",
+    "title": "Smart Dustbin & Waste Monitoring",
+    "tier": 2
+  },
+  "raspberry-pi-smart-surveillance-camera": {
+    "code": "IOT-010",
+    "title": "Raspberry Pi Smart Surveillance Camera",
+    "tier": 4
+  },
+  "smart-energy-meter-with-billing": {
+    "code": "IOT-011",
+    "title": "Smart Energy Meter with Billing",
+    "tier": 3
+  },
+  "automatic-street-light-control": {
+    "code": "IOT-012",
+    "title": "Automatic Street Light Control",
+    "tier": 2
+  },
+  "smart-water-tank-level-monitor": {
+    "code": "IOT-013",
+    "title": "Smart Water Tank Level Monitor",
+    "tier": 2
+  },
+  "fingerprint-door-lock-and-attendance": {
+    "code": "IOT-014",
+    "title": "Fingerprint Door Lock & Attendance",
+    "tier": 2
+  },
+  "vehicle-tracking-with-gps-and-gsm": {
+    "code": "IOT-015",
+    "title": "Vehicle Tracking with GPS & GSM",
+    "tier": 3
+  },
+  "smart-agriculture-with-crop-health-monitoring": {
+    "code": "IOT-016",
+    "title": "Smart Agriculture with Crop Health Monitoring",
+    "tier": 4
+  },
+  "forest-fire-detection-and-alert": {
+    "code": "IOT-017",
+    "title": "Forest Fire Detection & Alert",
+    "tier": 2
+  },
+  "phishing-website-detection-using-ml": {
+    "code": "SEC-001",
+    "title": "Phishing Website Detection using ML",
+    "tier": 3
+  },
+  "network-intrusion-detection-system": {
+    "code": "SEC-002",
+    "title": "Network Intrusion Detection System",
+    "tier": 3
+  },
+  "password-strength-analyzer-and-manager": {
+    "code": "SEC-003",
+    "title": "Password Strength Analyzer & Manager",
+    "tier": 1
+  },
+  "image-steganography-tool": {
+    "code": "SEC-004",
+    "title": "Image Steganography Tool",
+    "tier": 1
+  },
+  "secure-file-sharing-with-aes-and-rsa": {
+    "code": "SEC-005",
+    "title": "Secure File Sharing with AES & RSA",
+    "tier": 2
+  },
+  "malware-detection-using-machine-learning": {
+    "code": "SEC-006",
+    "title": "Malware Detection using Machine Learning",
+    "tier": 3
+  },
+  "two-factor-authentication-system": {
+    "code": "SEC-007",
+    "title": "Two-Factor Authentication System",
+    "tier": 2
+  },
+  "sql-injection-detection": {
+    "code": "SEC-008",
+    "title": "SQL Injection Detection",
+    "tier": 2
+  },
+  "graphical-password-authentication": {
+    "code": "SEC-009",
+    "title": "Graphical Password Authentication",
+    "tier": 2
+  },
+  "port-scanner-and-vulnerability-reporter": {
+    "code": "SEC-010",
+    "title": "Port Scanner & Vulnerability Reporter",
+    "tier": 1
+  },
+  "honeypot-for-attack-monitoring": {
+    "code": "SEC-011",
+    "title": "Honeypot for Attack Monitoring",
+    "tier": 3
+  },
+  "end-to-end-encrypted-chat-app": {
+    "code": "SEC-012",
+    "title": "End-to-End Encrypted Chat App",
+    "tier": 3
+  },
+  "ransomware-detection-using-behaviour-analysis": {
+    "code": "SEC-013",
+    "title": "Ransomware Detection using Behaviour Analysis",
+    "tier": 4
+  },
+  "file-integrity-monitoring-system": {
+    "code": "SEC-014",
+    "title": "File Integrity Monitoring System",
+    "tier": 2
+  },
+  "digital-forensics-toolkit": {
+    "code": "SEC-015",
+    "title": "Digital Forensics Toolkit",
+    "tier": 3
+  },
+  "ddos-attack-detection-using-ml": {
+    "code": "SEC-016",
+    "title": "DDoS Attack Detection using ML",
+    "tier": 3
+  },
+  "blockchain-based-e-voting-system": {
+    "code": "BC-001",
+    "title": "Blockchain-based E-Voting System",
+    "tier": 4
+  },
+  "land-registry-on-blockchain": {
+    "code": "BC-002",
+    "title": "Land Registry on Blockchain",
+    "tier": 4
+  },
+  "academic-certificate-verification": {
+    "code": "BC-003",
+    "title": "Academic Certificate Verification",
+    "tier": 4
+  },
+  "supply-chain-tracking-on-blockchain": {
+    "code": "BC-004",
+    "title": "Supply Chain Tracking on Blockchain",
+    "tier": 4
+  },
+  "crowdfunding-dapp": {
+    "code": "BC-005",
+    "title": "Crowdfunding DApp",
+    "tier": 3
+  },
+  "nft-marketplace-testnet": {
+    "code": "BC-006",
+    "title": "NFT Marketplace (Testnet)",
+    "tier": 4
+  },
+  "medical-records-on-blockchain": {
+    "code": "BC-007",
+    "title": "Medical Records on Blockchain",
+    "tier": 4
+  },
+  "simple-blockchain-in-python": {
+    "code": "BC-008",
+    "title": "Simple Blockchain in Python",
+    "tier": 1
+  },
+  "decentralized-file-storage": {
+    "code": "BC-009",
+    "title": "Decentralized File Storage",
+    "tier": 3
+  },
+  "decentralized-identity-management": {
+    "code": "BC-010",
+    "title": "Decentralized Identity Management",
+    "tier": 4
+  },
+  "charity-donation-transparency-platform": {
+    "code": "BC-011",
+    "title": "Charity Donation Transparency Platform",
+    "tier": 3
+  },
+  "peer-to-peer-energy-trading": {
+    "code": "BC-012",
+    "title": "Peer-to-Peer Energy Trading",
+    "tier": 4
+  },
+  "smart-contract-rental-agreement": {
+    "code": "BC-013",
+    "title": "Smart Contract Rental Agreement",
+    "tier": 3
+  },
+  "agricultural-produce-traceability": {
+    "code": "BC-014",
+    "title": "Agricultural Produce Traceability",
+    "tier": 3
+  },
+  "serverless-url-shortener-on-aws": {
+    "code": "CLD-001",
+    "title": "Serverless URL Shortener on AWS",
+    "tier": 2
+  },
+  "ci-cd-pipeline-with-jenkins-and-docker": {
+    "code": "CLD-002",
+    "title": "CI/CD Pipeline with Jenkins & Docker",
+    "tier": 3
+  },
+  "kubernetes-microservices-deployment": {
+    "code": "CLD-003",
+    "title": "Kubernetes Microservices Deployment",
+    "tier": 3
+  },
+  "cloud-file-storage-and-sharing": {
+    "code": "CLD-004",
+    "title": "Cloud File Storage & Sharing",
+    "tier": 3
+  },
+  "infrastructure-as-code-with-terraform": {
+    "code": "CLD-005",
+    "title": "Infrastructure as Code with Terraform",
+    "tier": 3
+  },
+  "monitoring-with-prometheus-and-grafana": {
+    "code": "CLD-006",
+    "title": "Monitoring with Prometheus & Grafana",
+    "tier": 2
+  },
+  "online-code-editor-and-compiler": {
+    "code": "CLD-007",
+    "title": "Online Code Editor & Compiler",
+    "tier": 3
+  },
+  "online-resume-builder": {
+    "code": "CLD-008",
+    "title": "Online Resume Builder",
+    "tier": 1
+  },
+  "auto-scaling-web-app-on-aws": {
+    "code": "CLD-009",
+    "title": "Auto-scaling Web App on AWS",
+    "tier": 3
+  },
+  "serverless-image-resizer": {
+    "code": "CLD-010",
+    "title": "Serverless Image Resizer",
+    "tier": 2
+  },
+  "centralized-log-monitoring-with-elk": {
+    "code": "CLD-011",
+    "title": "Centralized Log Monitoring with ELK",
+    "tier": 3
+  },
+  "gitops-deployment-with-argo-cd": {
+    "code": "CLD-012",
+    "title": "GitOps Deployment with Argo CD",
+    "tier": 4
+  },
+  "cloud-cost-monitoring-dashboard": {
+    "code": "CLD-013",
+    "title": "Cloud Cost Monitoring Dashboard",
+    "tier": 3
+  },
+  "static-website-ci-cd-with-github-actions": {
+    "code": "CLD-014",
+    "title": "Static Website CI/CD with GitHub Actions",
+    "tier": 1
+  },
+  "student-management-system": {
+    "code": "APPX-001",
+    "title": "Student Management System",
+    "tier": 1
+  },
+  "library-management-system": {
+    "code": "APPX-002",
+    "title": "Library Management System",
+    "tier": 1
+  },
+  "billing-and-inventory-management-system": {
+    "code": "APPX-003",
+    "title": "Billing & Inventory Management System",
+    "tier": 1
+  },
+  "2d-arcade-game-using-pygame": {
+    "code": "APPX-004",
+    "title": "2D Arcade Game using Pygame",
+    "tier": 1
+  },
+  "typing-speed-tester": {
+    "code": "APPX-005",
+    "title": "Typing Speed Tester",
+    "tier": 1
+  },
+  "bank-management-system": {
+    "code": "APPX-006",
+    "title": "Bank Management System",
+    "tier": 1
+  },
+  "hand-gesture-volume-controller": {
+    "code": "APPX-007",
+    "title": "Hand Gesture Volume Controller",
+    "tier": 1
+  },
+  "ai-virtual-mouse-using-hand-tracking": {
+    "code": "APPX-008",
+    "title": "AI Virtual Mouse using Hand Tracking",
+    "tier": 2
+  },
+  "smart-file-organizer-and-duplicate-finder": {
+    "code": "APPX-009",
+    "title": "Smart File Organizer & Duplicate Finder",
+    "tier": 1
+  },
+  "quiz-application-with-leaderboard": {
+    "code": "APPX-010",
+    "title": "Quiz Application with Leaderboard",
+    "tier": 1
+  },
+  "payroll-management-system": {
+    "code": "APPX-011",
+    "title": "Payroll Management System",
+    "tier": 1
+  },
+  "text-editor-with-syntax-highlighting": {
+    "code": "APPX-012",
+    "title": "Text Editor with Syntax Highlighting",
+    "tier": 1
+  },
+  "chess-game-with-ai-opponent": {
+    "code": "APPX-013",
+    "title": "Chess Game with AI Opponent",
+    "tier": 2
+  },
+  "sudoku-solver-and-generator": {
+    "code": "APPX-014",
+    "title": "Sudoku Solver & Generator",
+    "tier": 1
+  },
+  "pathfinding-algorithm-visualizer": {
+    "code": "APPX-015",
+    "title": "Pathfinding Algorithm Visualizer",
+    "tier": 1
+  },
+  "hotel-management-system": {
+    "code": "APPX-016",
+    "title": "Hotel Management System",
+    "tier": 1
+  },
+  "image-editor-with-filters": {
+    "code": "APPX-017",
+    "title": "Image Editor with Filters",
+    "tier": 1
+  },
+  "desktop-screen-recorder": {
+    "code": "APPX-018",
+    "title": "Desktop Screen Recorder",
+    "tier": 1
+  }
+}
