@@ -39,11 +39,12 @@ export async function apiRequest<T>(path: string, init: RequestInit & { json?: u
   const data = (await response.json().catch(() => null)) as (T & ApiErrorBody) | null;
 
   if (!response.ok) {
-    throw new ApiError(
-      response.status,
-      data?.message ?? data?.error ?? 'Something went wrong. Please try again.',
-      data
-    );
+    // No JSON body on a 5xx means a proxy / gateway answered because the API itself is down.
+    const fallback =
+      !data && response.status >= 500
+        ? 'Our server is unreachable right now. Please try again in a minute.'
+        : 'Something went wrong. Please try again.';
+    throw new ApiError(response.status, data?.message ?? data?.error ?? fallback, data);
   }
 
   return data as T;

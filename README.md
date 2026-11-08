@@ -124,7 +124,9 @@ Other web scripts (`npm --prefix web run …`): `build`, `preview`, `lint`, `seo
 
 ### Payments
 
-- `/payment?project=<student-project-id>` — fixed-price student project (priced on the server).
+- `/payment?project=<student-project-id>` — fixed-price student project (priced on the server by project id).
+  After adding or re-pricing projects in `web/src/components/student-projects/data.ts`, run
+  `npm --prefix api run catalog:sync` to regenerate `api/src/constants/student-projects.json`.
 - `/payment?amount=5000&for=Invoice%20INV-1042` — shareable custom-amount payment link.
 
 ### Deployment
